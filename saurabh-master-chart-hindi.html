@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>सौरभ — मास्टर ज्योतिष कुंडली · हिंदी संस्करण</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,800&family=Great+Vibes&family=Noto+Sans+Devanagari:wght@400;600;700;800;900&display=swap');
+
+:root{
+  --canvas:#0B0E14;
+  --card:#161B22;
+  --border:#232A34;
+  --blue:#3B82F6;
+  --gold:#F59E0B;
+  --body:#E2E8F0;
+  --muted:#8B98A9;
+  --zebra:#10151D;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html,body{
+  background:#05070B;
+  font-family:'Inter','Noto Sans Devanagari',system-ui,-apple-system,'SF Pro Display','Segoe UI',sans-serif;
+  color:var(--body);
+  -webkit-font-smoothing:antialiased;
+  print-color-adjust:exact;
+  -webkit-print-color-adjust:exact;
+}
+
+.sheet{
+  width:210mm;
+  min-height:297mm;
+  margin:24px auto 96px;
+  padding:12mm;
+  background:var(--canvas);
+  box-shadow:0 24px 80px rgba(0,0,0,.6);
+  position:relative;
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;
+  overflow:hidden;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:22px 20px 20px;
+}
+.hero::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,rgba(59,130,246,.07) 0%,transparent 45%,rgba(245,158,11,.05) 100%);
+  pointer-events:none;
+}
+.wheel{
+  position:absolute;
+  right:-50px;
+  top:50%;
+  transform:translateY(-50%);
+  width:280px;
+  height:280px;
+  opacity:.18;
+  pointer-events:none;
+}
+.eyebrow{
+  font-size:8.5px;
+  font-weight:600;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:7px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.eyebrow::before{content:'';width:18px;height:1px;background:var(--gold);}
+.hero h1{
+  font-size:28px;
+  font-weight:800;
+  letter-spacing:.14em;
+  color:#fff;
+  line-height:1.05;
+}
+.hero h1 .dash{color:var(--blue);font-weight:400;margin:0 6px;}
+.hero .sub{
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  color:var(--blue);
+  margin-top:5px;
+}
+.chips{
+  display:flex;
+  gap:8px;
+  margin-top:14px;
+  position:relative;
+  z-index:1;
+}
+.chip{
+  border:1px solid var(--border);
+  background:rgba(11,14,20,.7);
+  border-radius:999px;
+  padding:5px 12px;
+  display:flex;
+  align-items:baseline;
+  gap:6px;
+}
+.chip .k{
+  font-size:7.5px;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--blue);
+}
+.chip .v{font-size:10px;font-weight:600;color:var(--body);white-space:nowrap;}
+.chip.gold{border-color:rgba(245,158,11,.45);}
+.chip.gold .k{color:var(--gold);}
+
+/* ---------- SECTION LABELS ---------- */
+.seclabel{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin:16px 0 8px;
+}
+.seclabel .num{
+  font-size:9px;
+  font-weight:800;
+  color:var(--gold);
+  letter-spacing:.1em;
+}
+.seclabel .txt{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.26em;
+  text-transform:uppercase;
+  color:var(--blue);
+}
+.seclabel .rule{flex:1;height:1px;background:var(--border);}
+
+/* ---------- PLANETARY TABLE ---------- */
+table{
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  overflow:hidden;
+}
+col.c1{width:12.5%} col.c2{width:15%} col.c3{width:8.5%} col.c4{width:20%} col.c5{width:44%}
+thead th{
+  font-size:7.5px;
+  font-weight:700;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:var(--blue);
+  text-align:left;
+  padding:9px 10px;
+  background:#0E1319;
+  border-bottom:1px solid var(--border);
+}
+tbody td{
+  padding:8px 10px;
+  font-size:9.5px;
+  line-height:1.35;
+  vertical-align:middle;
+  border-bottom:1px solid #1A212B;
+  height:33px;
+}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even) td{background:var(--zebra);}
+td.planet{font-weight:700;font-size:10px;color:#fff;letter-spacing:.03em;}
+td.planet .glyph{color:var(--blue);margin-right:6px;font-weight:400;}
+td.sign{font-weight:600;color:var(--body);}
+td.house{font-weight:700;color:var(--blue);}
+.tag{
+  display:inline-block;
+  font-size:7.5px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  padding:2.5px 8px;
+  border-radius:999px;
+  border:1px solid rgba(245,158,11,.5);
+  color:var(--gold);
+  background:rgba(245,158,11,.08);
+  white-space:nowrap;
+}
+.tag.blue{
+  border-color:rgba(59,130,246,.45);
+  color:#7EB0FA;
+  background:rgba(59,130,246,.08);
+}
+td.effect{
+  color:var(--muted);
+  font-size:9.5px;
+}
+.deg{display:block;font-size:7.5px;color:var(--muted);font-weight:500;margin-top:1px;}
+td.effect .clamp{
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+td.effect b{color:var(--body);font-weight:600;}
+
+/* ---------- HOUSE CARDS ---------- */
+.houses{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+}
+.hcard{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:12px 13px;
+  position:relative;
+  overflow:hidden;
+}
+.hcard::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:2px;
+  background:linear-gradient(90deg,var(--blue),transparent 70%);
+}
+.hcard .hnum{
+  font-size:22px;
+  font-weight:800;
+  color:rgba(59,130,246,.16);
+  position:absolute;
+  top:5px;right:9px;
+  line-height:1;
+}
+.hcard .hh{
+  font-size:9.5px;
+  font-weight:800;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#fff;
+}
+.hcard .hsign{
+  font-size:7.5px;
+  font-weight:700;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin:2px 0 5px;
+}
+.hcard p{
+  font-size:9px;
+  line-height:1.55;
+  color:var(--muted);
+}
+.hcard p b{color:var(--body);font-weight:600;}
+
+/* ---------- EXECUTIVE CALLOUT ---------- */
+.callout{
+  border:1px solid rgba(245,158,11,.55);
+  background:linear-gradient(135deg,rgba(245,158,11,.06),rgba(22,27,34,.9) 40%);
+  border-radius:8px;
+  padding:16px 18px;
+  position:relative;
+}
+.callout::before{
+  content:'';
+  position:absolute;
+  left:0;top:10px;bottom:10px;
+  width:3px;
+  border-radius:2px;
+  background:var(--gold);
+}
+.callout .grid2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+.callout .lbl{
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:4px;
+}
+.callout .arch{
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.05em;
+  color:#fff;
+  margin-bottom:4px;
+}
+.callout p{
+  font-size:9.5px;
+  line-height:1.6;
+  color:var(--muted);
+}
+.callout p b{color:var(--body);font-weight:600;}
+.callout p .au{color:var(--gold);font-weight:600;}
+.callout p .pk{color:#7EB0FA;font-weight:600;}
+
+/* ---------- FOOTER ---------- */
+.foot{
+  margin-top:12px;
+  padding-top:9px;
+  border-top:1px solid var(--border);
+  display:flex;
+  justify-content:space-between;
+  gap:14px;
+  font-size:7px;
+  letter-spacing:.06em;
+  color:#5B6B7E;
+  line-height:1.5;
+}
+
+/* ---------- SCREEN-ONLY MOTION ---------- */
+@media screen{
+  .hero h1,.hero .sub,.hero .eyebrow{
+    animation:lineup .8s cubic-bezier(.22,1,.36,1) both;
+  }
+  .hero .sub{animation-delay:.12s}
+  .hero .eyebrow{animation-delay:0s}
+  .hero h1{animation-delay:.06s}
+  .chips .chip{animation:lineup .7s cubic-bezier(.22,1,.36,1) both;}
+  .chips .chip:nth-child(1){animation-delay:.22s}
+  .chips .chip:nth-child(2){animation-delay:.28s}
+  .chips .chip:nth-child(3){animation-delay:.34s}
+  .chips .chip:nth-child(4){animation-delay:.40s}
+  tbody tr{animation:fadein .6s ease both;}
+  tbody tr:nth-child(1){animation-delay:.35s} tbody tr:nth-child(2){animation-delay:.40s}
+  tbody tr:nth-child(3){animation-delay:.45s} tbody tr:nth-child(4){animation-delay:.50s}
+  tbody tr:nth-child(5){animation-delay:.55s} tbody tr:nth-child(6){animation-delay:.60s}
+  tbody tr:nth-child(7){animation-delay:.65s} tbody tr:nth-child(8){animation-delay:.70s}
+  tbody tr:nth-child(9){animation-delay:.75s}
+  .hcard{animation:lineup .7s cubic-bezier(.22,1,.36,1) both;}
+  .hcard:nth-child(1){animation-delay:.55s} .hcard:nth-child(2){animation-delay:.62s}
+  .hcard:nth-child(3){animation-delay:.69s} .hcard:nth-child(4){animation-delay:.76s}
+  .callout{animation:lineup .8s cubic-bezier(.22,1,.36,1) both;animation-delay:.85s}
+  .wheel{animation:spin 120s linear infinite;}
+}
+@keyframes lineup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+@keyframes spin{from{transform:translateY(-50%) rotate(0deg)}to{transform:translateY(-50%) rotate(360deg)}}
+
+/* ---------- PAGE 2 ---------- */
+.wheelcard{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:14px 14px 10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.natal{width:620px;height:620px;max-width:100%;}
+.wheelfoot{
+  font-size:7.5px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-top:8px;
+  text-align:center;
+}
+.dedication{
+  display:grid;
+  grid-template-columns:112px 1fr;
+  gap:18px;
+  align-items:center;
+  background:var(--card);
+  border:1px solid rgba(245,158,11,.5);
+  border-radius:8px;
+  padding:14px 18px;
+}
+.seal{width:108px;height:108px;}
+.lbl2{
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:4px;
+}
+.dline{font-size:10px;line-height:1.65;color:var(--muted);}
+.dline b{color:#fff;font-weight:700;}
+.dsig{font-family:'Great Vibes','Inter',cursive;font-size:26px;color:var(--gold);margin-top:6px;}
+.dmeta{font-size:7px;letter-spacing:.26em;color:#5B6B7E;text-transform:uppercase;margin-top:3px;}
+@media screen{
+  .wheelcard{animation:lineup .8s cubic-bezier(.22,1,.36,1) both;}
+  .dedication{animation:lineup .8s cubic-bezier(.22,1,.36,1) both;animation-delay:.15s;}
+}
+
+/* ---------- PAGE 3 ---------- */
+.dashacard{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px 16px;}
+.dbar{display:flex;height:42px;border-radius:6px;overflow:hidden;border:1px solid var(--border);position:relative;}
+.dseg{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-width:0;background:var(--card);}
+.dseg:nth-child(odd){background:#10151D;}
+.dseg.cur{background:rgba(59,130,246,.18);}
+.dseg.jup{background:rgba(245,158,11,.14);}
+.dseg .dn{font-size:8px;font-weight:800;letter-spacing:.1em;color:var(--body);white-space:nowrap;}
+.dseg .dy{font-size:6.5px;color:var(--muted);white-space:nowrap;}
+.dyears{display:flex;margin-top:4px;}
+.dyears span{font-size:6.5px;color:var(--muted);letter-spacing:.05em;}
+.dnow{position:absolute;top:-5px;bottom:-5px;width:2px;background:var(--gold);z-index:2;}
+.dnow i{position:absolute;top:-3px;left:4px;font-style:normal;font-size:6px;font-weight:800;letter-spacing:.15em;color:var(--gold);}
+.abar{display:flex;height:24px;border-radius:4px;overflow:hidden;border:1px solid var(--border);margin-top:10px;}
+.aseg{display:flex;align-items:center;justify-content:center;font-size:6.5px;font-weight:700;color:var(--muted);min-width:0;border-right:1px solid #1A212B;background:var(--card);}
+.aseg:last-child{border-right:none;}
+.aseg.cur{background:rgba(245,158,11,.22);color:var(--gold);}
+.acap{font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:5px;}
+.dwins{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px;}
+.dwin{background:#0E1319;border:1px solid var(--border);border-radius:6px;padding:8px 10px;}
+.dwin .wk{font-size:7px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+.dwin p{font-size:8.5px;line-height:1.6;color:var(--muted);}
+.dwin p b{color:var(--body);font-weight:600;}
+.yogacard{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:8px 16px;}
+.yoga{display:grid;grid-template-columns:170px 1fr 64px;gap:14px;align-items:center;padding:12px 0;border-bottom:1px solid #1A212B;}
+.yoga:last-child{border-bottom:none;}
+.yname{font-size:9.5px;font-weight:800;color:#fff;line-height:1.3;}
+.yname .ysub{display:block;font-size:6.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-top:2px;}
+.ytext{font-size:8.5px;line-height:1.5;color:var(--muted);}
+.ytext b{color:var(--body);font-weight:600;}
+.ymeter{display:flex;gap:4px;justify-content:flex-end;}
+.ymeter i{width:7px;height:7px;border-radius:50%;background:#232A34;}
+.ymeter i.on{background:var(--gold);}
+.numgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;}
+.ncard{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 11px 11px;position:relative;overflow:hidden;}
+.ncard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent 70%);}
+.nval{font-size:22px;font-weight:800;color:var(--gold);line-height:1;}
+.nval small{font-size:10px;font-weight:700;color:var(--muted);}
+.nlab{font-size:6.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin:5px 0 4px;}
+.ntxt{font-size:8px;line-height:1.55;color:var(--muted);}
+.numsyn{margin-top:10px;border:1px solid rgba(245,158,11,.45);background:rgba(245,158,11,.05);border-radius:6px;padding:10px 14px;font-size:8.5px;line-height:1.5;color:var(--muted);}
+.numsyn b{color:var(--body);font-weight:700;}
+@media screen{
+  .dashacard,.yogacard,.numgrid,.numsyn{animation:lineup .8s cubic-bezier(.22,1,.36,1) both;}
+}
+
+/* ---------- PAGES 4-6 ---------- */
+.remgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+.remcard{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 13px;position:relative;overflow:hidden;}
+.remcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent 70%);}
+.remcard .rp{font-size:10.5px;font-weight:800;color:#fff;}
+.remcard .rw{font-size:6.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin:2px 0 9px;}
+.rrow{display:flex;gap:8px;font-size:8px;line-height:1.5;color:var(--muted);margin-bottom:6px;}
+.rrow .rk{flex:0 0 44px;font-size:6.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);padding-top:1px;}
+.rrow b{color:var(--body);font-weight:600;}
+.remnote{margin-top:8px;font-size:7.5px;line-height:1.55;color:#5B6B7E;border:1px dashed var(--border);border-radius:6px;padding:8px 12px;}
+.cfields{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.cfield{background:var(--card);border:1px dashed #35404F;border-radius:8px;padding:10px 12px;}
+.cfield .fl{font-size:6.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:12px;}
+.cfield .fline{height:12px;border-bottom:1px dotted #4E5D70;}
+.compat{display:grid;grid-template-columns:190px 1fr;gap:10px;margin-top:8px;align-items:stretch;}
+.dialcard{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.dialcap{font-size:6.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:8px;text-align:center;line-height:1.6;}
+.verdicts{display:flex;gap:8px;margin-top:8px;}
+.verdict{flex:1;background:#0E1319;border:1px solid var(--border);border-radius:6px;padding:7px 10px;font-size:7px;line-height:1.5;color:var(--muted);}
+.verdict b{display:block;font-size:8px;color:var(--body);margin-bottom:2px;}
+.cfield.filled{border-style:solid;}
+.cfield .fval{font-size:9.5px;font-weight:700;color:var(--body);letter-spacing:.02em;min-height:12px;}
+.kscore{font-weight:800;color:var(--body);font-size:9.5px;}
+.kscore .kmax{color:var(--muted);font-weight:600;font-size:7.5px;}
+.kscore .knote{display:block;font-size:6.3px;color:var(--muted);font-weight:600;letter-spacing:.05em;margin-top:1px;text-transform:uppercase;}
+.kscore.full{color:var(--gold);}
+.verdict.active{border-color:var(--gold);background:rgba(245,158,11,.07);}
+.verdict.active b{color:var(--gold);}
+.costrip{display:flex;gap:6px;margin-bottom:8px;}
+.cochip{flex:1;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:6px 9px;text-align:center;}
+.cochip .ck{font-size:6px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:2px;}
+.cochip .cv{font-size:8.5px;font-weight:700;color:var(--body);white-space:nowrap;}
+.cochip .cv b{color:var(--gold);}
+.mucards{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:2px;}
+.mucard{background:#0E1319;border:1px solid var(--border);border-radius:6px;padding:9px 11px;}
+.mucard .md{font-size:13.5px;font-weight:900;color:var(--body);}
+.mucard .md span{font-size:8px;font-weight:700;color:var(--gold);margin-left:5px;letter-spacing:.1em;text-transform:uppercase;}
+.mucard .mn{font-size:7px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:3px 0;}
+.mucard p{font-size:7.5px;line-height:1.55;color:var(--muted);}
+.mucard p b{color:var(--body);}
+.mucard.gold{border-color:var(--gold);background:rgba(245,158,11,.06);}
+.mucard.gold .md{color:var(--gold);}
+.mubadge{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:99;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:rgba(11,14,20,.92);border:1px solid var(--border);border-radius:8px;padding:7px 14px;backdrop-filter:blur(8px);box-shadow:0 8px 30px rgba(0,0,0,.5);}
+.mubadge b{color:var(--gold);}
+@media print{.mubadge{display:none !important;}}
+.ladder{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 16px;}
+.lstep{flex:1;}
+.lstep .lv{font-size:14px;font-weight:800;color:var(--gold);}
+.lstep .lk{font-size:6.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:2px;}
+.larr{color:var(--blue);font-size:13px;font-weight:800;}
+.rules{border:1px solid rgba(245,158,11,.5);background:rgba(245,158,11,.05);border-radius:8px;padding:12px 16px;font-size:8.5px;line-height:1.75;color:var(--muted);margin-top:12px;}
+.rules b{color:var(--body);font-weight:700;}
+@media screen{
+  .remgrid,.cfields,.compat,.verdicts,.ladder,.rules{animation:lineup .8s cubic-bezier(.22,1,.36,1) both;}
+}
+
+/* ---------- TOOLBAR (screen only) ---------- */
+.toolbar{
+  position:fixed;
+  bottom:22px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:8px;
+  padding:8px;
+  background:rgba(22,27,34,.85);
+  border:1px solid var(--border);
+  border-radius:999px;
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  box-shadow:0 12px 40px rgba(0,0,0,.55);
+  z-index:100;
+}
+.tb-btn{
+  font-family:inherit;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  padding:9px 18px;
+  border-radius:999px;
+  border:1px solid transparent;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  transition:background-color .2s,color .2s,border-color .2s,transform .2s;
+}
+.tb-btn:hover{transform:translateY(-1px);}
+.tb-btn.primary{background:var(--blue);color:#fff;}
+.tb-btn.primary:hover{background:#2563EB;}
+.tb-btn.secondary{background:transparent;color:var(--body);border-color:var(--border);}
+.tb-btn.secondary:hover{border-color:var(--blue);color:#fff;}
+.tb-btn.ghost{background:rgba(245,158,11,.1);color:var(--gold);border-color:rgba(245,158,11,.4);}
+.tb-btn.ghost:hover{border-color:var(--gold);}
+
+/* ---------- PRINT ---------- */
+@page{size:A4;margin:12mm;}
+@media print{
+  html,body{background:var(--canvas);}
+  .sheet{
+    width:auto;
+    min-height:auto;
+    margin:0;
+    padding:0;
+    box-shadow:none;
+  }
+  .wheel{animation:none;transform:translateY(-50%);}
+  .toolbar{display:none !important;}
+  .page2,.page3,.page4,.page5,.page6,.page7,.page8{page-break-before:always;}
+  *{animation:none !important;}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <!-- HERO -->
+  <header class="hero">
+    <svg class="wheel" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="200" cy="200" r="192" stroke="#3B82F6" stroke-width="1"/>
+      <circle cx="200" cy="200" r="158" stroke="#3B82F6" stroke-width="1"/>
+      <circle cx="200" cy="200" r="112" stroke="#F59E0B" stroke-width="1"/>
+      <circle cx="200" cy="200" r="64" stroke="#3B82F6" stroke-width="1"/>
+      <g stroke="#3B82F6" stroke-width="1">
+        <line x1="200" y1="8" x2="200" y2="392"/>
+        <line x1="8" y1="200" x2="392" y2="200"/>
+        <line x1="34" y1="104" x2="366" y2="296"/>
+        <line x1="34" y1="296" x2="366" y2="104"/>
+        <line x1="104" y1="34" x2="296" y2="366"/>
+        <line x1="296" y1="34" x2="104" y2="366"/>
+      </g>
+      <g stroke="#F59E0B" stroke-width="2">
+        <line x1="200" y1="8" x2="200" y2="20"/><line x1="200" y1="380" x2="200" y2="392"/>
+        <line x1="8" y1="200" x2="20" y2="200"/><line x1="380" y1="200" x2="392" y2="200"/>
+      </g>
+      <circle cx="200" cy="200" r="4" fill="#F59E0B"/>
+    </svg>
+    <div class="eyebrow">गोपनीय · जन्म-कुंडली विवेचन दस्तावेज़ · हिंदी संस्करण</div>
+    <h1>सौरभ</h1>
+    <div class="sub">मास्टर ज्योतिष कुंडली एवं ग्रह संरचना</div>
+    <div class="chips">
+      <div class="chip"><span class="k">सूर्य</span><span class="v">कर्क · पंचम भाव</span></div>
+      <div class="chip"><span class="k">चंद्र</span><span class="v">कन्या · सप्तम भाव</span></div>
+      <div class="chip"><span class="k">लग्न</span><span class="v">मीन 3°18′</span></div>
+      <div class="chip gold"><span class="k">प्रमुख ऊर्जा</span><span class="v">पंचम-भाव सृजन ग्रह-पुंज</span></div>
+    </div>
+  </header>
+
+  <!-- PLANETARY POSITIONS -->
+  <div class="seclabel"><span class="num">01</span><span class="txt">ग्रह स्थिति</span><span class="rule"></span></div>
+  <table>
+    <colgroup><col class="c1"><col class="c2"><col class="c3"><col class="c4"><col class="c5"></colgroup>
+    <thead>
+      <tr><th>ग्रह</th><th>राशि</th><th>भाव</th><th>स्थिति / बल</th><th>मुख्य रणनीतिक प्रभाव</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="planet"><span class="glyph">☉</span>सूर्य</td>
+        <td class="sign">कर्क<span class="deg">18°41′</span></td>
+        <td class="house">पंचम</td>
+        <td><span class="tag blue">तेजस्वी केंद्र</span></td>
+        <td class="effect"><span class="clamp"><b>सृजन से नेतृत्व।</b> मौलिक कार्य — उत्पाद, उद्यम व बौद्धिक संपदा — में सत्ता शिखर पर; प्रतिष्ठा आविष्कार के पीछे चलती है।</span></td>
+      </tr>
+      <tr>
+        <td class="planet"><span class="glyph">☽</span>चंद्र</td>
+        <td class="sign">कन्या<span class="deg">19°51′</span></td>
+        <td class="house">सप्तम</td>
+        <td><span class="tag blue">विश्लेषक अंतर्ज्ञान</span></td>
+        <td class="effect"><span class="clamp"><b>भावनात्मक बुद्धि आँकड़ों पर चलती है।</b> सामने वाले को क्षण में पढ़ लेते हैं; सौदे की समझ अंतर्मन में बसी है।</span></td>
+      </tr>
+      <tr>
+        <td class="planet"><span class="glyph">☿</span>बुध</td>
+        <td class="sign">कर्क<span class="deg">1°44′</span></td>
+        <td class="house">पंचम</td>
+        <td><span class="tag blue">सृजनशील बुद्धि</span></td>
+        <td class="effect"><span class="clamp"><b>अंतर्ज्ञानी अभियांत्रिक मन।</b> कल्पना को चालू प्रणालियों में बदलता है — कोड, भाषा व उत्पाद संरचना।</span></td>
+      </tr>
+      <tr>
+        <td class="planet"><span class="glyph">♀</span>शुक्र</td>
+        <td class="sign">सिंह<span class="deg">3°34′</span></td>
+        <td class="house">षष्ठ</td>
+        <td><span class="tag blue">साहसी परिष्कार</span></td>
+        <td class="effect"><span class="clamp"><b>कार्य-प्रणाली ही ब्रांड का मंच।</b> सेवा, प्रणाली और निष्पादन में प्रीमियम रुचि झलकती है।</span></td>
+      </tr>
+      <tr>
+        <td class="planet"><span class="glyph">♂</span>मंगल</td>
+        <td class="sign">कर्क<span class="deg">8°28′</span></td>
+        <td class="house">पंचम</td>
+        <td><span class="tag">नीच भंग · राज योग</span></td>
+        <td class="effect"><span class="clamp"><b>नीचता दुर्लभ शक्ति में पलटी।</b> कच्चा जोश धैर्यपूर्ण रणनीतिक बल बनता है — देर से खिलता, पर प्रचंड।</span></td>
+      </tr>
+      <tr>
+        <td class="planet"><span class="glyph">♃</span>बृहस्पति</td>
+        <td class="sign">वृषभ<span class="deg">12°40′</span></td>
+        <td class="house">तृतीय</td>
+        <td><span class="tag">लग्नेश एवं दशमेश</span></td>
+        <td class="effect"><span class="clamp"><b>स्व-निर्मित कौशल से करियर का उदय।</b> कुंडली का स्वामी कौशल, कंटेंट व साहस में निवेश करता है — धीमा पर चक्रवृद्धि आरोहण।</span></td>
+      </tr>
+      <tr>
+        <td class="planet"><span class="glyph">♄</span>शनि</td>
+        <td class="sign">वृषभ<span class="deg">5°48′</span></td>
+        <td class="house">तृतीय</td>
+        <td><span class="tag blue">लौह अनुशासन</span></td>
+        <td class="effect"><span class="clamp"><b>अथक शिल्पकार।</b> परिश्रम को प्रणाली बनाया — औज़ार, हाथ व कोड पर घंटा-दर-घंटा अर्जित प्रभुत्व।</span></td>
+      </tr>
+      <tr>
+        <td class="planet"><span class="glyph">☊</span>राहु</td>
+        <td class="sign">कर्क<span class="deg">0°38′</span></td>
+        <td class="house">पंचम</td>
+        <td><span class="tag blue">प्रवर्धित प्रतिभा</span></td>
+        <td class="effect"><span class="clamp"><b>जुनूनी सृजनात्मक बुद्धि।</b> तकनीक, संभावना व बौद्धिक संपदा में अपरंपरागत दाँव।</span></td>
+      </tr>
+      <tr>
+        <td class="planet"><span class="glyph">☋</span>केतु</td>
+        <td class="sign">मकर<span class="deg">0°38′</span></td>
+        <td class="house">एकादश</td>
+        <td><span class="tag blue">निर्लिप्त प्रभुत्व</span></td>
+        <td class="effect"><span class="clamp"><b>भीड़ की स्वीकृति से निर्लिप्त।</b> संपर्कों की कठोर छँटाई — मित्र थोड़े, पर सब निर्णायक।</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- HOUSE ARCHITECTURE -->
+  <div class="seclabel"><span class="num">02</span><span class="txt">भाव संरचना</span><span class="rule"></span></div>
+  <div class="houses">
+    <div class="hcard">
+      <div class="hnum">1</div>
+      <div class="hh">पात्र</div>
+      <div class="hsign">प्रथम भाव · मीन</div>
+      <p><b>पहचान व दृष्टि।</b> मीन लग्न 3°18′ — ऐसा अंतर्ज्ञानी रणनीतिकार जो पूरे तंत्र को तब देख लेता है जब दूसरे टुकड़े भी नहीं देख पाते।</p>
+    </div>
+    <div class="hcard">
+      <div class="hnum">3</div>
+      <div class="hh">शिल्पशाला</div>
+      <div class="hsign">तृतीय भाव · वृषभ</div>
+      <p><b>कौशल व अनुशासन।</b> शनि–गुरु युति: धैर्यपूर्ण अभ्यास और विस्तृत ज्ञान का संगम। शिल्प चक्रवृद्धि से स्थायी प्रभुत्व बनता है।</p>
+    </div>
+    <div class="hcard">
+      <div class="hnum">5</div>
+      <div class="hh">ऊर्जा-गृह</div>
+      <div class="hsign">पंचम भाव · कर्क</div>
+      <p><b>नवाचार व बुद्धि।</b> सृजन के भाव में चार ग्रह प्रज्वलित — सूर्य की सत्ता, बुध की अभियांत्रिकी, मंगल का बल, राहु की धार।</p>
+    </div>
+    <div class="hcard">
+      <div class="hnum">7</div>
+      <div class="hh">रणक्षेत्र</div>
+      <div class="hsign">सप्तम भाव · कन्या</div>
+      <p><b>साझेदारी व बाज़ार।</b> विश्लेषक चंद्र हर गठजोड़ की परीक्षा लेता है — केवल तार्किक, व्यवस्थित और निर्णायक सहयोगी।</p>
+    </div>
+  </div>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="seclabel"><span class="num">03</span><span class="txt">कार्यकारी सार एवं धन-हस्ताक्षर</span><span class="rule"></span></div>
+  <div class="callout">
+    <div class="grid2">
+      <div>
+        <div class="lbl">मूल स्वरूप</div>
+        <div class="arch">अंतर्ज्ञानी वास्तुकार</div>
+        <p>मीन लग्न का दूरदर्शी, जिसके पंचम — सृजन के भाव — में <b>चार ग्रहों का कर्क ग्रह-पुंज</b> विराजमान है। कल्पना का औद्योगीकरण: तृतीय में शनि–गुरु की शिल्पशाला कौशल गढ़ती है, सप्तम में विश्लेषक चंद्र गठजोड़ परखता है, और <span class="au">केतु से छँटा एकादश</span> लाभ को संरचनात्मक रखता है।</p>
+      </div>
+      <div>
+        <div class="lbl">कार्य-निर्देश</div>
+        <p><b>मौलिक बौद्धिक संपदा बनाइए।</b> <span class="pk">पंचम भाव ही लाभ का इंजन है</span> — आविष्कार कीजिए, बनाइए, प्रस्तुत कीजिए। लग्नेश-दशमेश गुरु स्व-निर्मित कौशल को करियर की ऊँचाई देता है; मंगल का <span class="au">नीच भंग</span> कच्चे जोश को रणनीतिक बल बनाता है। सृजन से कमाइए, और वितरण मकर के चुनिंदा संपर्कों को सौंपिए।</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>ग्रह स्थितियाँ स्विस एफ़ेमेरिस से सत्यापित — नाक्षत्र (लाहिड़ी) · सत्य राहु · मीन 3°18′ से संपूर्ण-राशि भाव। गुरु वृषभ · तृतीय (शनि युत) में पुष्ट।</span>
+    <span style="white-space:nowrap">04.08.2000 · रात्रि 9:00 IST · प्रतापगढ़, उ.प्र.</span>
+  </div>
+
+</div>
+
+<!-- PAGE 2 -->
+<div class="sheet page2">
+  <div class="seclabel"><span class="num">04</span><span class="txt">जन्म-चक्र · संपूर्ण-राशि भाव</span><span class="rule"></span></div>
+  <div class="wheelcard">
+    <svg class="natal" viewBox="0 0 660 660" xmlns="http://www.w3.org/2000/svg" font-family="Noto Sans Devanagari, Inter, sans-serif">
+    <circle cx="330" cy="330" r="318" fill="#10151D" stroke="#2B3442" stroke-width="1.5"/>
+    <path d="M465.0,563.8 L469.1,561.4 L473.1,559.0 L477.1,556.4 L481.0,553.8 L484.9,551.2 L488.7,548.4 L492.5,545.6 L496.2,542.8 L499.9,539.8 L503.6,536.8 L507.1,533.8 L510.7,530.6 L514.1,527.5 L517.6,524.2 L520.9,520.9 L524.2,517.6 L527.5,514.1 L530.6,510.7 L533.8,507.1 L536.8,503.6 L539.8,499.9 L542.8,496.2 L545.6,492.5 L548.4,488.7 L551.2,484.9 L553.8,481.0 L556.4,477.1 L559.0,473.1 L561.4,469.1 L563.8,465.0 L416.6,380.0 L415.7,381.5 L414.8,383.0 L413.9,384.5 L412.9,385.9 L411.9,387.4 L410.9,388.8 L409.9,390.2 L408.8,391.6 L407.7,392.9 L406.6,394.3 L405.5,395.6 L404.3,396.9 L403.1,398.2 L401.9,399.5 L400.7,400.7 L399.5,401.9 L398.2,403.1 L396.9,404.3 L395.6,405.5 L394.3,406.6 L392.9,407.7 L391.6,408.8 L390.2,409.9 L388.8,410.9 L387.4,411.9 L385.9,412.9 L384.5,413.9 L383.0,414.8 L381.5,415.7 L380.0,416.6 Z" fill="rgba(59,130,246,.09)"/>
+    <path d="M195.0,563.8 L199.1,566.1 L203.2,568.4 L207.4,570.6 L211.6,572.7 L215.9,574.7 L220.2,576.7 L224.5,578.5 L228.9,580.3 L233.2,582.1 L237.7,583.7 L242.1,585.3 L246.6,586.8 L251.1,588.2 L255.6,589.5 L260.1,590.8 L264.7,592.0 L269.3,593.1 L273.9,594.1 L278.5,595.0 L283.1,595.9 L287.8,596.7 L292.4,597.4 L297.1,598.0 L301.8,598.5 L306.5,599.0 L311.2,599.3 L315.9,599.6 L320.6,599.8 L325.3,600.0 L330.0,600.0 L330.0,430.0 L328.3,430.0 L326.5,429.9 L324.8,429.9 L323.0,429.8 L321.3,429.6 L319.5,429.5 L317.8,429.3 L316.1,429.0 L314.4,428.8 L312.6,428.5 L310.9,428.2 L309.2,427.8 L307.5,427.4 L305.8,427.0 L304.1,426.6 L302.4,426.1 L300.8,425.6 L299.1,425.1 L297.4,424.6 L295.8,424.0 L294.2,423.4 L292.5,422.7 L290.9,422.1 L289.3,421.4 L287.7,420.6 L286.2,419.9 L284.6,419.1 L283.1,418.3 L281.5,417.5 L280.0,416.6 Z" fill="rgba(245,158,11,.05)"/>
+    <line x1="230.0" y1="330.0" x2="12.0" y2="330.0" stroke="#232A34" stroke-width="1"/>
+    <line x1="243.4" y1="380.0" x2="54.6" y2="489.0" stroke="#232A34" stroke-width="1"/>
+    <line x1="280.0" y1="416.6" x2="171.0" y2="605.4" stroke="#232A34" stroke-width="1"/>
+    <line x1="330.0" y1="430.0" x2="330.0" y2="648.0" stroke="#232A34" stroke-width="1"/>
+    <line x1="380.0" y1="416.6" x2="489.0" y2="605.4" stroke="#232A34" stroke-width="1"/>
+    <line x1="416.6" y1="380.0" x2="605.4" y2="489.0" stroke="#232A34" stroke-width="1"/>
+    <line x1="430.0" y1="330.0" x2="648.0" y2="330.0" stroke="#232A34" stroke-width="1"/>
+    <line x1="416.6" y1="280.0" x2="605.4" y2="171.0" stroke="#232A34" stroke-width="1"/>
+    <line x1="380.0" y1="243.4" x2="489.0" y2="54.6" stroke="#232A34" stroke-width="1"/>
+    <line x1="330.0" y1="230.0" x2="330.0" y2="12.0" stroke="#232A34" stroke-width="1"/>
+    <line x1="280.0" y1="243.4" x2="171.0" y2="54.6" stroke="#232A34" stroke-width="1"/>
+    <line x1="243.4" y1="280.0" x2="54.6" y2="171.0" stroke="#232A34" stroke-width="1"/>
+    <line x1="599.0" y1="306.5" x2="593.0" y2="307.0" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="595.9" y1="283.1" x2="590.0" y2="284.2" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="590.8" y1="260.1" x2="585.0" y2="261.7" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="583.7" y1="237.7" x2="578.1" y2="239.7" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="574.7" y1="215.9" x2="569.3" y2="218.4" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="551.2" y1="175.1" x2="546.3" y2="178.6" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="536.8" y1="156.4" x2="532.2" y2="160.3" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="520.9" y1="139.1" x2="516.7" y2="143.3" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="503.6" y1="123.2" x2="499.7" y2="127.8" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="484.9" y1="108.8" x2="481.4" y2="113.7" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="444.1" y1="85.3" x2="441.6" y2="90.7" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="422.3" y1="76.3" x2="420.3" y2="81.9" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="399.9" y1="69.2" x2="398.3" y2="75.0" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="376.9" y1="64.1" x2="375.8" y2="70.0" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="353.5" y1="61.0" x2="353.0" y2="67.0" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="306.5" y1="61.0" x2="307.0" y2="67.0" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="283.1" y1="64.1" x2="284.2" y2="70.0" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="260.1" y1="69.2" x2="261.7" y2="75.0" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="237.7" y1="76.3" x2="239.7" y2="81.9" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="215.9" y1="85.3" x2="218.4" y2="90.7" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="175.1" y1="108.8" x2="178.6" y2="113.7" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="156.4" y1="123.2" x2="160.3" y2="127.8" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="139.1" y1="139.1" x2="143.3" y2="143.3" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="123.2" y1="156.4" x2="127.8" y2="160.3" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="108.8" y1="175.1" x2="113.7" y2="178.6" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="85.3" y1="215.9" x2="90.7" y2="218.4" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="76.3" y1="237.7" x2="81.9" y2="239.7" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="69.2" y1="260.1" x2="75.0" y2="261.7" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="64.1" y1="283.1" x2="70.0" y2="284.2" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="61.0" y1="306.5" x2="67.0" y2="307.0" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="61.0" y1="353.5" x2="67.0" y2="353.0" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="64.1" y1="376.9" x2="70.0" y2="375.8" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="69.2" y1="399.9" x2="75.0" y2="398.3" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="76.3" y1="422.3" x2="81.9" y2="420.3" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="85.3" y1="444.1" x2="90.7" y2="441.6" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="108.8" y1="484.9" x2="113.7" y2="481.4" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="123.2" y1="503.6" x2="127.8" y2="499.7" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="139.1" y1="520.9" x2="143.3" y2="516.7" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="156.4" y1="536.8" x2="160.3" y2="532.2" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="175.1" y1="551.2" x2="178.6" y2="546.3" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="215.9" y1="574.7" x2="218.4" y2="569.3" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="237.7" y1="583.7" x2="239.7" y2="578.1" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="260.1" y1="590.8" x2="261.7" y2="585.0" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="283.1" y1="595.9" x2="284.2" y2="590.0" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="306.5" y1="599.0" x2="307.0" y2="593.0" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="353.5" y1="599.0" x2="353.0" y2="593.0" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="376.9" y1="595.9" x2="375.8" y2="590.0" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="399.9" y1="590.8" x2="398.3" y2="585.0" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="422.3" y1="583.7" x2="420.3" y2="578.1" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="444.1" y1="574.7" x2="441.6" y2="569.3" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="484.9" y1="551.2" x2="481.4" y2="546.3" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="503.6" y1="536.8" x2="499.7" y2="532.2" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="520.9" y1="520.9" x2="516.7" y2="516.7" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="536.8" y1="503.6" x2="532.2" y2="499.7" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="551.2" y1="484.9" x2="546.3" y2="481.4" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="574.7" y1="444.1" x2="569.3" y2="441.6" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="583.7" y1="422.3" x2="578.1" y2="420.3" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="590.8" y1="399.9" x2="585.0" y2="398.3" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="595.9" y1="376.9" x2="590.0" y2="375.8" stroke="#3B4657" stroke-width=".75"/>
+    <line x1="599.0" y1="353.5" x2="593.0" y2="353.0" stroke="#3B4657" stroke-width=".75"/>
+    <circle cx="330" cy="330" r="270" fill="none" stroke="#2B3442" stroke-width="1"/>
+    <text x="47.0" y="411.8" text-anchor="middle" font-size="17" fill="#7EB0FA">♓︎</text>
+    <text x="218.0" y="363.0" text-anchor="middle" font-size="10" font-weight="700" fill="#4E5D70">1</text>
+    <text x="122.8" y="543.2" text-anchor="middle" font-size="17" fill="#7EB0FA">♈︎</text>
+    <text x="248.0" y="415.0" text-anchor="middle" font-size="10" font-weight="700" fill="#4E5D70">2</text>
+    <text x="254.2" y="619.0" text-anchor="middle" font-size="17" fill="#7EB0FA">♉︎</text>
+    <text x="300.0" y="445.0" text-anchor="middle" font-size="10" font-weight="700" fill="#4E5D70">3</text>
+    <text x="405.8" y="619.0" text-anchor="middle" font-size="17" fill="#7EB0FA">♊︎</text>
+    <text x="360.0" y="445.0" text-anchor="middle" font-size="10" font-weight="700" fill="#4E5D70">4</text>
+    <text x="537.2" y="543.2" text-anchor="middle" font-size="17" fill="#7EB0FA">♋︎</text>
+    <text x="412.0" y="415.0" text-anchor="middle" font-size="10" font-weight="700" fill="#4E5D70">5</text>
+    <text x="613.0" y="411.8" text-anchor="middle" font-size="17" fill="#7EB0FA">♌︎</text>
+    <text x="442.0" y="363.0" text-anchor="middle" font-size="10" font-weight="700" fill="#4E5D70">6</text>
+    <text x="613.0" y="260.2" text-anchor="middle" font-size="17" fill="#7EB0FA">♍︎</text>
+    <text x="442.0" y="303.0" text-anchor="middle" font-size="10" font-weight="700" fill="#4E5D70">7</text>
+    <text x="537.2" y="128.8" text-anchor="middle" font-size="17" fill="#7EB0FA">♎︎</text>
+    <text x="412.0" y="251.0" text-anchor="middle" font-size="10" font-weight="700" fill="#4E5D70">8</text>
+    <text x="405.8" y="53.0" text-anchor="middle" font-size="17" fill="#7EB0FA">♏︎</text>
+    <text x="360.0" y="221.0" text-anchor="middle" font-size="10" font-weight="700" fill="#4E5D70">9</text>
+    <text x="254.2" y="53.0" text-anchor="middle" font-size="17" fill="#7EB0FA">♐︎</text>
+    <text x="300.0" y="221.0" text-anchor="middle" font-size="10" font-weight="700" fill="#4E5D70">10</text>
+    <text x="122.8" y="128.8" text-anchor="middle" font-size="17" fill="#7EB0FA">♑︎</text>
+    <text x="248.0" y="251.0" text-anchor="middle" font-size="10" font-weight="700" fill="#4E5D70">11</text>
+    <text x="47.0" y="260.2" text-anchor="middle" font-size="17" fill="#7EB0FA">♒︎</text>
+    <text x="218.0" y="303.0" text-anchor="middle" font-size="10" font-weight="700" fill="#4E5D70">12</text>
+    <line x1="230.2" y1="335.7" x2="12.5" y2="348.3" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="4 3"/>
+    <text x="165.3" y="333.5" text-anchor="middle" font-size="8" font-weight="800" letter-spacing="1.5" fill="#F59E0B">लग्न</text>
+    <text x="165.3" y="343.5" text-anchor="middle" font-size="7" fill="#F59E0B">3°18′</text>
+    <line x1="532.8" y1="508.3" x2="523.8" y2="500.3" stroke="#3B82F6" stroke-width="1.5"/>
+    <text x="507.2" y="485.8" text-anchor="middle" font-size="17" fill="#E2E8F0">☉</text>
+    <text x="507.2" y="496.8" text-anchor="middle" font-size="6.5" font-weight="700" letter-spacing="1" fill="#8B98A9">सूर्य</text>
+    <text x="507.2" y="505.8" text-anchor="middle" font-size="6.5" fill="#F59E0B">18°41′</text>
+    <line x1="584.0" y1="238.3" x2="572.7" y2="242.4" stroke="#3B82F6" stroke-width="1.5"/>
+    <text x="522.8" y="260.4" text-anchor="middle" font-size="17" fill="#E2E8F0">☽</text>
+    <text x="522.8" y="271.4" text-anchor="middle" font-size="6.5" font-weight="700" letter-spacing="1" fill="#8B98A9">चंद्र</text>
+    <text x="522.8" y="280.4" text-anchor="middle" font-size="6.5" fill="#F59E0B">19°51′</text>
+    <line x1="472.0" y1="559.6" x2="465.7" y2="549.4" stroke="#3B82F6" stroke-width="1.5"/>
+    <text x="433.1" y="496.7" text-anchor="middle" font-size="17" fill="#E2E8F0">☿</text>
+    <text x="433.1" y="507.7" text-anchor="middle" font-size="6.5" font-weight="700" letter-spacing="1" fill="#8B98A9">बुध</text>
+    <text x="433.1" y="516.7" text-anchor="middle" font-size="6.5" fill="#F59E0B">1°44′</text>
+    <line x1="571.8" y1="450.2" x2="561.0" y2="444.8" stroke="#3B82F6" stroke-width="1.5"/>
+    <text x="513.6" y="421.2" text-anchor="middle" font-size="17" fill="#E2E8F0">♀</text>
+    <text x="513.6" y="432.2" text-anchor="middle" font-size="6.5" font-weight="700" letter-spacing="1" fill="#8B98A9">शुक्र</text>
+    <text x="513.6" y="441.2" text-anchor="middle" font-size="6.5" fill="#F59E0B">3°34′</text>
+    <line x1="497.9" y1="541.4" x2="490.5" y2="532.0" stroke="#3B82F6" stroke-width="1.5"/>
+    <text x="422.1" y="445.9" text-anchor="middle" font-size="17" fill="#F59E0B">♂</text>
+    <text x="422.1" y="456.9" text-anchor="middle" font-size="6.5" font-weight="700" letter-spacing="1" fill="#8B98A9">मंगल</text>
+    <text x="422.1" y="465.9" text-anchor="middle" font-size="6.5" fill="#F59E0B">8°28′</text>
+    <line x1="249.5" y1="587.7" x2="253.1" y2="576.3" stroke="#3B82F6" stroke-width="1.5"/>
+    <text x="259.1" y="557.2" text-anchor="middle" font-size="17" fill="#F59E0B">♃</text>
+    <text x="259.1" y="568.2" text-anchor="middle" font-size="6.5" font-weight="700" letter-spacing="1" fill="#8B98A9">गुरु</text>
+    <text x="259.1" y="577.2" text-anchor="middle" font-size="6.5" fill="#F59E0B">12°40′</text>
+    <line x1="219.3" y1="576.3" x2="224.3" y2="565.3" stroke="#3B82F6" stroke-width="1.5"/>
+    <text x="255.4" y="496.0" text-anchor="middle" font-size="17" fill="#E2E8F0">♄</text>
+    <text x="255.4" y="507.0" text-anchor="middle" font-size="6.5" font-weight="700" letter-spacing="1" fill="#8B98A9">शनि</text>
+    <text x="255.4" y="516.0" text-anchor="middle" font-size="6.5" fill="#F59E0B">5°48′</text>
+    <line x1="467.6" y1="562.3" x2="461.5" y2="552.0" stroke="#3B82F6" stroke-width="1.5"/>
+    <text x="457.4" y="545.1" text-anchor="middle" font-size="17" fill="#E2E8F0">☊</text>
+    <text x="457.4" y="556.1" text-anchor="middle" font-size="6.5" font-weight="700" letter-spacing="1" fill="#8B98A9">राहु</text>
+    <text x="457.4" y="565.1" text-anchor="middle" font-size="6.5" fill="#F59E0B">0°38′</text>
+    <line x1="192.4" y1="97.7" x2="198.5" y2="108.0" stroke="#3B82F6" stroke-width="1.5"/>
+    <text x="225.5" y="153.6" text-anchor="middle" font-size="17" fill="#E2E8F0">☋</text>
+    <text x="225.5" y="164.6" text-anchor="middle" font-size="6.5" font-weight="700" letter-spacing="1" fill="#8B98A9">केतु</text>
+    <text x="225.5" y="173.6" text-anchor="middle" font-size="6.5" fill="#F59E0B">0°38′</text>
+    <circle cx="330" cy="330" r="100" fill="#161B22" stroke="#2B3442" stroke-width="1"/>
+    <text x="330" y="320" text-anchor="middle" font-size="16" font-weight="800" letter-spacing="3" fill="#FFFFFF" font-family="Noto Sans Devanagari, Inter, sans-serif">सौरभ</text>
+    <text x="330" y="336" text-anchor="middle" font-size="7" font-weight="700" letter-spacing="2.5" fill="#3B82F6">मीन लग्न</text>
+    <text x="330" y="350" text-anchor="middle" font-size="6.5" letter-spacing="1.5" fill="#8B98A9">04 · 08 · 2000 — 21:00 IST</text>
+    <text x="330" y="361" text-anchor="middle" font-size="6" letter-spacing="1.2" fill="#8B98A9">प्रतापगढ़ · 25.9°N 81.9°E</text>
+    </svg>
+    <div class="wheelfoot">नाक्षत्र · लाहिड़ी अयनांश · सत्य राहु · प्रत्येक ग्रह कला-मिनट तक अंकित</div>
+  </div>
+  <div class="seclabel"><span class="num">05</span><span class="txt">समर्पण</span><span class="rule"></span></div>
+  <div class="dedication">
+    <svg class="seal" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="60" r="57" fill="none" stroke="#F59E0B" stroke-width="1.5"/>
+      <circle cx="60" cy="60" r="48" fill="none" stroke="#F59E0B" stroke-width=".75" stroke-dasharray="2 3"/>
+      <defs><path id="sealarc" d="M 60 60 m -41 0 a 41 41 0 1 1 82 0 a 41 41 0 1 1 -82 0"/></defs>
+      <text font-size="7.2" letter-spacing="2.1" fill="#F59E0B" font-weight="700" font-family="Inter, sans-serif"><textPath href="#sealarc">MASTER CHART · SAURABH · MMXXVI · SEALED · </textPath></text>
+      <text x="60" y="73" text-anchor="middle" font-family="Fraunces, Georgia, serif" font-size="36" font-weight="800" fill="#E2E8F0">S</text>
+    </svg>
+    <div class="dtext">
+      <div class="lbl2">समर्पण</div>
+      <p class="dline">विशेष रूप से <b>सौरभ</b> के लिए — प्रणालियों के अभियंता, गूढ़ के जिज्ञासु, अपने भविष्य के स्वयं शिल्पी। हर सृजन चक्रवृद्धि हो, हर गठजोड़ सटीक हो, और हर ऋतु शुभ हो।</p>
+      <div class="dsig">per aspera ad astra</div>
+      <div class="dmeta">मुद्रांकित · जन्म-कुंडली विवेचन दस्तावेज़ · २०२६</div>
+    </div>
+  </div>
+  <div class="foot">
+    <span>चक्र की स्थितियाँ स्विस एफ़ेमेरिस से अंकित — भाव मीन लग्न से संपूर्ण-राशि क्रम में।</span>
+    <span style="white-space:nowrap">पृष्ठ 2 · जन्म-चक्र व समर्पण</span>
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="sheet page3">
+  <div class="seclabel"><span class="num">06</span><span class="txt">विंशोत्तरी दशा समयरेखा</span><span class="rule"></span></div>
+  <div class="dashacard">
+    <div class="dbar">
+      <div class="dseg" style="flex-grow:2.6" title="Moon 2000–2003"><span class="dn">☽</span></div>
+      <div class="dseg" style="flex-grow:7"><span class="dn">मंगल</span><span class="dy">7 वर्ष</span></div>
+      <div class="dseg cur" style="flex-grow:18"><span class="dn">राहु</span><span class="dy">18 वर्ष · वर्तमान</span></div>
+      <div class="dseg jup" style="flex-grow:16"><span class="dn">गुरु</span><span class="dy">16 वर्ष · स्वर्णिम</span></div>
+      <div class="dseg" style="flex-grow:19"><span class="dn">शनि</span><span class="dy">19 वर्ष</span></div>
+      <div class="dnow" style="left:41.3%"><i>अभी</i></div>
+    </div>
+    <div class="dyears">
+      <span style="flex-grow:2.6">2000</span><span style="flex-grow:7">2003</span><span style="flex-grow:18">2010</span><span style="flex-grow:16">2028</span><span style="flex-grow:19">2044</span><span>2063 → बुध</span>
+    </div>
+    <div class="abar">
+      <div class="aseg" style="flex-grow:2.7">रा</div>
+      <div class="aseg" style="flex-grow:2.4">गु</div>
+      <div class="aseg" style="flex-grow:2.85">श</div>
+      <div class="aseg" style="flex-grow:2.55">बु</div>
+      <div class="aseg" style="flex-grow:1.05">के</div>
+      <div class="aseg" style="flex-grow:3">शु</div>
+      <div class="aseg" style="flex-grow:0.9">सू</div>
+      <div class="aseg cur" style="flex-grow:1.5">चं</div>
+      <div class="aseg" style="flex-grow:1.26">मं</div>
+    </div>
+    <div class="acap">राहु महादशा की अंतर्दशाएँ · अभी: राहु–चंद्र (अग॰ 2025 – फ़र॰ 2027) → आगे: राहु–मंगल (फ़र॰ 2027 – मार्च 2028)</div>
+    <div class="dwins">
+      <div class="dwin" data-testid="dasha-window-now"><div class="wk">अभी · राहु–चंद्र → फ़र॰ 2027</div><p><b>दृश्यता व गठजोड़ का ज्वार।</b> सप्तम का चंद्र साझेदार, दर्शक और बाज़ार-बोध जगाता है — वार्ता कीजिए, प्रकाशित कीजिए, दिखिए।</p></div>
+      <div class="dwin"><div class="wk">2027–28 · राहु–मंगल</div><p><b>निष्पादन की दौड़।</b> नीच-भंग मंगल सक्रिय — आक्रामक गति से काम पूर्ण कीजिए, दशा बदलने से पहले स्थितियाँ सँभालिए।</p></div>
+      <div class="dwin"><div class="wk">2028–2044 · बृहस्पति महादशा</div><p><b>स्वर्णिम आरोहण।</b> लग्नेश-दशमेश 16 वर्षों का करियर व धन द्वार खोलता है। अभी निर्माण कीजिए, तब फल काटिए।</p></div>
+    </div>
+  </div>
+
+  <div class="seclabel"><span class="num">07</span><span class="txt">योग पटल · बल मूल्यांकन</span><span class="rule"></span></div>
+  <div class="yogacard">
+    <div class="yoga">
+      <div class="yname">नीच भंग राज योग<span class="ysub">मंगल · कर्क · पंचम</span></div>
+      <p class="ytext"><b>बाधा को बल में गढ़ा गया।</b> नीच मंगल को केंद्रस्थ राशि-स्वामी चंद्र का त्राण — आरंभिक संघर्ष आयु के साथ दुर्लभ, धैर्यवान शक्ति बनता है।</p>
+      <div class="ymeter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+    </div>
+    <div class="yoga">
+      <div class="yname">बुधादित्य योग<span class="ysub">सूर्य + बुध · कर्क · पंचम</span></div>
+      <p class="ytext"><b>बुद्धि और सत्ता का संगम।</b> शुद्ध, अस्त-रहित युति — प्रशासनिक प्रतिभा, तीक्ष्ण विश्लेषण और बुद्धि पर टिकी प्रतिष्ठा।</p>
+      <div class="ymeter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+    </div>
+    <div class="yoga">
+      <div class="yname">धर्म-त्रिकोण राज योग<span class="ysub">नवमेश मंगल पंचम में</span></div>
+      <p class="ytext"><b>सृजन से सौभाग्य।</b> भाग्येश नवाचार के भाव में विराजमान — संभावनाएँ, मौलिक कार्य और उद्यम नियति की कृपा साथ लाते हैं।</p>
+      <div class="ymeter"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+    </div>
+    <div class="yoga">
+      <div class="yname">गुरु-शनि संगम<span class="ysub">गुरु + शनि · वृषभ · तृतीय</span></div>
+      <p class="ytext"><b>सन् 2000 की महायुति।</b> कौशल-भाव में अनुशासन और ज्ञान का मेल — शिल्प दशकों में संस्थाओं का रूप लेता है।</p>
+      <div class="ymeter"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div>
+    </div>
+    <div class="yoga">
+      <div class="yname">सूर्य-राहु संबंध<span class="ysub">सूर्य राहु संग · पंचम · सतर्क</span></div>
+      <p class="ytext"><b>प्रवर्धित महत्वाकांक्षा, छायांकित अहं।</b> विराट अपरंपरागत ऊर्जा; अति, शॉर्टकट और सत्ता-टकराव से बचिए।</p>
+      <div class="ymeter"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
+    </div>
+  </div>
+
+  <div class="seclabel"><span class="num">08</span><span class="txt">अंक-ज्योतिष हस्ताक्षर</span><span class="rule"></span></div>
+  <div class="numgrid">
+    <div class="ncard"><div class="nval">4</div><div class="nlab">मूलांक</div><div class="ntxt">निर्माता — संरचना, विधि, अपरंपरागत प्रणालियाँ। राहु का अंक, जो पंचम के राहु से गूँजता है।</div></div>
+    <div class="ncard"><div class="nval">5</div><div class="nlab">भाग्यांक</div><div class="ntxt">बहुमुखी — वाणिज्य, संवाद, गति। बुध का अंक, जो पंचम के बुध का दर्पण है।</div></div>
+    <div class="ncard"><div class="nval">7</div><div class="nlab">नाम अंक · सौरभ</div><div class="ntxt">खोजी — विश्लेषण, गूढ़ ज्ञान, गहन तकनीक। केतु का अंक; शोधकर्ता का हस्ताक्षर।</div></div>
+    <div class="ncard"><div class="nval">5</div><div class="nlab">अंतरात्मा अंक</div><div class="ntxt">भीतरी इंजन: स्वायत्तता व परिवर्तन — गति पर पनपता है, ढर्रे में मुरझाता है।</div></div>
+    <div class="ncard"><div class="nval">2</div><div class="nlab">व्यक्तित्व अंक</div><div class="ntxt">बाहरी छवि: संयत, कूटनीतिक — वार्ता की मेज़ पर चंद्र-सी शीतलता।</div></div>
+    <div class="ncard"><div class="nval">22<small>/4</small></div><div class="nlab">व्यक्तिगत वर्ष 2026</div><div class="ntxt">मास्टर बिल्डर स्पंदन — इस वर्ष ऐसी नींव रखिए जो दशक से आगे टिके।</div></div>
+  </div>
+  <div class="numsyn"><b>4–5–7 की त्रयी।</b> अनुशासित निर्माता (4), व्यापारी की लचक (5) और रहस्य-विश्लेषक की गहराई (7) — अंक और कुंडली एक ही कथा कहते हैं: अभियांत्रिक सृजनशीलता, मौलिक प्रणालियों से अर्थ में परिणत।</div>
+
+  <div class="foot">
+    <span>दशा हस्त नक्षत्र के चंद्र से गणित (जन्म पर शेष 2.61 वर्ष) · 365.25-दिवसीय वर्ष · अंक-ज्योतिष: पाइथागोरियन नाम-मान, वैदिक मूलांक/भाग्यांक।</span>
+    <span style="white-space:nowrap">पृष्ठ 3 · काल, योग व अंक</span>
+  </div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="sheet page4">
+  <div class="seclabel"><span class="num">09</span><span class="txt">बृहस्पति महादशा मानचित्र · 2028–2044</span><span class="rule"></span></div>
+  <table>
+    <colgroup><col style="width:15%"><col style="width:21%"><col style="width:9%"><col style="width:55%"></colgroup>
+    <thead>
+      <tr><th>अवधि</th><th>समय-सीमा</th><th>काल</th><th>रणनीतिक केंद्र</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="planet">गुरु–गुरु</td><td class="sign">मार्च 2028 – मई 2030</td><td class="house">2.1 व</td><td class="effect"><b>सत्ता की नींव।</b> प्रमुख ब्रांड यहीं प्रारंभ कीजिए — प्रतिष्ठा सबसे तेज़ यहीं चक्रवृद्धि होती है।</td></tr>
+      <tr><td class="planet">गुरु–शनि</td><td class="sign">मई 2030 – नव॰ 2032</td><td class="house">2.5 व</td><td class="effect"><b>संस्था बनाइए।</b> प्रणालियाँ, अनुबंध, अधोसंरचना — धीमे पर अपरिवर्तनीय लाभ।</td></tr>
+      <tr><td class="planet">गुरु–बुध</td><td class="sign">नव॰ 2032 – फ़र॰ 2035</td><td class="house">2.3 व</td><td class="effect"><b>वाणिज्य व विस्तार।</b> बुधादित्य सक्रिय — उत्पाद, लाइसेंस और कंटेंट से आय गुणित।</td></tr>
+      <tr><td class="planet">गुरु–केतु</td><td class="sign">फ़र॰ 2035 – जन॰ 2036</td><td class="house">0.9 व</td><td class="effect"><b>छँटाई व एकाग्रता।</b> कमज़ोर धाराएँ छोड़िए; शोध-प्रेरित नवरूप।</td></tr>
+      <tr><td class="planet">गुरु–शुक्र</td><td class="sign">जन॰ 2036 – सित॰ 2038</td><td class="house">2.7 व</td><td class="effect"><b>प्रीमियम विस्तार।</b> ब्रांड, विशिष्ट ग्राहक, साझेदारियाँ — दशा का धन-शिखर।</td></tr>
+      <tr><td class="planet">गुरु–सूर्य</td><td class="sign">सित॰ 2038 – जुल॰ 2039</td><td class="house">0.8 व</td><td class="effect"><b>मान्यता।</b> सम्मान, सार्वजनिक अधिकार, नेतृत्व का मंच।</td></tr>
+      <tr><td class="planet">गुरु–चंद्र</td><td class="sign">जुल॰ 2039 – नव॰ 2040</td><td class="house">1.3 व</td><td class="effect"><b>बाज़ार व जन-दर्शक।</b> सप्तम का चंद्र व्यापक दृश्यता और निर्णायक गठजोड़ लाता है।</td></tr>
+      <tr><td class="planet">गुरु–मंगल</td><td class="sign">नव॰ 2040 – अक्टू॰ 2041</td><td class="house">0.9 व</td><td class="effect"><b>साहसी निष्पादन।</b> नीच-भंग मंगल — निर्णायक अधिग्रहण और विजय।</td></tr>
+      <tr><td class="planet">गुरु–राहु</td><td class="sign">अक्टू॰ 2041 – मार्च 2044</td><td class="house">2.4 व</td><td class="effect"><b>अपरंपरागत शिखर।</b> वैश्विक व गहन-तकनीकी छलाँगें — शासन-व्यवस्था कसी रखिए।</td></tr>
+    </tbody>
+  </table>
+
+  <div class="seclabel"><span class="num">10</span><span class="txt">उपाय · दुर्बल व सतर्क ग्रह</span><span class="rule"></span></div>
+  <div class="remgrid">
+    <div class="remcard" data-testid="remedy-mars">
+      <div class="rp">मंगल · भौम</div>
+      <div class="rw">नीच · नीच-भंग · पंचम</div>
+      <div class="rrow"><span class="rk">रत्न</span><span><b>लाल मूँगा</b>, 5–7 रत्ती, ताँबे या सोने में — पहली बार मंगलवार सूर्योदय पर धारण</span></div>
+      <div class="rrow"><span class="rk">मंत्र</span><span><b>ॐ क्रां क्रीं क्रौं सः भौमाय नमः</b> — मंगलवार को 108 बार</span></div>
+      <div class="rrow"><span class="rk">वार</span><span><b>मंगलवार</b> — हनुमान चालीसा; आवेगपूर्ण वचनों से बचें</span></div>
+      <div class="rrow"><span class="rk">दान</span><span>मंगलवार को ज़रूरतमंदों को मसूर दाल व गुड़</span></div>
+    </div>
+    <div class="remcard" data-testid="remedy-sun">
+      <div class="rp">सूर्य</div>
+      <div class="rw">राहु-युत · पंचम</div>
+      <div class="rrow"><span class="rk">रत्न</span><span><b>माणिक्य</b> सोने में — अंतिम धारण से पूर्व परीक्षण-अवधि, रविवार</span></div>
+      <div class="rrow"><span class="rk">मंत्र</span><span><b>ॐ ह्रां ह्रीं ह्रौं सः सूर्याय नमः</b> — सूर्योदय पर 108 बार</span></div>
+      <div class="rrow"><span class="rk">वार</span><span><b>रविवार</b> — ताँबे के पात्र से उगते सूर्य को अर्घ्य</span></div>
+      <div class="rrow"><span class="rk">दान</span><span>रविवार को गेहूँ व गुड़; पिता-तुल्य जनों व गुरुजनों का सम्मान</span></div>
+    </div>
+    <div class="remcard" data-testid="remedy-rahu">
+      <div class="rp">राहु</div>
+      <div class="rw">सतर्क-चिह्नित · पंचम</div>
+      <div class="rrow"><span class="rk">रत्न</span><span><b>गोमेद</b> — केवल विशेषज्ञ परीक्षण के बाद; बिना परखे कभी नहीं</span></div>
+      <div class="rrow"><span class="rk">मंत्र</span><span><b>ॐ भ्रां भ्रीं भ्रौं सः राहवे नमः</b> — शनिवार को 108 बार</span></div>
+      <div class="rrow"><span class="rk">वार</span><span><b>शनिवार</b> — दुर्गा उपासना; बहते जल में नारियल अर्पण</span></div>
+      <div class="rrow"><span class="rk">दान</span><span>कंबल व काले तिल का दान; नैतिक शॉर्टकट वर्जित</span></div>
+    </div>
+  </div>
+  <div class="remnote">परंपरागत मार्गदर्शन, चिकित्सकीय नुस्खा नहीं — रत्न केवल योग्य ज्योतिषी की परीक्षण-अवधि के बाद। मंत्र, वार-अनुशासन और दान सुरक्षित सार्वभौमिक उपाय हैं; बलवान ग्रहों (गुरु, चंद्र, बुध) को किसी उपाय की आवश्यकता नहीं।</div>
+
+  <div class="foot">
+    <span>अंतर्दशाएँ विंशोत्तरी अनुपात से (स्वामी-वर्ष ÷ 120 × 16 व) — बृहस्पति महादशा मार्च 2028 से।</span>
+    <span style="white-space:nowrap">पृष्ठ 4 · गुरु-आरोहण व उपाय</span>
+  </div>
+</div>
+
+<!-- PAGE 5 -->
+<div class="sheet page5">
+  <div class="seclabel"><span class="num">11</span><span class="txt">अनुकूलता · गुण मिलान — सौरभ × कल्पना</span><span class="rule"></span></div>
+  <div class="cfields">
+    <div class="cfield filled" data-testid="compat-field-name"><div class="fl">साथी का नाम</div><div class="fval">कल्पना सोनी</div></div>
+    <div class="cfield filled"><div class="fl">जन्म तिथि</div><div class="fval">22 सितंबर 2003</div></div>
+    <div class="cfield filled"><div class="fl">जन्म समय</div><div class="fval">प्रातः 06:45 IST</div></div>
+    <div class="cfield filled"><div class="fl">जन्म स्थान</div><div class="fval">सूरतगढ़, राजस्थान</div></div>
+  </div>
+  <div class="compat">
+    <div class="dialcard" data-testid="compat-dial">
+      <svg width="118" height="118" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="60" cy="60" r="50" fill="none" style="stroke:var(--border)" stroke-width="9"/>
+        <circle cx="60" cy="60" r="50" fill="none" style="stroke:var(--gold)" stroke-width="9" stroke-linecap="round" stroke-dasharray="235.6 314.2" transform="rotate(-90 60 60)"/>
+        <text x="60" y="63" text-anchor="middle" font-size="26" font-weight="800" style="fill:var(--gold)">27</text>
+        <text x="60" y="79" text-anchor="middle" font-size="9" font-weight="700" style="fill:var(--muted)">/ 36</text>
+      </svg>
+      <div class="dialcap">कुल गुण अंक · अति उत्तम<br>कन्या चंद्र × कर्क चंद्र · हस्त × पुष्य</div>
+    </div>
+    <table>
+      <colgroup><col style="width:20%"><col style="width:42%"><col style="width:12%"><col style="width:26%"></colgroup>
+      <thead><tr><th>कूट</th><th>क्षेत्र</th><th>पूर्णांक</th><th>अंक</th></tr></thead>
+      <tbody>
+        <tr><td class="planet">वर्ण</td><td class="effect">कार्य व अहं-सामंजस्य</td><td class="house">1</td><td><span class="kscore">0 <span class="kmax">/ 1</span><span class="knote">वैश्य × ब्राह्मण</span></span></td></tr>
+        <tr><td class="planet">वश्य</td><td class="effect">पारस्परिक प्रभाव</td><td class="house">2</td><td><span class="kscore">½ <span class="kmax">/ 2</span><span class="knote">मानव × जलचर</span></span></td></tr>
+        <tr><td class="planet">तारा</td><td class="effect">नियति व सौभाग्य</td><td class="house">3</td><td><span class="kscore">1½ <span class="kmax">/ 3</span><span class="knote">साधक · एकपक्षीय</span></span></td></tr>
+        <tr><td class="planet">योनि</td><td class="effect">अंतरंगता व सहज-वृत्ति</td><td class="house">4</td><td><span class="kscore">3 <span class="kmax">/ 4</span><span class="knote">महिष × मेष</span></span></td></tr>
+        <tr><td class="planet">ग्रह मैत्री</td><td class="effect">मानसिक तालमेल</td><td class="house">5</td><td><span class="kscore">1 <span class="kmax">/ 5</span><span class="knote">बुध × चंद्र</span></span></td></tr>
+        <tr><td class="planet">गण</td><td class="effect">स्वभाव</td><td class="house">6</td><td><span class="kscore full">6 <span class="kmax">/ 6</span><span class="knote">देव × देव</span></span></td></tr>
+        <tr><td class="planet">भकूट</td><td class="effect">समृद्धि व परिवार</td><td class="house">7</td><td><span class="kscore full">7 <span class="kmax">/ 7</span><span class="knote">शुभ 3–11 अक्ष</span></span></td></tr>
+        <tr><td class="planet">नाड़ी</td><td class="effect">स्वास्थ्य व संतति</td><td class="house">8</td><td><span class="kscore full">8 <span class="kmax">/ 8</span><span class="knote">आदि × मध्य</span></span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="verdicts">
+    <div class="verdict"><b>&lt; 18 · पुनर्विचार</b>वचनबद्धता से पूर्व उपाय-मिलान उचित।</div>
+    <div class="verdict"><b>18–24 · अच्छा</b>सचेत प्रयास से निभने वाला संबंध।</div>
+    <div class="verdict active" data-testid="verdict-active"><b>25–32 · अति उत्तम</b>अधिकांश क्षेत्रों में सहज सामंजस्य।</div>
+    <div class="verdict"><b>33–36 · असाधारण</b>दुर्लभ अनुनाद — नियति-निर्धारित जोड़ी।</div>
+  </div>
+  <div class="remnote"><b>दोष-परीक्षण —</b> नाड़ी: निर्दोष (आदि × मध्य) · भकूट: निर्दोष (शुभ 3–11 अक्ष) · मांगलिक: दोनों कुंडलियों में लग्न से अनुपस्थित; साथी की चंद्र-कुंडली की हल्की छाया (चंद्र से अष्टम मंगल) परस्पर देव गण और निर्दोष नाड़ी से संतुलित। <b>युति-विवेचन —</b> उनकी लग्न, सूर्य और शुक्र तीनों कन्या में — सौरभ के सप्तम, साझेदारी के भाव में — जबकि सौरभ का चंद्र ठीक उनकी लग्न पर विराजता है; उनका चंद्र (पुष्य) सौरभ के पंचम कर्क ग्रह-पुंज के बीच उतरता है; और उनका शुक्र हस्त में है — वही नक्षत्र जो सौरभ के चंद्र का है। संबंध नियति-गृहस्थ पढ़ा जाता है: स्वभाव पूर्ण मेल (गण 6/6), समृद्धि-अक्ष सुदृढ़ (भकूट 7/7), स्वास्थ्य व संतति निर्दोष (नाड़ी 8/8)। सचेत परिश्रम केवल दैनिक मानसिक तालमेल (मैत्री) और परस्पर सामंजस्य (वश्य) में — ये संवाद के अभ्यास हैं, अनुकूलता के दोष नहीं।</div>
+  <div class="rules" data-testid="counsel-note"><b>परामर्श — समय व नाम।</b> आप 3 जून 2026 को मिले — उच्च का गुरु कर्क में प्रवेश करने के ठीक अगले दिन; कर्क उनकी चंद्र-राशि है और आपका पंचम, प्रेम का भाव: यह भेंट आकाश की मुहर लिए है। उनका चंद्र पुष्य में है — शनि के नक्षत्र में — ऐसे हृदय धीरे, पर स्थायी रूप से वचनबद्ध होते हैं; "मुझे समय चाहिए" उनके स्वभाव का सम्मान है, अस्वीकार नहीं। वर्तमान गुरु-गोचर (नव॰ 2026 तक) और उसकी वापसी (जन॰–जून 2027) में स्थिर, दबाव-रहित स्नेह बनाए रखिए, और अपने राहु–मंगल वर्ष (फ़र॰ 2027 – मार्च 2028) में — जब आपका धैर्य स्वयं तपता है — उन्हें कभी विवश मत कीजिए। औपचारिक द्वार तब खुलता है जब गुरु आपके सप्तम से गुज़रता है — <b>दिस॰ 2027 – फ़र॰ 2028</b> — जो सीधे आपकी बृहस्पति महादशा में बहता है: भीतर से अभी वचनबद्ध रहिए, औपचारिकता तब — आदर्शतः उनकी मास्टर्स के बाद। नाम के विषय में — <b>KAIRA में मास्टर अंक 22 है, वही अंक जो उनकी जन्म-तिथि का है</b>, और यह उनका नाम-अंक चंचल 5 से चिंतनशील 7 पर ले जाता है; अंक-शास्त्र की दृष्टि से परिवर्तन शुभ है। समर्थन दीजिए, निर्णय उन्हीं का रहने दीजिए। संबंध को उसके 27/36 ढाँचे से मापिए, दैनिक संदेश-गणना से नहीं: मैत्री 1/5 ही एकमात्र वास्तविक कार्य है — स्पष्ट कहिए, धीरे सुनिए।</div>
+  <div class="foot">
+    <span>अष्टकूट (36-गुण) मिलान · चंद्र-नक्षत्र आधारित · स्विस एफ़ेमेरिस, लाहिड़ी अयनांश।</span>
+    <span style="white-space:nowrap">पृष्ठ 5 · अनुकूलता · 27/36</span>
+  </div>
+</div>
+
+<!-- PAGE 6 -->
+<div class="sheet page6">
+  <div class="seclabel"><span class="num">12</span><span class="txt">रणनीतिक रोडमैप · ReadyUP · दशा-संरेखित</span><span class="rule"></span></div>
+  <div class="costrip" data-testid="company-strip">
+    <div class="cochip"><div class="ck">कंपनी</div><div class="cv"><b>ReadyUP</b> · ready2up.com</div></div>
+    <div class="cochip"><div class="ck">स्थापना</div><div class="cv">3 नव॰ 2023 → <b>अंक 3</b></div></div>
+    <div class="cochip"><div class="ck">अनुभव</div><div class="cv"><b>2017</b> से ऑनलाइन</div></div>
+    <div class="cochip"><div class="ck">सेवाएँ</div><div class="cv">वेब · ऐप · गेम · एक्सटेंशन</div></div>
+    <div class="cochip"><div class="ck">निवेश-कोष</div><div class="cv"><b>₹1–5 लाख</b> उपलब्ध</div></div>
+  </div>
+  <div class="ladder" data-testid="revenue-ladder">
+    <div class="lstep"><div class="lv">₹1 लाख / माह</div><div class="lk">माह 3 · प्रमाण</div></div>
+    <span class="larr">→</span>
+    <div class="lstep"><div class="lv">₹5 लाख / माह</div><div class="lk">माह 9 · इंजन</div></div>
+    <span class="larr">→</span>
+    <div class="lstep"><div class="lv">₹15 लाख / माह</div><div class="lk">माह 18 · विस्तार</div></div>
+    <span class="larr">→</span>
+    <div class="lstep"><div class="lv">₹2–5 करोड़</div><div class="lk">संचयी · वर्ष 2</div></div>
+  </div>
+
+  <div class="seclabel"><span class="num">A</span><span class="txt">ऑफ़र संरचना</span><span class="rule"></span></div>
+  <div class="dwins">
+    <div class="dwin"><div class="wk">स्थानीय पैकेज · ₹25/45/65 हज़ार</div><p><b>आपकी सिद्ध ₹66 हज़ार की ऊँचाई पर आधारित।</b> तीन निश्चित स्तर, ₹25 हज़ार से नीचे कभी नहीं — ₹5–10 हज़ार का बाज़ार चक्की है, व्यवसाय नहीं। हर प्रोजेक्ट में होस्टिंग सेटअप: +₹5–7 हज़ार एफ़िलिएट मार्जिन।</p></div>
+    <div class="dwin"><div class="wk">ग्रोथ रिटेनर · ₹8–25 हज़ार/माह</div><p><b>चक्रवृद्धि की परत।</b> रखरखाव + SEO + कंटेंट, इसी बाज़ार के अनुसार। तीस रिटेनर यानी हर नई बिक्री से पहले ₹4.5 लाख/माह का स्थायी आधार।</p></div>
+    <div class="dwin"><div class="wk">अंतरराष्ट्रीय प्रीमियम · $2–6 हज़ार</div><p><b>डॉलर अर्थशास्त्र को 3–5 गुना बदल देता है।</b> अमेरिका/यूके/यूएई — लिंक्डइन व कोल्ड आउटरीच से। भारत से LUT के अंतर्गत बिल — दुबई इकाई की अभी आवश्यकता नहीं।</p></div>
+  </div>
+
+  <div class="seclabel"><span class="num">B</span><span class="txt">क्रियान्वयन चरण</span><span class="rule"></span></div>
+  <div class="dwins">
+    <div class="dwin"><div class="wk">चरण 1 · अभी → फ़र॰ 2027 · राहु–चंद्र</div><p><b>स्थिर होइए, दिखिए।</b> ऑफ़र को उत्पाद बनाइए, एक बिकाऊ डिजिटल उत्पाद प्रस्तुत कीजिए (यही दस्तावेज़ एक सेवा के रूप में), प्रसिद्ध ब्रांडों के 3 नमूना-पुनर्रचना बनाइए, साप्ताहिक 30 संवाद कीजिए। यह दशा दृश्यता की पक्षधर है — डटकर बेचिए।</p></div>
+    <div class="dwin"><div class="wk">चरण 2 · फ़र॰ 2027 → मार्च 2028 · राहु–मंगल</div><p><b>निष्पादन की दौड़।</b> 25–30 रिटेनर सक्रिय, आय का 50% डॉलर में, केवल अनुबंधित प्रतिभा, AI-त्वरित डिलीवरी। दशा बदलने से पहले आक्रामक समापन।</p></div>
+    <div class="dwin"><div class="wk">चरण 3 · मार्च 2028+ · बृहस्पति महादशा</div><p><b>संरचनात्मक आरोहण।</b> एजेंसी ब्रांड + उत्पादित बौद्धिक संपदा (टेम्पलेट, SaaS)। दुबई इकाई केवल ₹1 करोड़ अंतरराष्ट्रीय लाभ के बाद। ₹15–20 करोड़ इसी आधार पर वर्ष-4 का लक्ष्य बनता है।</p></div>
+  </div>
+
+  <div class="seclabel"><span class="num">C</span><span class="txt">विस्तार व दुबई-प्रश्न</span><span class="rule"></span></div>
+  <div class="dwins">
+    <div class="dwin"><div class="wk">नासिक → पुणे → मुंबई</div><p><b>दफ़्तर नहीं — मोर्चे।</b> हर शहर में 5 आधार-ग्राहक जीतिए — विशिष्ट पोर्टफोलियो व रेफ़रल साझेदारों (सीए, वास्तुकार, ब्रोकर) से। यात्रा केवल सौदे के समापन हेतु; डिलीवरी दूरस्थ।</p></div>
+    <div class="dwin"><div class="wk">अंतरराष्ट्रीय इंजन</div><p><b>किसी भी इकाई से पहले पाइपलाइन बनाइए।</b> लिंक्डइन/अपवर्क पर साप्ताहिक 15 डॉलर-संवाद; यूएई एजेंसियाँ भारतीय स्टूडियो को $30–60/घंटा पर उप-अनुबंध भी देती हैं — उस बाज़ार का सीधा द्वार।</p></div>
+    <div class="dwin"><div class="wk">दुबई इकाई — कब व कैसे</div><p><b>शर्त: ₹1 करोड़ अंतरराष्ट्रीय लाभ।</b> फ़्रीज़ोन (IFZA/Meydan) ≈ ₹1.5–3 लाख/वर्ष, AED 3.75 लाख से ऊपर 9% कॉर्पोरेट कर, बैंकिंग में 4–8 सप्ताह। तब तक LUT निर्यात-बिलिंग 0% GST पर काम करती है।</p></div>
+  </div>
+
+  <div class="rules" data-testid="operating-rules"><b>कार्य-नियम।</b> ₹1–5 लाख का कोष केवल आय-इंजनों में — ≈₹50 हज़ार पोज़िशनिंग, ≈₹1 लाख विशिष्ट पेज व आउटरीच, शेष पहले अंतरराष्ट्रीय सौदे तक सुरक्षित · हर स्थानीय प्रोजेक्ट में होस्टिंग जोड़िए: Hosting.com ≈$80 व Bluehost ≈$65 प्रति बिक्री — दस बिक्री यानी ₹60–66 हज़ार अतिरिक्त · ₹3 लाख/माह लाभ 3 माह टिकने तक न दफ़्तर, न वेतनभोगी · निर्यात-बिल LUT से (0% GST) · हर प्रोजेक्ट पर 10% रेफ़रल · साप्ताहिक मापदंड: 30 संवाद · दुबई कर-निर्णय है, विकास-निर्णय नहीं।</div>
+
+  <div class="foot">
+    <span>ReadyUP स्थापना 3 नव॰ 2023 → स्थापना-अंक 3, सृजनात्मक अभिव्यक्ति · राहु–चंद्र दृश्यता का पक्षधर; गुरु (लग्नेश-दशमेश) मार्च 2028 से आरोहण खोलता है।</span>
+    <span style="white-space:nowrap">पृष्ठ 6 · रणनीतिक रोडमैप</span>
+  </div>
+</div>
+
+<!-- PAGE 7 -->
+<div class="sheet page7">
+  <div class="seclabel"><span class="num">13</span><span class="txt">मुहूर्त पंचांग · शुभ अवसर</span><span class="rule"></span></div>
+  <div class="costrip" data-testid="muhurta-context">
+    <div class="cochip"><div class="ck">वर्तमान दशा</div><div class="cv">राहु–चंद्र → <b>फ़र॰ 2027</b></div></div>
+    <div class="cochip"><div class="ck">तत्पश्चात</div><div class="cv">राहु–मंगल → <b>मार्च 2028</b></div></div>
+    <div class="cochip"><div class="ck">आरोहण</div><div class="cv">गुरु महादशा · <b>मार्च 2028</b></div></div>
+    <div class="cochip"><div class="ck">शुभ वार</div><div class="cv"><b>सोम · बुध · गुरु</b></div></div>
+    <div class="cochip"><div class="ck">तारा-आधार</div><div class="cv">जन्म नक्षत्र <b>हस्त</b></div></div>
+  </div>
+
+  <div class="seclabel"><span class="num">A</span><span class="txt">स्वर्ण दिवस — गुरु-पुष्य गुरुवार</span><span class="rule"></span></div>
+  <div class="mucards" data-testid="golden-days">
+    <div class="mucard gold"><div class="md">18 मार्च 2027 <span>गुरु</span></div><div class="mn">पुष्य · शुक्ल एकादशी</div><p><b>मुकुट-तिथि।</b> शुक्ल एकादशी पर गुरु-पुष्य — सबसे बड़ा अनुबंध कीजिए, खाता खोलिए, पहला अंतरराष्ट्रीय बिल जारी कीजिए।</p></div>
+    <div class="mucard gold"><div class="md">15 अप्रैल 2027 <span>गुरु</span></div><div class="mn">पुष्य · नवमी</div><p>ऋतु का दूसरा गुरु-पुष्य — ऑफ़र लॉन्च कीजिए, रिटेनर आरंभ कीजिए, जो भी चक्रवृद्धि के लिए बना है वह शुरू कीजिए।</p></div>
+    <div class="mucard gold"><div class="md">13 जन॰ 2028 <span>गुरु</span></div><div class="mn">पुष्य · कृष्ण द्वितीया</div><p>बृहस्पति महादशा से पूर्व अंतिम गुरु-पुष्य — वे ढाँचे स्थापित कीजिए जिन पर 2028 का आरोहण चलेगा।</p></div>
+  </div>
+
+  <div class="seclabel"><span class="num">B</span><span class="txt">लॉन्च अवसर — गो-लाइव, ऑफ़र, अभियान</span><span class="rule"></span></div>
+  <div class="mucards" data-testid="launch-windows">
+    <div class="mucard"><div class="md">24 सित॰ 2026 <span>गुरु</span></div><div class="mn">धनिष्ठा · त्रयोदशी</div><p>पहला निर्मल अवसर — उत्पादित ऑफ़र-सूची और विशिष्ट लैंडिंग पेज लॉन्च कीजिए।</p></div>
+    <div class="mucard"><div class="md">11 जन॰ 2027 <span>सोम</span></div><div class="mn">धनिष्ठा · तृतीया</div><p>नववर्ष गो-लाइव; राहु–चंद्र दशा में सोमवार दृश्यता की धारा दोगुनी करता है।</p></div>
+    <div class="mucard"><div class="md">11 मार्च 2027 <span>गुरु</span></div><div class="mn">रेवती · तृतीया</div><p>वक्री-पश्चात पुनरारंभ — अंतरराष्ट्रीय पोर्टफोलियो व आउटरीच इंजन प्रस्तुत कीजिए।</p></div>
+    <div class="mucard"><div class="md">13 सित॰ 2027 <span>सोम</span></div><div class="mn">धनिष्ठा · त्रयोदशी</div><p>राहु–मंगल दौड़ के मध्य — अभियान, उत्पाद-विमोचन, आक्रामक समापन।</p></div>
+    <div class="mucard"><div class="md">9 दिस॰ 2027 <span>गुरु</span></div><div class="mn">रेवती · एकादशी</div><p>शुक्ल एकादशी पर वर्षांत विमोचन — 2027 का समापन गूँज के साथ।</p></div>
+    <div class="mucard"><div class="md">10 जन॰ 2028 <span>सोम</span></div><div class="mn">मृगशिरा · त्रयोदशी</div><p>वक्री-पूर्व अवसर — 25 जनवरी के बुध-अवरोध से पहले प्रस्तुत कीजिए।</p></div>
+  </div>
+
+  <div class="seclabel"><span class="num">C</span><span class="txt">हस्ताक्षर व अनुबंध — स्थिर-नक्षत्र दिवस</span><span class="rule"></span></div>
+  <div class="mucards" data-testid="signing-windows">
+    <div class="mucard"><div class="md">2 सित॰ 2027 <span>गुरु</span></div><div class="mn">उत्तरा फाल्गुनी · द्वितीया</div><p><b>चंद्र जन्म-कन्या पर</b> — यहाँ लिए निर्णय मूल से संरेखित होते हैं। साझेदारी-अनुबंध यहीं बाँधिए।</p></div>
+    <div class="mucard"><div class="md">30 दिस॰ 2027 <span>गुरु</span></div><div class="mn">उत्तराषाढ़ा · तृतीया</div><p>स्थिर-नक्षत्र गुरुवार — वर्ष का सबसे बड़ा रिटेनर या अंतरराष्ट्रीय समझौता यहीं संपन्न कीजिए।</p></div>
+    <div class="mucard"><div class="md">— <span>टिप्पणी</span></div><div class="mn">जानबूझकर विरल</div><p>स्थिर नक्षत्र हर कसौटी विरले ही पार करते हैं। हस्ताक्षर रुक न सकें तो स्वर्ण दिवस या बुध-वक्री से बाहर का कोई लॉन्च-अवसर लीजिए।</p></div>
+  </div>
+
+  <div class="rules" data-testid="muhurta-cautions"><b>सावधानियाँ।</b> बुध वक्री — कोई नया हस्ताक्षर नहीं: 25 अक्टू॰–13 नव॰ 2026 · 10 फ़र॰–3 मार्च 2027 · 11 जून–4 जुल॰ 2027 · 8–28 अक्टू॰ 2027 · 25 जन॰–14 फ़र॰ 2028 · जिन दिनों चंद्र धनु, मेष या सिंह में हो (जन्म-चंद्र से 4/8/12) वे दिन छोड़िए · दैनिक राहु काल — लॉन्च व हस्ताक्षर इससे बाहर रखिए: रवि 16:30–18:00 · सोम 7:30–9:00 · मंगल 15:00–16:30 · बुध 12:00–13:30 · गुरु 13:30–15:00 · शुक्र 10:30–12:00 · शनि 9:00–10:30।</div>
+  <div class="remnote">मुहूर्त-अन्वेषण सित॰ 2026 → मार्च 2028, प्रातः 9:00 IST · केवल शुभ वार (चंद्र, बुध, गुरु — कुंडली के मित्र) · हस्त से शुभ ताराबल · चंद्रबल अनिवार्य (4/8/12 का चंद्र वर्जित) · शुक्ल पक्ष की तिथियाँ वरीय। अंतिम घड़ी उसी दिन पंचांग से जाँचिए — मुहूर्त संकल्प को धार देता है; उसका स्थान नहीं लेता।</div>
+  <div class="foot">
+    <span>वैदिक मुहूर्त-गणना · स्विस एफ़ेमेरिस, लाहिड़ी अयनांश · राहु → गुरु दशा-संधि से संरेखित।</span>
+    <span style="white-space:nowrap">पृष्ठ 7 · मुहूर्त पंचांग</span>
+  </div>
+</div>
+
+<!-- PAGE 8 -->
+<div class="sheet page8">
+  <div class="seclabel"><span class="num">14</span><span class="txt">सेतु · आज → गुरु-आरोहण</span><span class="rule"></span></div>
+  <div class="costrip" data-testid="bridge-context">
+    <div class="cochip"><div class="ck">अभी</div><div class="cv">राहु–चंद्र → <b>फ़र॰ 2027</b></div></div>
+    <div class="cochip"><div class="ck">तत्पश्चात</div><div class="cv">राहु–मंगल → <b>मार्च 2028</b></div></div>
+    <div class="cochip"><div class="ck">गोचर-वरदान</div><div class="cv">गुरु <b>पंचम में उच्च</b> → नव॰ 2026</div></div>
+    <div class="cochip"><div class="ck">गोचर-परीक्षा</div><div class="cv">शनि <b>लग्न</b> पर → मध्य-2027</div></div>
+    <div class="cochip"><div class="ck">गंतव्य</div><div class="cv">गुरु महादशा · <b>मार्च 2028</b></div></div>
+  </div>
+
+  <div class="seclabel"><span class="num">A</span><span class="txt">चरण 1 · अभी → फ़र॰ 2027 · राहु–चंद्र — दिखिए</span><span class="rule"></span></div>
+  <div class="dwins" data-testid="bridge-phase1">
+    <div class="dwin"><div class="wk">कीजिए</div><p><b>साप्ताहिक प्रकाशित कीजिए</b> — नमूना-पुनर्रचना, पहले/बाद, केस-नोट। 24 सित॰ 2026 को उत्पादित मेनू लॉन्च कीजिए। गठजोड़ जोड़िए: सीए, वास्तुकार, ब्रोकर, और हर प्रोजेक्ट में होस्टिंग। संबंध को साँस लेने दीजिए — गुरु उसे स्वयं वहन कर रहा है।</p></div>
+    <div class="dwin"><div class="wk">मत कीजिए</div><p><b>दिखावे पर व्यय नहीं</b> — न दफ़्तर का पट्टा, न छवि के लिए ऋण। ₹25 हज़ार से नीचे कोई प्रोजेक्ट नहीं। 25 अक्टू॰–13 नव॰ (बुध वक्री) में कोई हस्ताक्षर नहीं। उनकी चुप्पियों को फ़ैसला मत समझिए — चंद्र-काल भावनाएँ बढ़ाता है, आपमें भी, आस-पास भी।</p></div>
+    <div class="dwin"><div class="wk">गोचर-टिप्पणी</div><p><b>उच्च का गुरु 29 अग॰ 2026 को आपके सूर्य से गुज़रा</b> — सेतु की सबसे मुखर मान्यता-खिड़की: श्रेष्ठ कार्य सार्वजनिक कीजिए। लग्न पर बैठा शनि बदले में एक ही शुल्क माँगता है — नींद, दिनचर्या और सशक्त शरीर।</p></div>
+  </div>
+
+  <div class="seclabel"><span class="num">B</span><span class="txt">चरण 2 · फ़र॰ 2027 → मार्च 2028 · राहु–मंगल — निष्पादन</span><span class="rule"></span></div>
+  <div class="dwins" data-testid="bridge-phase2">
+    <div class="dwin"><div class="wk">कीजिए</div><p><b>आक्रामक समापन।</b> स्थानीय न्यूनतम ₹45 हज़ार कीजिए; अंतरराष्ट्रीय को आय का आधा बनाइए। अनुबंधित सहायता लीजिए, तेज़ प्रस्तुत कीजिए, नकद बचाइए — महादशा बदलने से पहले 6-माह की पूँजी। पहले बड़े प्रहार गुरु-पुष्य पर: 18 मार्च व 15 अप्रैल 2027।</p></div>
+    <div class="dwin"><div class="wk">मत कीजिए</div><p><b>कोई सट्टा नहीं।</b> न ट्रेडिंग, न क्रिप्टो-दाँव, न "₹40 लाख झट से वापस जीतने" की बाज़ी — मंगल-राहु जुआरियों को जलाता है। कोई विवाद नहीं: निपटाइए, आगे बढ़िए। क्रोध संदेश लिखता है; उन्हें कभी भेजिए मत। हर काम पर, हर बार अनुबंध।</p></div>
+    <div class="dwin"><div class="wk">गोचर-टिप्पणी</div><p>शनि मध्य-2027 तक लग्न को परखता है — शरीर को गति दीजिए, दौड़ाइए मत। <b>27 नव॰ 2027 से गुरु आपके सप्तम में</b>: साझेदारियाँ — व्यावसायिक और व्यक्तिगत — औपचारिक होती हैं। यही सेतु की अंतिम चाप है, मार्च 2028 में।</p></div>
+  </div>
+
+  <div class="seclabel"><span class="num">C</span><span class="txt">साप्ताहिक लय — ग्रह ही समय-सारणी</span><span class="rule"></span></div>
+  <div class="costrip" data-testid="weekly-rhythm">
+    <div class="cochip"><div class="ck">सोमवार · चंद्र</div><div class="cv">योजना व <b>आउटरीच</b></div></div>
+    <div class="cochip"><div class="ck">बुधवार · बुध</div><div class="cv">बिल व <b>फ़ॉलो-अप</b></div></div>
+    <div class="cochip"><div class="ck">गुरुवार · गुरु</div><div class="cv">प्रस्ताव व <b>समापन</b></div></div>
+    <div class="cochip"><div class="ck">शनिवार · शनि</div><div class="cv">प्रणालियाँ व <b>अध्ययन</b></div></div>
+    <div class="cochip"><div class="ck">प्रतिदिन</div><div class="cv"><b>30</b> संवाद</div></div>
+  </div>
+
+  <div class="rules" data-testid="bridge-rules"><b>प्रतीक्षा का शास्त्र।</b> सेतु उबाऊ पुनरावृत्ति से पार होता है — वही ऑफ़र, वही वार, वही संवाद-संख्या — जब तक मार्च 2028 चलती हुई मशीन न पा ले · किसी भी पुनर्निवेश से पहले व्यक्तिगत पूँजी पुनर्निर्मित कीजिए · ₹35–40 लाख की हानि चुकाई जा चुकी फ़ीस है; वह विवेक ख़रीदती है, लज्जा नहीं · चार आधार सुरक्षित रखिए: मध्यरात्रि से पहले नींद, जल, एक विश्राम-दिवस, और बुध–गुरु की कार्य-लय · रात 10 बजे बाद फ़ोन से दूरी — रात के निर्णय चंद्रमा के हैं, आपके नहीं।</div>
+
+  <div class="foot">
+    <span>दशा-रणनीति सजीव गोचरों से जुड़ी (स्विस एफ़ेमेरिस) — गुरु कर्क में उच्च 2 जून 2026 → नव॰ 2026, वापसी जन॰–जून 2027; शनि मीन में लग्न पर।</span>
+    <span style="white-space:nowrap">पृष्ठ 8 · सेतु</span>
+  </div>
+</div>
+
+<div class="mubadge" data-testid="muhurta-countdown">मुहूर्त पंचांग लोड हो रहा है…</div>
+<div class="toolbar">
+  <a class="tb-btn primary" href="/SAURABH-Master-Chart-Hindi.pdf" download data-testid="download-pdf-btn">
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0l-5-5m5 5l5-5M4 21h16"/></svg>
+    A4 PDF
+  </a>
+  <button class="tb-btn secondary" onclick="window.print()" data-testid="print-pdf-btn">प्रिंट</button>
+  <a class="tb-btn ghost" href="/master-chart.html" data-testid="dark-edition-link">English · Dark</a>
+  <a class="tb-btn ghost" href="/master-chart-sakura.html" data-testid="sakura-edition-link">Sakura</a>
+</div>
+<script>
+(function(){
+  var M=[["2026-09-24","धनिष्ठा लॉन्च अवसर"],["2027-01-11","धनिष्ठा लॉन्च अवसर"],["2027-03-11","रेवती लॉन्च अवसर"],["2027-03-18","गुरु-पुष्य · स्वर्ण दिवस"],["2027-04-15","गुरु-पुष्य · स्वर्ण दिवस"],["2027-09-02","हस्ताक्षर दिवस · उ. फाल्गुनी"],["2027-09-13","धनिष्ठा लॉन्च अवसर"],["2027-12-09","रेवती लॉन्च अवसर"],["2027-12-30","हस्ताक्षर दिवस · उ. आषाढ़ा"],["2028-01-10","मृगशिरा लॉन्च अवसर"],["2028-01-13","गुरु-पुष्य · स्वर्ण दिवस"]];
+  var el=document.querySelector('[data-testid="muhurta-countdown"]');
+  if(!el) return;
+  var now=new Date();
+  for(var i=0;i<M.length;i++){
+    var t=new Date(M[i][0]+"T09:00:00+05:30");
+    if(t>now){
+      var days=Math.ceil((t-now)/86400000);
+      el.innerHTML='अगला अवसर: <b>'+t.toLocaleDateString('hi-IN',{day:'numeric',month:'short',year:'numeric'})+'</b> · '+M[i][1]+' · <b>'+days+' दिन</b> शेष';
+      return;
+    }
+  }
+  el.textContent='मुहूर्त-सूची पूर्ण — नया अन्वेषण माँगिए।';
+})();
+</script>
+</body>
+</html>

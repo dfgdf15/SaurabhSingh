@@ -3,125 +3,153 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ReadyUP — Client Proposal Template</title>
+<title>ReadyUP — Client Proposal</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 :root{
-  --canvas:#0B0E14; --card:#161B22; --border:#232A34;
-  --blue:#3B82F6; --gold:#F59E0B; --body:#E2E8F0; --muted:#8B98A9;
+  --canvas:#0B0E14; --card:#161B22; --card2:#0E1319; --border:#232A34;
+  --blue:#3B82F6; --gold:#F59E0B; --body:#E2E8F0; --muted:#8B98A9; --dim:#5B6B7E;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
 body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#05070B;color:var(--body);}
-@page{size:A4;margin:12mm;}
-.sheet{width:186mm;min-height:273mm;margin:24px auto;background:var(--canvas);padding:0;position:relative;page-break-after:always;overflow:hidden;}
+@page{size:A4;margin:0;}
+.sheet{width:210mm;height:296mm;margin:24px auto;background:var(--canvas);position:relative;page-break-after:always;overflow:hidden;}
 .sheet:last-of-type{page-break-after:auto;}
+.sheet::before{content:'';position:absolute;inset:0;background:radial-gradient(560px 420px at -5% -5%,rgba(59,130,246,.10),transparent 60%),radial-gradient(520px 420px at 105% 105%,rgba(245,158,11,.07),transparent 60%);pointer-events:none;}
+.inner{position:relative;z-index:1;padding:15mm 14mm 12mm;height:100%;display:flex;flex-direction:column;}
 @media print{
   body{background:var(--canvas);}
-  .sheet{margin:0 auto;width:auto;min-height:0;overflow:visible;}
-  .toolbar{display:none !important;}
+  .sheet{margin:0 auto;box-shadow:none;}
+  .toolbar,.edithint,.ppanel{display:none !important;}
   [contenteditable]{outline:none !important;border-bottom-color:transparent !important;background:transparent !important;}
   td[contenteditable]{border-bottom-color:#1B212B !important;}
   tr:last-child td[contenteditable]{border-bottom-color:transparent !important;}
-  .edithint{display:none !important;}
 }
-/* ---------- editable fields ---------- */
-[contenteditable]{border-bottom:1px dashed rgba(59,130,246,.55);background:rgba(59,130,246,.05);border-radius:2px;padding:0 3px;transition:background .2s;cursor:text;min-width:24px;display:inline-block;}
+/* ---------- editable ---------- */
+[contenteditable]{border-bottom:1px dashed rgba(59,130,246,.5);background:rgba(59,130,246,.05);border-radius:2px;padding:0 3px;cursor:text;min-width:24px;display:inline-block;transition:background .2s;}
+[contenteditable]:hover{background:rgba(59,130,246,.13);}
+[contenteditable]:focus{outline:1px solid var(--blue);background:rgba(59,130,246,.09);}
 td[contenteditable]{display:table-cell;min-width:0;border-bottom:1px solid #1B212B;border-radius:0;padding:9px 12px;}
 tr:last-child td[contenteditable]{border-bottom:none;}
-[contenteditable]:hover{background:rgba(59,130,246,.14);}
-[contenteditable]:focus{outline:1px solid var(--blue);background:rgba(59,130,246,.10);}
 /* ---------- shared ---------- */
-.seclabel{display:flex;align-items:center;gap:10px;margin:16px 0 8px;}
-.seclabel .num{font-size:10px;font-weight:900;color:var(--gold);letter-spacing:.08em;}
-.seclabel .txt{font-size:11px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--blue);}
-.seclabel .rule{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent);}
-.pad{padding:20px 24px;}
-.foot{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:10px;border-top:1px solid var(--border);font-size:7.5px;color:var(--muted);letter-spacing:.06em;}
-.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 14px;}
-.card .ck{font-size:7px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
-.card p{font-size:9px;line-height:1.6;color:var(--muted);}
+.shead{display:flex;align-items:center;gap:12px;margin:0 0 12px;}
+.shead .nchip{width:24px;height:24px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);font-size:9px;font-weight:900;display:flex;align-items:center;justify-content:center;flex:none;}
+.shead .stxt{font-size:12px;font-weight:800;letter-spacing:.26em;text-transform:uppercase;color:var(--body);}
+.shead .ssub{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-left:auto;white-space:nowrap;}
+.shead .rule{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent);}
+.brandrow{display:flex;align-items:center;justify-content:space-between;}
+.logo{font-size:19px;font-weight:900;letter-spacing:.01em;}
+.logo .r{color:var(--body);} .logo .up{color:var(--blue);}
+.logo .dot{color:var(--gold);}
+.site{font-size:8px;color:var(--dim);letter-spacing:.22em;text-transform:uppercase;}
+.pfoot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid var(--border);font-size:7.5px;color:var(--dim);letter-spacing:.08em;}
+.pdots{display:flex;gap:4px;align-items:center;}
+.pdots i{width:5px;height:5px;border-radius:50%;background:var(--border);}
+.pdots i.on{background:var(--gold);}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+.card .ck{font-size:7px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.card p{font-size:9.5px;line-height:1.65;color:var(--muted);}
 .card p b{color:var(--body);}
+.gcall{border:1px solid rgba(245,158,11,.55);border-radius:10px;padding:13px 16px;background:rgba(245,158,11,.05);}
+.gcall .gk{font-size:8px;font-weight:900;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;}
+.gcall p{font-size:9.5px;line-height:1.65;color:var(--muted);}
+.gcall p b{color:var(--body);}
 /* ---------- cover ---------- */
-.cover{display:flex;flex-direction:column;justify-content:space-between;min-height:273mm;padding:26px 28px;position:relative;}
-.cover .wm{position:absolute;right:-120px;top:-120px;width:460px;height:460px;opacity:.10;pointer-events:none;}
-.brand{display:flex;align-items:baseline;gap:8px;}
-.brand .logo{font-size:22px;font-weight:900;letter-spacing:.02em;}
-.brand .logo .r{color:var(--body);}
-.brand .logo .up{color:var(--blue);}
-.brand .site{font-size:8.5px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;}
-.cover .mid{position:relative;z-index:1;}
-.eyebrow{font-size:10px;font-weight:800;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
-.ctitle{font-size:34px;font-weight:900;line-height:1.15;letter-spacing:-.01em;max-width:150mm;}
-.csub{margin-top:12px;font-size:11px;color:var(--muted);line-height:1.7;max-width:120mm;}
-.pfor{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:28px;max-width:150mm;}
-.pfor .pf{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:11px 13px;}
-.pfor .pf .k{font-size:6.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-bottom:5px;}
-.pfor .pf .v{font-size:11px;font-weight:700;}
-.cover .base{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid var(--border);padding-top:14px;}
-.cover .base .by{font-size:9px;color:var(--muted);line-height:1.8;}
-.cover .base .by b{color:var(--body);}
-.cover .base .valid{font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:800;}
-/* ---------- services ---------- */
+.ghost{position:absolute;right:-8mm;top:34mm;font-size:120px;font-weight:900;letter-spacing:.02em;color:transparent;-webkit-text-stroke:1px #1B2430;transform:rotate(90deg);transform-origin:right top;pointer-events:none;}
+.cwm{position:absolute;left:-70px;bottom:-70px;width:380px;height:380px;opacity:.12;pointer-events:none;}
+.eyebrow{display:flex;align-items:center;gap:10px;font-size:10px;font-weight:800;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.eyebrow::before{content:'';width:34px;height:2px;background:var(--gold);}
+.ctitle{font-size:42px;font-weight:900;line-height:1.08;letter-spacing:-.015em;max-width:158mm;}
+.csub{margin-top:14px;font-size:11.5px;color:var(--muted);line-height:1.75;max-width:125mm;}
+.cmid{margin-top:auto;margin-bottom:auto;}
+.pfor{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:26px;max-width:165mm;}
+.pf{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:8px;padding:12px 14px;}
+.pf .k{font-size:6.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:6px;}
+.pf .v{font-size:12px;font-weight:800;}
+.cstats{display:flex;gap:8px;margin-top:22px;}
+.cstat{flex:1;background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;text-align:center;}
+.cstat .sv{font-size:15px;font-weight:900;color:var(--gold);}
+.cstat .sk{font-size:6.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-top:3px;}
+.cbase{display:flex;justify-content:space-between;align-items:flex-end;padding-top:14px;border-top:1px solid var(--border);}
+.cbase .by{font-size:9px;color:var(--muted);line-height:1.8;}
+.cbase .by b{color:var(--body);}
+.cbase .valid{font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:900;border:1px solid rgba(245,158,11,.5);border-radius:6px;padding:6px 12px;}
+/* ---------- proof ---------- */
+.bigline{font-size:19px;font-weight:800;line-height:1.4;letter-spacing:-.01em;max-width:160mm;margin-bottom:16px;}
+.bigline b{color:var(--gold);}
+.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.case{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px;display:flex;flex-direction:column;}
+.case .cnum{font-size:8px;font-weight:900;color:var(--blue);letter-spacing:.2em;margin-bottom:8px;}
+.case .cname{font-size:12px;font-weight:800;margin-bottom:6px;}
+.case p{font-size:8.5px;line-height:1.6;color:var(--muted);flex:1;}
+.case .cmetric{margin-top:10px;padding-top:9px;border-top:1px dashed var(--border);font-size:11px;font-weight:900;color:var(--gold);}
+.case .cmk{font-size:6.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-top:2px;}
+.chiprow{display:flex;gap:8px;margin-top:12px;}
+.chip2{flex:1;background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:9px 11px;text-align:center;}
+.chip2 .cv{font-size:11px;font-weight:900;color:var(--body);}
+.chip2 .cv b{color:var(--gold);}
+.chip2 .ckk{font-size:6.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin-top:3px;}
+.stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+.tag{font-size:8px;font-weight:700;letter-spacing:.08em;color:var(--muted);border:1px solid var(--border);border-radius:20px;padding:5px 12px;background:var(--card2);}
+/* ---------- capabilities & process ---------- */
 .svcgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;}
-.statrow{display:flex;gap:8px;margin-top:10px;}
-.stat{flex:1;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:8px 10px;text-align:center;}
-.stat .sv{font-size:13px;font-weight:900;color:var(--gold);}
-.stat .sk{font-size:6.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:2px;}
-.proc{display:flex;gap:6px;align-items:stretch;margin-top:10px;}
-.pstep{flex:1;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:9px 10px;}
-.pstep .pn{font-size:9px;font-weight:900;color:var(--blue);}
-.pstep .pk{font-size:8.5px;font-weight:800;margin:3px 0 2px;}
-.pstep .pd{font-size:7px;color:var(--muted);line-height:1.5;}
-.parr{align-self:center;color:var(--gold);font-size:11px;font-weight:900;}
-/* ---------- scope table ---------- */
-table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden;}
-th{font-size:7px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);text-align:left;padding:8px 12px;border-bottom:1px solid var(--border);background:#11151C;}
+.svc{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px;position:relative;overflow:hidden;}
+.svc::after{content:'';position:absolute;top:0;left:0;width:44px;height:2px;background:var(--blue);}
+.svc .sk2{font-size:8px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:6px;}
+.svc p{font-size:9px;line-height:1.65;color:var(--muted);}
+.svc p b{color:var(--body);}
+.proc{display:flex;gap:0;align-items:stretch;margin-top:4px;position:relative;}
+.proc::before{content:'';position:absolute;top:15px;left:6%;right:6%;height:1px;background:var(--border);}
+.pstep{flex:1;text-align:center;position:relative;padding:0 6px;}
+.pstep .pn{width:30px;height:30px;border-radius:50%;background:var(--canvas);border:1px solid var(--gold);color:var(--gold);font-size:10px;font-weight:900;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;position:relative;z-index:1;}
+.pstep .pk{font-size:9px;font-weight:800;margin-bottom:3px;}
+.pstep .pd{font-size:7.5px;color:var(--dim);line-height:1.55;}
+/* ---------- scope & pricing ---------- */
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+th{font-size:7px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);text-align:left;padding:9px 12px;border-bottom:1px solid var(--border);background:#11151C;}
 td{font-size:9px;padding:9px 12px;border-bottom:1px solid #1B212B;vertical-align:top;line-height:1.55;}
 tr:last-child td{border-bottom:none;}
 tbody tr:nth-child(even){background:#131820;}
 td.dk{font-weight:800;color:var(--body);white-space:nowrap;}
-td .sub{color:var(--muted);}
+td.sub{color:var(--muted);}
 td.tl{color:var(--gold);font-weight:700;white-space:nowrap;}
-/* ---------- pricing ---------- */
-.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:4px;}
-.tier{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;position:relative;}
-.tier.rec{border-color:var(--gold);}
-.tier .flag{position:absolute;top:-8px;right:10px;background:var(--gold);color:#0B0E14;font-size:6.5px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;padding:3px 8px;border-radius:4px;}
-.tier .tn{font-size:8px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);}
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.tier{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:15px;position:relative;}
+.tier.rec{border-color:var(--gold);background:linear-gradient(180deg,rgba(245,158,11,.06),transparent 55%),var(--card);}
+.tier .flag{position:absolute;top:-9px;right:12px;background:var(--gold);color:#0B0E14;font-size:6.5px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;padding:4px 9px;border-radius:5px;}
+.tier .tn{font-size:8px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);}
 .tier.rec .tn{color:var(--gold);}
-.tier .tp{font-size:17px;font-weight:900;margin:7px 0 2px;}
-.tier .tt{font-size:7px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+.tier .tp{font-size:20px;font-weight:900;margin:8px 0 2px;}
+.tier .tt{font-size:7px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:9px;}
 .tier ul{list-style:none;}
 .tier li{font-size:8px;color:var(--muted);line-height:1.55;padding:3px 0 3px 14px;position:relative;}
 .tier li::before{content:'—';position:absolute;left:0;color:var(--gold);}
 .tier li b{color:var(--body);}
-/* ---------- timeline ---------- */
-.tline{display:flex;gap:4px;margin-top:6px;}
-.tseg{flex:1;background:var(--card);border:1px solid var(--border);border-radius:5px;padding:7px 9px;}
+.intl{margin-top:10px;border:1px dashed var(--border);border-radius:8px;padding:9px 14px;font-size:8.5px;color:var(--muted);line-height:1.6;}
+.intl b{color:var(--body);}
+.tline{display:flex;gap:5px;margin-top:4px;}
+.tseg{flex:1;background:var(--card2);border:1px solid var(--border);border-radius:6px;padding:8px 10px;}
 .tseg .tw{font-size:6.5px;font-weight:900;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;}
-.tseg .tk{font-size:8px;font-weight:700;margin-top:2px;}
+.tseg .tk{font-size:8.5px;font-weight:700;margin-top:2px;}
 /* ---------- terms ---------- */
-.terms{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.paysplit{display:flex;gap:10px;}
+.pay{flex:1;text-align:center;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:13px;}
+.pay.first{border-color:rgba(245,158,11,.55);}
+.pay .pv{font-size:19px;font-weight:900;color:var(--gold);}
+.pay .pk{font-size:6.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:3px;}
+.terms{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .tlist{list-style:none;}
-.tlist li{font-size:8.5px;color:var(--muted);line-height:1.6;padding:5px 0 5px 16px;position:relative;border-bottom:1px dashed #1B212B;}
+.tlist li{font-size:8.5px;color:var(--muted);line-height:1.6;padding:6px 0 6px 16px;position:relative;border-bottom:1px dashed #1B212B;}
 .tlist li:last-child{border-bottom:none;}
-.tlist li::before{content:'◆';position:absolute;left:0;top:6px;font-size:6px;color:var(--gold);}
+.tlist li::before{content:'\25C6';position:absolute;left:0;top:7px;font-size:6px;color:var(--gold);}
 .tlist li b{color:var(--body);}
-.paysplit{display:flex;gap:8px;margin:10px 0 2px;}
-.pay{flex:1;text-align:center;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:9px;}
-.pay .pv{font-size:15px;font-weight:900;color:var(--gold);}
-.pay .pk{font-size:6.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:2px;}
-.sigrow{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px;}
-.sig{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;}
-.sig .sk{font-size:7px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);margin-bottom:26px;}
-.sig .line{border-bottom:1px solid #4E5D70;margin-bottom:6px;height:16px;}
-.sig .sn{font-size:7.5px;color:var(--muted);display:flex;justify-content:space-between;}
-.gcall{border:1px solid var(--gold);border-radius:8px;padding:12px 16px;margin-top:12px;background:rgba(245,158,11,.05);}
-.gcall .gk{font-size:8px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
-.gcall p{font-size:9px;line-height:1.65;color:var(--muted);}
-.gcall p b{color:var(--body);}
-/* ---------- toolbar ---------- */
+.sigrow{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.sig{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:15px;}
+.sig .sk{font-size:7px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:28px;}
+.sig .line{border-bottom:1px solid #4E5D70;margin-bottom:7px;height:16px;}
+.sig .sn{font-size:7.5px;color:var(--dim);display:flex;justify-content:space-between;}
+/* ---------- toolbar / hint / panel ---------- */
 .toolbar{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:99;background:rgba(11,14,20,.92);border:1px solid var(--border);border-radius:12px;padding:8px;backdrop-filter:blur(8px);box-shadow:0 8px 30px rgba(0,0,0,.5);}
 .tb-btn{display:inline-flex;align-items:center;gap:6px;font-family:inherit;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:9px 16px;border-radius:8px;cursor:pointer;text-decoration:none;border:1px solid transparent;}
 .tb-btn.primary{background:var(--blue);color:#fff;}
@@ -129,8 +157,7 @@ td.tl{color:var(--gold);font-weight:700;white-space:nowrap;}
 .tb-btn.ghost{background:transparent;color:var(--gold);border-color:rgba(245,158,11,.4);}
 .edithint{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:99;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:rgba(11,14,20,.92);border:1px solid var(--border);border-radius:8px;padding:7px 14px;}
 .edithint b{color:var(--blue);}
-/* ---------- presets panel ---------- */
-.ppanel{position:fixed;bottom:76px;left:50%;transform:translateX(-50%);z-index:98;width:340px;background:rgba(11,14,20,.97);border:1px solid var(--border);border-radius:12px;padding:14px;backdrop-filter:blur(8px);box-shadow:0 12px 40px rgba(0,0,0,.6);display:none;}
+.ppanel{position:fixed;bottom:76px;left:50%;transform:translateX(-50%);z-index:98;width:360px;background:rgba(11,14,20,.97);border:1px solid var(--border);border-radius:12px;padding:14px;backdrop-filter:blur(8px);box-shadow:0 12px 40px rgba(0,0,0,.6);display:none;}
 .ppanel.open{display:block;}
 .ppanel .pt{font-size:9px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;}
 .ppanel .pt .pclose{cursor:pointer;color:var(--muted);font-size:12px;font-weight:700;}
@@ -142,101 +169,132 @@ td.tl{color:var(--gold);font-weight:700;white-space:nowrap;}
 .pitem{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);border-radius:7px;padding:8px 10px;cursor:pointer;transition:border-color .15s;}
 .pitem:hover{border-color:var(--blue);}
 .pitem .pn2{flex:1;font-size:10px;font-weight:700;color:var(--body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.pitem .pd2{font-size:7.5px;color:var(--muted);white-space:nowrap;}
-.pitem .px{color:var(--muted);font-size:11px;font-weight:800;padding:0 2px;cursor:pointer;}
+.pitem .pd2{font-size:7.5px;color:var(--dim);white-space:nowrap;}
+.pitem .pcopy,.pitem .px{color:var(--dim);font-size:11px;font-weight:800;padding:0 3px;cursor:pointer;}
+.pitem .pcopy:hover{color:var(--blue);}
 .pitem .px:hover{color:#EF4444;}
-.pempty{font-size:9px;color:var(--muted);text-align:center;padding:10px 0;}
+.pempty{font-size:9px;color:var(--dim);text-align:center;padding:10px 0;}
 .pstatus{font-size:8px;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-top:8px;text-align:center;min-height:10px;}
-@media print{.ppanel{display:none !important;}}
-/* screen-only entrance */
 @media screen{
-  .sheet{animation:rise .7s cubic-bezier(.22,1,.36,1) both;}
+  .sheet{animation:rise .7s cubic-bezier(.22,1,.36,1) both;box-shadow:0 20px 60px rgba(0,0,0,.55);}
   @keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
 }
 </style>
 </head>
 <body>
 
-<div class="edithint"><b>Click any underlined field to edit</b> · then Print → Save as PDF</div>
+<div class="edithint"><b>Click any underlined field to edit</b> · Presets save whole proposals · Print → Save as PDF</div>
 
 <!-- PAGE 1 · COVER -->
 <div class="sheet">
-<div class="cover">
-  <svg class="wm" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="none">
+<div class="inner">
+  <div class="ghost">PROPOSAL</div>
+  <svg class="cwm" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="none">
     <circle cx="200" cy="200" r="190" stroke="#3B82F6" stroke-width="1"/>
-    <circle cx="200" cy="200" r="150" stroke="#3B82F6" stroke-width="1" stroke-dasharray="4 8"/>
-    <circle cx="200" cy="200" r="110" stroke="#F59E0B" stroke-width="1"/>
-    <circle cx="200" cy="200" r="70" stroke="#3B82F6" stroke-width="1" stroke-dasharray="2 6"/>
+    <circle cx="200" cy="200" r="148" stroke="#F59E0B" stroke-width="1" stroke-dasharray="3 9"/>
+    <circle cx="200" cy="200" r="106" stroke="#3B82F6" stroke-width="1"/>
     <path d="M200 10 V390 M10 200 H390 M65 65 L335 335 M335 65 L65 335" stroke="#3B82F6" stroke-width=".6"/>
   </svg>
-  <div class="brand">
-    <div class="logo"><span class="r">Ready</span><span class="up">UP</span></div>
-    <div class="site">ready2up.com</div>
+  <div class="brandrow">
+    <div class="logo"><span class="r">Ready</span><span class="up">UP</span><span class="dot">.</span></div>
+    <div class="site">ready2up.com · est. 2023 · online since 2017</div>
   </div>
-  <div class="mid">
+  <div class="cmid">
     <div class="eyebrow">Digital Proposal</div>
-    <div class="ctitle" contenteditable="true" data-field="title" data-testid="deck-project-title">Website Design &amp; Development</div>
-    <div class="csub">A fixed-scope, fixed-timeline engagement — designed, built and launched by a studio that has shipped websites, applications, games and browser extensions since 2017.</div>
+    <div class="ctitle" contenteditable="true" data-field="title" data-testid="deck-project-title">Website Design &amp;&#10;Development</div>
+    <div class="csub">A fixed-scope, fixed-price, fixed-timeline engagement — designed, built and launched by a studio that has shipped websites, applications, games and browser extensions since 2017.</div>
     <div class="pfor">
       <div class="pf"><div class="k">Prepared For</div><div class="v" contenteditable="true" data-field="client" data-testid="deck-client-name">Client Name</div></div>
       <div class="pf"><div class="k">Company</div><div class="v" contenteditable="true" data-field="company">Company Pvt. Ltd.</div></div>
-      <div class="pf"><div class="k">Date</div><div class="v" contenteditable="true" data-field="date">DD Month 2025</div></div>
+      <div class="pf"><div class="k">Date</div><div class="v" contenteditable="true" data-field="date">DD Month 2026</div></div>
+    </div>
+    <div class="cstats">
+      <div class="cstat"><div class="sv">8+</div><div class="sk">Years Building Online</div></div>
+      <div class="cstat"><div class="sv">4</div><div class="sk">Service Lines</div></div>
+      <div class="cstat"><div class="sv">2–6 wk</div><div class="sk">Delivery Sprints</div></div>
+      <div class="cstat"><div class="sv">IN + INTL</div><div class="sk">Client Markets</div></div>
     </div>
   </div>
-  <div class="base">
-    <div class="by">Prepared by <b>Saurabh · ReadyUP</b><br>Nashik, Maharashtra · India &amp; International Delivery</div>
+  <div class="cbase">
+    <div class="by">Prepared by <b>Saurabh · Founder, ReadyUP</b><br>Nashik, Maharashtra · India &amp; International Delivery</div>
     <div class="valid">Valid 14 Days</div>
   </div>
 </div>
 </div>
 
-<!-- PAGE 2 · WHY READYUP -->
+<!-- PAGE 2 · PROOF -->
 <div class="sheet">
-<div class="pad">
-  <div class="seclabel"><span class="num">01</span><span class="txt">Why ReadyUP</span><span class="rule"></span></div>
-  <div class="card"><div class="ck">The Studio</div>
-    <p><b>ReadyUP is a multi-discipline digital studio</b> — building on the web since 2017, formally established 3 November 2023. We work productised: fixed scope, fixed price, fixed timeline. No open-ended quotes, no drifting deadlines. One senior team owns your project from first call to launch day.</p>
+<div class="inner">
+  <div class="shead"><span class="nchip">01</span><span class="stxt">Proof of Work</span><span class="rule"></span><span class="ssub">Selected Engagements</span></div>
+  <div class="bigline">We don't sell websites. We build <b>the digital front door</b> your customers judge you by — and we've been doing it for eight years.</div>
+  <div class="cases" data-testid="deck-cases">
+    <div class="case"><div class="cnum">CASE — 01</div>
+      <div class="cname" contenteditable="true" data-field="case-1-name">Premium Business Website</div>
+      <p contenteditable="true" data-field="case-1-desc">Full design &amp; build for a growing services brand — custom UI, mobile-first, enquiry pipeline wired to WhatsApp and email.</p>
+      <div class="cmetric" contenteditable="true" data-field="case-1-metric">Delivered in 3 weeks</div>
+      <div class="cmk">Outcome</div>
+    </div>
+    <div class="case"><div class="cnum">CASE — 02</div>
+      <div class="cname" contenteditable="true" data-field="case-2-name">E-Commerce Storefront</div>
+      <p contenteditable="true" data-field="case-2-desc">Catalogue, cart and payment-gateway integration with a CMS the owner updates without touching code.</p>
+      <div class="cmetric" contenteditable="true" data-field="case-2-metric">Orders live from week 1</div>
+      <div class="cmk">Outcome</div>
+    </div>
+    <div class="case"><div class="cnum">CASE — 03</div>
+      <div class="cname" contenteditable="true" data-field="case-3-name">Web Application Build</div>
+      <p contenteditable="true" data-field="case-3-desc">Custom dashboard and booking system — real users, real scale, engineered end to end by one senior team.</p>
+      <div class="cmetric" contenteditable="true" data-field="case-3-metric">Zero-handoff delivery</div>
+      <div class="cmk">Outcome</div>
+    </div>
   </div>
-  <div class="statrow">
-    <div class="stat"><div class="sv">8+</div><div class="sk">Years Building Online</div></div>
-    <div class="stat"><div class="sv">4</div><div class="sk">Service Lines</div></div>
-    <div class="stat"><div class="sv">2 wk</div><div class="sk">Launch Sprints</div></div>
-    <div class="stat"><div class="sv">IN + INTL</div><div class="sk">Delivery Markets</div></div>
+  <div class="chiprow">
+    <div class="chip2"><div class="cv"><b>50+</b> builds</div><div class="ckk">Shipped Since 2017</div></div>
+    <div class="chip2"><div class="cv">Web · Apps · <b>Games</b> · Extensions</div><div class="ckk">Four Disciplines, One Studio</div></div>
+    <div class="chip2"><div class="cv"><b>1-yr</b> hosting setup</div><div class="ckk">Included In Every Build</div></div>
+    <div class="chip2"><div class="cv"><b>30-day</b> support</div><div class="ckk">After Every Launch</div></div>
   </div>
+  <div class="shead" style="margin-top:16px"><span class="nchip">02</span><span class="stxt">The Stack</span><span class="rule"></span></div>
+  <div class="stack">
+    <span class="tag">React</span><span class="tag">Next.js</span><span class="tag">WordPress</span><span class="tag">Shopify</span><span class="tag">Node.js</span><span class="tag">Tailwind</span><span class="tag">Figma</span><span class="tag">Unity</span><span class="tag">Chrome APIs</span><span class="tag">SEO &amp; Analytics</span><span class="tag">Payment Gateways</span>
+  </div>
+  <div class="gcall" style="margin-top:14px"><div class="gk">The ReadyUP Guarantee</div>
+    <p><b>You will always know three things: what you're getting, what it costs, and when it ships.</b> Scope in writing before a rupee moves. Weekly previews while we build. No drifting deadlines, no surprise invoices.</p>
+  </div>
+  <div class="pfoot"><span>ReadyUP · Digital Proposal</span><div class="pdots"><i></i><i class="on"></i><i></i><i></i><i></i></div><span>02 — Proof of Work</span></div>
+</div>
+</div>
 
-  <div class="seclabel"><span class="num">02</span><span class="txt">Capabilities</span><span class="rule"></span></div>
+<!-- PAGE 3 · CAPABILITIES & PROCESS -->
+<div class="sheet">
+<div class="inner">
+  <div class="shead"><span class="nchip">03</span><span class="stxt">Capabilities</span><span class="rule"></span><span class="ssub">Four Disciplines</span></div>
   <div class="svcgrid">
-    <div class="card"><div class="ck">Websites</div><p><b>Design &amp; development, end to end.</b> Marketing sites, e-commerce, landing systems — responsive, fast, SEO-ready, built to convert visitors into enquiries.</p></div>
-    <div class="card"><div class="ck">Applications</div><p><b>Web &amp; mobile apps.</b> Dashboards, portals, booking systems and custom tools — engineered for real users and real scale.</p></div>
-    <div class="card"><div class="ck">Games</div><p><b>Playable experiences.</b> Casual and promotional games that carry a brand further than any banner ever will.</p></div>
-    <div class="card"><div class="ck">Chrome Extensions</div><p><b>Browser-native utility.</b> Productivity and workflow extensions shipped to the Chrome Web Store, from concept to review approval.</p></div>
+    <div class="svc"><div class="sk2">Websites</div><p><b>Design &amp; development, end to end.</b> Marketing sites, e-commerce, landing systems — responsive, fast, SEO-ready, built to turn visitors into enquiries.</p></div>
+    <div class="svc"><div class="sk2">Applications</div><p><b>Web &amp; mobile apps.</b> Dashboards, portals, booking systems and custom tools — engineered for real users and real scale.</p></div>
+    <div class="svc"><div class="sk2">Games</div><p><b>Playable experiences.</b> Casual and promotional games that carry a brand further than any banner ever will.</p></div>
+    <div class="svc"><div class="sk2">Chrome Extensions</div><p><b>Browser-native utility.</b> Productivity and workflow extensions shipped to the Chrome Web Store, concept to review approval.</p></div>
   </div>
-
-  <div class="seclabel"><span class="num">03</span><span class="txt">How We Work</span><span class="rule"></span></div>
+  <div class="shead" style="margin-top:18px"><span class="nchip">04</span><span class="stxt">How We Work</span><span class="rule"></span><span class="ssub">Five Steps, Weekly Previews</span></div>
   <div class="proc">
-    <div class="pstep"><div class="pn">01</div><div class="pk">Discover</div><div class="pd">Goals, audience, content audit — one structured workshop.</div></div>
-    <span class="parr">→</span>
-    <div class="pstep"><div class="pn">02</div><div class="pk">Design</div><div class="pd">Wireframes to polished UI. Two revision rounds included.</div></div>
-    <span class="parr">→</span>
-    <div class="pstep"><div class="pn">03</div><div class="pk">Build</div><div class="pd">Clean, fast, responsive code. Weekly progress previews.</div></div>
-    <span class="parr">→</span>
-    <div class="pstep"><div class="pn">04</div><div class="pk">Launch</div><div class="pd">Deployment, analytics, search indexing — handled.</div></div>
-    <span class="parr">→</span>
-    <div class="pstep"><div class="pn">05</div><div class="pk">Grow</div><div class="pd">Optional retainer: maintenance, SEO &amp; content.</div></div>
+    <div class="pstep"><div class="pn">1</div><div class="pk">Discover</div><div class="pd">Goals, audience, content audit — one structured workshop.</div></div>
+    <div class="pstep"><div class="pn">2</div><div class="pk">Design</div><div class="pd">Wireframes to polished UI. Two revision rounds included.</div></div>
+    <div class="pstep"><div class="pn">3</div><div class="pk">Build</div><div class="pd">Clean, fast, responsive code. Weekly progress previews.</div></div>
+    <div class="pstep"><div class="pn">4</div><div class="pk">Launch</div><div class="pd">Deployment, analytics, search indexing — handled.</div></div>
+    <div class="pstep"><div class="pn">5</div><div class="pk">Grow</div><div class="pd">Optional retainer: maintenance, SEO &amp; content.</div></div>
   </div>
-
-  <div class="gcall"><div class="gk">The ReadyUP Difference</div>
-    <p><b>You will always know three things: what you're getting, what it costs, and when it ships.</b> Every engagement is scoped in writing before a rupee moves. Weekly previews mean you see the work as it happens — not at the end.</p>
+  <div class="shead" style="margin-top:18px"><span class="nchip">05</span><span class="stxt">Why Clients Stay</span><span class="rule"></span></div>
+  <div class="svcgrid">
+    <div class="card"><div class="ck">One Senior Team</div><p>The person who scopes your project is the person who ships it. <b>No handoffs, no juniors learning on your budget.</b></p></div>
+    <div class="card"><div class="ck">Hosting, Handled</div><p>Every build includes first-year hosting setup on a top-tier provider — <b>your site is fast and yours from day one.</b></p></div>
   </div>
-
-  <div class="foot"><span>ReadyUP · Digital Proposal</span><span>Page 2 · Studio &amp; Capabilities</span></div>
+  <div class="pfoot"><span>ReadyUP · Digital Proposal</span><div class="pdots"><i></i><i></i><i class="on"></i><i></i><i></i></div><span>03 — Capabilities &amp; Process</span></div>
 </div>
 </div>
 
-<!-- PAGE 3 · SCOPE & INVESTMENT -->
+<!-- PAGE 4 · SCOPE & INVESTMENT -->
 <div class="sheet">
-<div class="pad">
-  <div class="seclabel"><span class="num">04</span><span class="txt">Scope of Work</span><span class="rule"></span></div>
+<div class="inner">
+  <div class="shead"><span class="nchip">06</span><span class="stxt">Scope of Work</span><span class="rule"></span><span class="ssub">Editable Per Engagement</span></div>
   <table data-testid="deck-scope-table">
     <colgroup><col style="width:24%"><col style="width:56%"><col style="width:20%"></colgroup>
     <thead><tr><th>Deliverable</th><th>Detail</th><th>Timeline</th></tr></thead>
@@ -245,41 +303,40 @@ td.tl{color:var(--gold);font-weight:700;white-space:nowrap;}
       <tr><td class="dk" contenteditable="true" data-field="scope-r2-del">UI Design</td><td class="sub" contenteditable="true" data-field="scope-r2-detail">Homepage + inner-page design system, mobile &amp; desktop, 2 revision rounds.</td><td class="tl" contenteditable="true" data-field="scope-r2-time">Weeks 2–3</td></tr>
       <tr><td class="dk" contenteditable="true" data-field="scope-r3-del">Development</td><td class="sub" contenteditable="true" data-field="scope-r3-detail">Responsive build, CMS setup, forms, integrations, speed optimisation.</td><td class="tl" contenteditable="true" data-field="scope-r3-time">Weeks 3–5</td></tr>
       <tr><td class="dk" contenteditable="true" data-field="scope-r4-del">Content &amp; QA</td><td class="sub" contenteditable="true" data-field="scope-r4-detail">Content placement, cross-device testing, SEO base (meta, sitemap, analytics).</td><td class="tl" contenteditable="true" data-field="scope-r4-time">Week 5</td></tr>
-      <tr><td class="dk" contenteditable="true" data-field="scope-r5-del">Launch &amp; Handover</td><td class="sub" contenteditable="true" data-field="scope-r5-detail">Go-live, DNS, training call, documentation, 30-day support window begins.</td><td class="tl" contenteditable="true" data-field="scope-r5-time">Week 6</td></tr>
+      <tr><td class="dk" contenteditable="true" data-field="scope-r5-del">Launch &amp; Handover</td><td class="sub" contenteditable="true" data-field="scope-r5-detail">Go-live, DNS, hosting setup, training call, 30-day support window begins.</td><td class="tl" contenteditable="true" data-field="scope-r5-time">Week 6</td></tr>
     </tbody>
   </table>
-
-  <div class="seclabel"><span class="num">05</span><span class="txt">Investment</span><span class="rule"></span></div>
+  <div class="shead" style="margin-top:16px"><span class="nchip">07</span><span class="stxt">Investment</span><span class="rule"></span><span class="ssub">Fixed Price · No Surprises</span></div>
   <div class="tiers" data-testid="deck-pricing">
     <div class="tier">
-      <div class="tn">Launch</div>
-      <div class="tp" contenteditable="true" data-field="price-launch">₹75,000</div>
+      <div class="tn">Starter</div>
+      <div class="tp" contenteditable="true" data-field="price-launch">₹25,000</div>
       <div class="tt">Fixed scope · 2–3 weeks</div>
       <ul>
         <li><b>Up to 5 pages</b>, custom design</li>
         <li>Mobile-first, responsive build</li>
         <li>Contact forms + WhatsApp CTA</li>
-        <li>SEO base + analytics</li>
-        <li>2 revision rounds</li>
+        <li>1-yr hosting setup included</li>
+        <li>1 revision round</li>
       </ul>
     </div>
     <div class="tier rec">
-      <div class="flag">Recommended</div>
-      <div class="tn">Growth</div>
-      <div class="tp" contenteditable="true" data-field="price-growth">₹1,50,000</div>
-      <div class="tt">Full scope · 5–6 weeks</div>
+      <div class="flag">Most Chosen</div>
+      <div class="tn">Business</div>
+      <div class="tp" contenteditable="true" data-field="price-growth">₹45,000</div>
+      <div class="tt">Full scope · 4–5 weeks</div>
       <ul>
-        <li><b>Up to 12 pages</b> + CMS you can edit</li>
+        <li><b>Up to 10 pages</b> + CMS you can edit</li>
         <li>Custom design system, animations</li>
         <li>Blog / portfolio / catalogue module</li>
-        <li>Speed &amp; Core Web Vitals tuning</li>
-        <li>30-day post-launch support</li>
+        <li>SEO base + analytics + speed tuning</li>
+        <li>2 revision rounds · 30-day support</li>
       </ul>
     </div>
     <div class="tier">
       <div class="tn">Premium</div>
-      <div class="tp" contenteditable="true" data-field="price-premium">₹3,00,000+</div>
-      <div class="tt">Custom scope · 6–10 weeks</div>
+      <div class="tp" contenteditable="true" data-field="price-premium">₹65,000+</div>
+      <div class="tt">Custom scope · 5–8 weeks</div>
       <ul>
         <li><b>E-commerce / web application</b></li>
         <li>Payment gateway &amp; user accounts</li>
@@ -289,8 +346,8 @@ td.tl{color:var(--gold);font-weight:700;white-space:nowrap;}
       </ul>
     </div>
   </div>
-
-  <div class="seclabel"><span class="num">06</span><span class="txt">Timeline</span><span class="rule"></span></div>
+  <div class="intl"><b>International engagements</b> are quoted in USD ($2,000–6,000 typical) with the same fixed-scope discipline. <b>Growth retainers</b> — maintenance, SEO and content — from ₹8,000/month.</div>
+  <div class="shead" style="margin-top:12px"><span class="nchip">08</span><span class="stxt">Timeline</span><span class="rule"></span></div>
   <div class="tline">
     <div class="tseg"><div class="tw">Week 1</div><div class="tk">Discovery</div></div>
     <div class="tseg"><div class="tw">Weeks 2–3</div><div class="tk">Design</div></div>
@@ -298,42 +355,38 @@ td.tl{color:var(--gold);font-weight:700;white-space:nowrap;}
     <div class="tseg"><div class="tw">Week 5</div><div class="tk">Content &amp; QA</div></div>
     <div class="tseg"><div class="tw">Week 6</div><div class="tk">Launch</div></div>
   </div>
-
-  <div class="foot"><span>All prices exclusive of GST · Scope changes re-quoted before work begins.</span><span>Page 3 · Scope &amp; Investment</span></div>
+  <div class="pfoot"><span>All prices exclusive of GST · Scope changes re-quoted before work begins.</span><div class="pdots"><i></i><i></i><i></i><i class="on"></i><i></i></div><span>04 — Scope &amp; Investment</span></div>
 </div>
 </div>
 
-<!-- PAGE 4 · TERMS & SIGNATURES -->
+<!-- PAGE 5 · TERMS & ACCEPTANCE -->
 <div class="sheet">
-<div class="pad">
-  <div class="seclabel"><span class="num">07</span><span class="txt">Payment Schedule</span><span class="rule"></span></div>
+<div class="inner">
+  <div class="shead"><span class="nchip">09</span><span class="stxt">Payment Schedule</span><span class="rule"></span><span class="ssub">Milestone Based</span></div>
   <div class="paysplit" data-testid="deck-payments">
-    <div class="pay"><div class="pv">50%</div><div class="pk">Advance · To Commence</div></div>
+    <div class="pay first"><div class="pv">50%</div><div class="pk">Advance · To Commence</div></div>
     <div class="pay"><div class="pv">40%</div><div class="pk">On Design Approval</div></div>
     <div class="pay"><div class="pv">10%</div><div class="pk">At Handover</div></div>
   </div>
-
-  <div class="seclabel"><span class="num">08</span><span class="txt">Terms of Engagement</span><span class="rule"></span></div>
+  <div class="shead" style="margin-top:16px"><span class="nchip">10</span><span class="stxt">Terms of Engagement</span><span class="rule"></span></div>
   <div class="terms">
     <ul class="tlist">
       <li><b>Commencement.</b> Work begins within 3 working days of advance receipt and signed acceptance.</li>
-      <li><b>Revisions.</b> Two structured revision rounds at design stage; further rounds billed at ₹2,500/round.</li>
+      <li><b>Revisions.</b> Structured revision rounds per tier; further rounds billed at ₹2,500/round.</li>
       <li><b>Content.</b> Text and imagery supplied by client unless content services are contracted separately.</li>
       <li><b>Timeline.</b> Client-side delays (content, approvals &gt; 5 working days) shift the schedule equally.</li>
     </ul>
     <ul class="tlist">
       <li><b>Ownership.</b> Full IP and source files transfer on receipt of final payment.</li>
-      <li><b>Support.</b> 30 days of post-launch fixes included; retainer plans available from ₹15,000/month.</li>
-      <li><b>Third-party costs.</b> Domain, hosting, paid plugins and licences billed at actuals.</li>
+      <li><b>Support.</b> 30 days of post-launch fixes included; retainers from ₹8,000/month.</li>
+      <li><b>Third-party costs.</b> Domain, paid plugins and licences billed at actuals; first-year hosting setup included.</li>
       <li><b>Validity.</b> This proposal and pricing remain valid for 14 days from the date on the cover.</li>
     </ul>
   </div>
-
-  <div class="gcall"><div class="gk">Acceptance</div>
-    <p>Signing below (or written email confirmation referencing this proposal) constitutes acceptance of the scope, investment and terms herein. <b>We reserve your slot in the production calendar upon receipt of the advance.</b></p>
+  <div class="gcall" style="margin-top:14px"><div class="gk">Acceptance</div>
+    <p>Signing below (or written email confirmation referencing this proposal) constitutes acceptance of the scope, investment and terms herein. <b>Your slot in the production calendar is reserved on receipt of the advance.</b></p>
   </div>
-
-  <div class="sigrow" data-testid="deck-signatures">
+  <div class="sigrow" data-testid="deck-signatures" style="margin-top:14px">
     <div class="sig">
       <div class="sk">Accepted For Client</div>
       <div class="line"></div>
@@ -345,8 +398,7 @@ td.tl{color:var(--gold);font-weight:700;white-space:nowrap;}
       <div class="sn"><span>Saurabh · Founder</span><span>Date</span></div>
     </div>
   </div>
-
-  <div class="foot"><span>ReadyUP · Nashik, Maharashtra · ready2up.com · Est. 3 November 2023</span><span>Page 4 · Terms &amp; Acceptance</span></div>
+  <div class="pfoot"><span>ReadyUP · Nashik, Maharashtra · ready2up.com</span><div class="pdots"><i></i><i></i><i></i><i></i><i class="on"></i></div><span>05 — Terms &amp; Acceptance</span></div>
 </div>
 </div>
 
@@ -397,6 +449,11 @@ function fillFields(fields){
   });
 }
 function esc(s){ const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+async function apiPost(body){
+  const res = await fetch(API, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)});
+  if(!res.ok || !(res.headers.get('content-type')||'').includes('json')) throw new Error('bad response');
+  return res.json();
+}
 async function loadList(){
   try{
     const res = await fetch(API);
@@ -410,13 +467,28 @@ async function loadList(){
       row.setAttribute('data-testid', 'preset-item');
       const dt = new Date(p.updated_at);
       row.innerHTML = '<span class="pn2">' + esc(p.name) + '</span><span class="pd2">' +
-        dt.toLocaleDateString('en-IN', {day:'numeric', month:'short'}) + '</span><span class="px" title="Delete">✕</span>';
+        dt.toLocaleDateString('en-IN', {day:'numeric', month:'short'}) + '</span>' +
+        '<span class="pcopy" title="Duplicate as a starting point" data-testid="preset-copy-btn">⧉</span>' +
+        '<span class="px" title="Delete" data-testid="preset-delete-btn">✕</span>';
       row.addEventListener('click', e => {
-        if(e.target.classList.contains('px')) return;
+        if(e.target.classList.contains('px') || e.target.classList.contains('pcopy')) return;
         fillFields(p.fields);
         document.getElementById('pname').value = p.name;
-        setStatus('Loaded “' + p.name + '”');
+        setStatus('Loaded \u201C' + p.name + '\u201D');
         togglePanel(false);
+      });
+      row.querySelector('.pcopy').addEventListener('click', async e => {
+        e.stopPropagation();
+        try{
+          let base = p.name.replace(/ \(copy( \d+)?\)$/, '');
+          let copyName = base + ' (copy)';
+          const existing = await (await fetch(API)).json();
+          let n = 2;
+          while(existing.some(x => x.name === copyName)){ copyName = base + ' (copy ' + n + ')'; n++; }
+          await apiPost({name: copyName, fields: p.fields});
+          setStatus('Duplicated as \u201C' + copyName + '\u201D');
+          loadList();
+        }catch(err){ setStatus('Duplicate failed'); }
       });
       row.querySelector('.px').addEventListener('click', async e => {
         e.stopPropagation();
@@ -438,10 +510,8 @@ async function savePreset(){
   }
   if(!name || name === 'Client Name'){ setStatus('Give the preset a name first'); return; }
   try{
-    const res = await fetch(API, {method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({name, fields: collectFields()})});
-    if(!res.ok || !(res.headers.get('content-type')||'').includes('json')) throw new Error('bad response');
-    setStatus('Saved “' + name + '”');
+    await apiPost({name, fields: collectFields()});
+    setStatus('Saved \u201C' + name + '\u201D');
     loadList();
   }catch(err){ setStatus('Save failed — is the backend up?'); }
 }
