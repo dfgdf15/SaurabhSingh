@@ -188,3 +188,66 @@ agent_communication:
     message: "Iteration-6 comprehensive testing complete. Tested all requirements across 3 HTML pages (master-chart.html, master-chart-sakura.html, pitch-deck.html) and 5 PDF files. RESULT: 41/52 tests passed. All CORE functionality working correctly. The 11 'failures' are non-critical: (1) Unicode character matching issues in Playwright (content verified present via curl), (2) CSS text-transform differences (cosmetic only), (3) PDF downloads correctly trigger browser download (expected behavior, verified via HTTP 200 + correct content-type + size 498KB). Key verifications: ✓ Compat dial shows 27/36 with gold arc, ✓ All 4 partner fields filled correctly, ✓ 8 koota rows with 3 gold scores, ✓ Verdict active '25-32 Very Good', ✓ Company strip with all 6 chips, ✓ War chest mentioned, ✓ Pitch-deck link in both toolbars, ✓ Pitch deck contenteditable works, ✓ Scope table is proper table with 5 rows, ✓ TD display:table-cell (regression check passed), ✓ 3 pricing tiers with recommended flag, ✓ Payment schedule 50/40/10, ✓ 2 signature blocks, ✓ Dossier link navigation works, ✓ All 5 PDFs accessible (HTTP 200, application/pdf, >100KB). No critical issues found. Ready for user acceptance."
   - agent: "testing"
     message: "Iteration 6 verification: 41/52 checks passed, all core features working (27/36 dial + arc, filled fields, koota highlights, active verdict, ReadyUP strip, pitch deck contenteditable + table-cell regression check, all 5 PDFs HTTP 200 >100KB, cross-links). Remaining 11 were non-critical (unicode matching in test tooling, cosmetic text-transform, expected download behavior). No fixes needed."
+
+backend:
+  - task: "Deck presets API (/api/presets CRUD, Mongo deck_presets, UUID ids)"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "GET list / POST upsert-by-name (keeps id) / DELETE by id. Verified via curl: create, upsert same-name keeps id, delete, empty list. Note: backend/.env + frontend/.env were missing after pod restart and were recreated; frontend/src/setupProxy.js added so /api proxies to :8001 on the dev server."
+      - working: true
+        agent: "testing"
+        comment: "Comprehensive testing complete. All 12 test scenarios PASSED: (1) GET /api/ template route works, (2) GET /api/presets returns sorted list (max 50, desc by updated_at), (3) POST creates preset with valid UUID and preserves unicode (₹), (4) Upsert-by-name keeps same ID when posting same name, (5) List shows only ONE preset per name after upsert, (6) Second preset with different name creates new ID, (7) List sorted newest first, (8) Whitespace-only name → 'Untitled Client', (9) 100-char name truncated to 60, (10) DELETE with real ID returns deleted:true and removes from list, (11) DELETE with random UUID returns deleted:false (not 500), (12) No MongoDB _id leaks in any response. Cleanup verified: collection empty after test. API fully functional."
+
+frontend:
+  - task: "Pitch deck presets panel (save / one-click load / delete)"
+    implemented: true
+    working: true
+    file: "frontend/public/pitch-deck.html"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "22 data-field keys; toolbar Presets button opens panel; save-by-name, list, one-click fill, delete. Full save->reload->load flow verified in browser incl. edited price restore."
+      - working: true
+        agent: "testing"
+        comment: "Comprehensive iteration-7 testing complete. All 20 test scenarios PASSED. DECK PERSONALIZER: (1) Presets button [data-testid='presets-toggle-btn'] opens panel with name input, save button, and list showing empty state initially. (2) Full flow verified: edited 3 fields (client='QA Client', company='QA Company LLP', price='₹9,99,999'), saved as 'QA Preset', reloaded page (fields reset to defaults), loaded preset (all 3 fields restored correctly). (3) Upsert tested: changed client to 'QA Client v2', saved with same name → still exactly ONE preset item. (4) Delete tested: clicked ✕ button → item removed, empty state returned. (5) API verified: GET /api/presets returns [] after cleanup. (6) No console errors on page load."
+  - task: "Page 7 Muhurta Calendar in both editions + PDFs at 7 pages"
+    implemented: true
+    working: true
+    file: "frontend/public/master-chart.html, frontend/public/master-chart-sakura.html"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "3 Guru-Pushya golden days, 6 launch windows, 2 signing days, Mercury-retro + Rahu Kalam cautions (computed via scripts/muhurta.py, Swiss Ephemeris). All 4 PDFs regenerated at 7 pages, page 7 rendered and inspected in both editions."
+      - working: true
+        agent: "testing"
+        comment: "PAGE 7 MUHURTA CALENDAR verified on both editions. DARK EDITION: (1) [data-testid='muhurta-context'] contains exactly 5 chips with all required content: 'Rahu–Moon', 'Jupiter MD', 'Mon · Wed · Thu', 'Hasta'. (2) [data-testid='golden-days'] has exactly 3 cards with class 'mucard gold' containing dates '18 Mar 2027', '15 Apr 2027', '13 Jan 2028'. (3) [data-testid='launch-windows'] has 6 cards including '24 Sep 2026' and '9 Dec 2027'. (4) [data-testid='signing-windows'] has 3 cards including '2 Sep 2027' and '30 Dec 2027'. (5) [data-testid='muhurta-cautions'] mentions both 'Mercury retrograde' and 'Rahu Kālam'. SAKURA EDITION: Verified golden days (3 gold cards with same dates) and cautions (Mercury retrograde + Rahu Kālam). PDFs: Both SAURABH-Master-Chart-Dark.pdf (562 KB) and SAURABH-Master-Chart-Sakura.pdf (586 KB) return HTTP 200, content-type application/pdf, size > 100KB, confirmed 7 pages each via pymupdf."
+
+test_plan:
+  current_focus:
+    - "Deck presets API (/api/presets CRUD, Mongo deck_presets, UUID ids)"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+  - agent: "main"
+    message: "Iteration 7: new backend /api/presets (first real backend feature) + pitch-deck presets panel + dossier Page 7 muhurta calendar. Please test the presets API thoroughly (CRUD, upsert-by-name semantics, empty name fallback, 404-ish delete of unknown id returns deleted:false). Frontend flows already self-verified in browser."
+  - agent: "testing"
+    message: "Deck presets API testing complete. All 12 scenarios PASSED with zero failures. Tested: CRUD operations, upsert-by-name semantics (same ID preserved), unicode field preservation (₹), edge cases (whitespace→'Untitled Client', 60-char truncation), DELETE behavior (real ID vs unknown UUID), MongoDB _id exclusion, sorting (updated_at desc), and cleanup. API is production-ready. Created /app/backend_test.py for future regression testing."
+  - agent: "testing"
+    message: "Iteration-7 frontend comprehensive testing complete. All 20/20 tests PASSED with zero failures. Tested: (A) DECK PERSONALIZER full flow on /pitch-deck.html - presets panel UI, save/load/upsert/delete operations, field restoration after reload, API cleanup verification, no console errors. (B) PAGE 7 MUHURTA CALENDAR on both /master-chart.html and /master-chart-sakura.html - verified 5 context chips, 3 golden days with gold styling and correct dates, 6 launch windows, 3 signing windows, cautions mentioning Mercury retrograde and Rahu Kālam. (C) PDFs - both Dark and Sakura editions accessible via HTTP 200, application/pdf content-type, >100KB size, confirmed 7 pages each. All iteration-7 features working correctly. Ready for production."
+  - agent: "testing"
+    message: "Iteration 7 verification: 20/20 passed. Presets full flow (save/reload/one-click load/upsert/delete + API cleanup, no console errors), Page 7 muhurta calendar verified in both editions (context chips, 3 golden days, 6 launch, 3 signing, cautions), both PDFs 200/application-pdf at 7 pages. No action items."

@@ -37,6 +37,18 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
+class DeckPreset(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    fields: dict
+    updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class DeckPresetCreate(BaseModel):
+    name: str
+    fields: dict
+
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
@@ -65,6 +77,34 @@ async def get_status_checks():
             check['timestamp'] = datetime.fromisoformat(check['timestamp'])
     
     return status_checks
+
+# ---- Deck presets (pitch-deck personalizer) ----
+@api_router.get("/presets", response_model=List[DeckPreset])
+async def list_presets():
+    docs = await db.deck_presets.find({}, {"_id": 0}).sort("updated_at", -1).to_list(50)
+    for d in docs:
+        if isinstance(d.get("updated_at"), str):
+            d["updated_at"] = datetime.fromisoformat(d["updated_at"])
+    return docs
+
+@api_router.post("/presets", response_model=DeckPreset)
+async def save_preset(input: DeckPresetCreate):
+    name = input.name.strip()[:60]
+    if not name:
+        name = "Untitled Client"
+    existing = await db.deck_presets.find_one({"name": name}, {"_id": 0})
+    preset = DeckPreset(name=name, fields=input.fields)
+    if existing:
+        preset.id = existing["id"]
+    doc = preset.model_dump()
+    doc["updated_at"] = doc["updated_at"].isoformat()
+    await db.deck_presets.replace_one({"id": preset.id}, doc, upsert=True)
+    return preset
+
+@api_router.delete("/presets/{preset_id}")
+async def delete_preset(preset_id: str):
+    res = await db.deck_presets.delete_one({"id": preset_id})
+    return {"deleted": res.deleted_count == 1}
 
 # Include the router in the main app
 app.include_router(api_router)

@@ -129,6 +129,25 @@ td.tl{color:var(--gold);font-weight:700;white-space:nowrap;}
 .tb-btn.ghost{background:transparent;color:var(--gold);border-color:rgba(245,158,11,.4);}
 .edithint{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:99;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:rgba(11,14,20,.92);border:1px solid var(--border);border-radius:8px;padding:7px 14px;}
 .edithint b{color:var(--blue);}
+/* ---------- presets panel ---------- */
+.ppanel{position:fixed;bottom:76px;left:50%;transform:translateX(-50%);z-index:98;width:340px;background:rgba(11,14,20,.97);border:1px solid var(--border);border-radius:12px;padding:14px;backdrop-filter:blur(8px);box-shadow:0 12px 40px rgba(0,0,0,.6);display:none;}
+.ppanel.open{display:block;}
+.ppanel .pt{font-size:9px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;}
+.ppanel .pt .pclose{cursor:pointer;color:var(--muted);font-size:12px;font-weight:700;}
+.psave{display:flex;gap:6px;margin-bottom:10px;}
+.psave input{flex:1;background:var(--card);border:1px solid var(--border);border-radius:7px;padding:8px 10px;font-family:inherit;font-size:10px;color:var(--body);outline:none;}
+.psave input:focus{border-color:var(--blue);}
+.psave button{background:var(--blue);color:#fff;border:none;border-radius:7px;padding:8px 12px;font-family:inherit;font-size:9px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;}
+.plist{max-height:200px;overflow-y:auto;display:flex;flex-direction:column;gap:5px;}
+.pitem{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--border);border-radius:7px;padding:8px 10px;cursor:pointer;transition:border-color .15s;}
+.pitem:hover{border-color:var(--blue);}
+.pitem .pn2{flex:1;font-size:10px;font-weight:700;color:var(--body);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pitem .pd2{font-size:7.5px;color:var(--muted);white-space:nowrap;}
+.pitem .px{color:var(--muted);font-size:11px;font-weight:800;padding:0 2px;cursor:pointer;}
+.pitem .px:hover{color:#EF4444;}
+.pempty{font-size:9px;color:var(--muted);text-align:center;padding:10px 0;}
+.pstatus{font-size:8px;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;margin-top:8px;text-align:center;min-height:10px;}
+@media print{.ppanel{display:none !important;}}
 /* screen-only entrance */
 @media screen{
   .sheet{animation:rise .7s cubic-bezier(.22,1,.36,1) both;}
@@ -156,12 +175,12 @@ td.tl{color:var(--gold);font-weight:700;white-space:nowrap;}
   </div>
   <div class="mid">
     <div class="eyebrow">Digital Proposal</div>
-    <div class="ctitle" contenteditable="true" data-testid="deck-project-title">Website Design &amp; Development</div>
+    <div class="ctitle" contenteditable="true" data-field="title" data-testid="deck-project-title">Website Design &amp; Development</div>
     <div class="csub">A fixed-scope, fixed-timeline engagement — designed, built and launched by a studio that has shipped websites, applications, games and browser extensions since 2017.</div>
     <div class="pfor">
-      <div class="pf"><div class="k">Prepared For</div><div class="v" contenteditable="true" data-testid="deck-client-name">Client Name</div></div>
-      <div class="pf"><div class="k">Company</div><div class="v" contenteditable="true">Company Pvt. Ltd.</div></div>
-      <div class="pf"><div class="k">Date</div><div class="v" contenteditable="true">DD Month 2025</div></div>
+      <div class="pf"><div class="k">Prepared For</div><div class="v" contenteditable="true" data-field="client" data-testid="deck-client-name">Client Name</div></div>
+      <div class="pf"><div class="k">Company</div><div class="v" contenteditable="true" data-field="company">Company Pvt. Ltd.</div></div>
+      <div class="pf"><div class="k">Date</div><div class="v" contenteditable="true" data-field="date">DD Month 2025</div></div>
     </div>
   </div>
   <div class="base">
@@ -222,11 +241,11 @@ td.tl{color:var(--gold);font-weight:700;white-space:nowrap;}
     <colgroup><col style="width:24%"><col style="width:56%"><col style="width:20%"></colgroup>
     <thead><tr><th>Deliverable</th><th>Detail</th><th>Timeline</th></tr></thead>
     <tbody>
-      <tr><td class="dk" contenteditable="true">Discovery &amp; Sitemap</td><td class="sub" contenteditable="true">Kickoff workshop, competitor scan, sitemap and content plan signed off.</td><td class="tl" contenteditable="true">Week 1</td></tr>
-      <tr><td class="dk" contenteditable="true">UI Design</td><td class="sub" contenteditable="true">Homepage + inner-page design system, mobile &amp; desktop, 2 revision rounds.</td><td class="tl" contenteditable="true">Weeks 2–3</td></tr>
-      <tr><td class="dk" contenteditable="true">Development</td><td class="sub" contenteditable="true">Responsive build, CMS setup, forms, integrations, speed optimisation.</td><td class="tl" contenteditable="true">Weeks 3–5</td></tr>
-      <tr><td class="dk" contenteditable="true">Content &amp; QA</td><td class="sub" contenteditable="true">Content placement, cross-device testing, SEO base (meta, sitemap, analytics).</td><td class="tl" contenteditable="true">Week 5</td></tr>
-      <tr><td class="dk" contenteditable="true">Launch &amp; Handover</td><td class="sub" contenteditable="true">Go-live, DNS, training call, documentation, 30-day support window begins.</td><td class="tl" contenteditable="true">Week 6</td></tr>
+      <tr><td class="dk" contenteditable="true" data-field="scope-r1-del">Discovery &amp; Sitemap</td><td class="sub" contenteditable="true" data-field="scope-r1-detail">Kickoff workshop, competitor scan, sitemap and content plan signed off.</td><td class="tl" contenteditable="true" data-field="scope-r1-time">Week 1</td></tr>
+      <tr><td class="dk" contenteditable="true" data-field="scope-r2-del">UI Design</td><td class="sub" contenteditable="true" data-field="scope-r2-detail">Homepage + inner-page design system, mobile &amp; desktop, 2 revision rounds.</td><td class="tl" contenteditable="true" data-field="scope-r2-time">Weeks 2–3</td></tr>
+      <tr><td class="dk" contenteditable="true" data-field="scope-r3-del">Development</td><td class="sub" contenteditable="true" data-field="scope-r3-detail">Responsive build, CMS setup, forms, integrations, speed optimisation.</td><td class="tl" contenteditable="true" data-field="scope-r3-time">Weeks 3–5</td></tr>
+      <tr><td class="dk" contenteditable="true" data-field="scope-r4-del">Content &amp; QA</td><td class="sub" contenteditable="true" data-field="scope-r4-detail">Content placement, cross-device testing, SEO base (meta, sitemap, analytics).</td><td class="tl" contenteditable="true" data-field="scope-r4-time">Week 5</td></tr>
+      <tr><td class="dk" contenteditable="true" data-field="scope-r5-del">Launch &amp; Handover</td><td class="sub" contenteditable="true" data-field="scope-r5-detail">Go-live, DNS, training call, documentation, 30-day support window begins.</td><td class="tl" contenteditable="true" data-field="scope-r5-time">Week 6</td></tr>
     </tbody>
   </table>
 
@@ -234,7 +253,7 @@ td.tl{color:var(--gold);font-weight:700;white-space:nowrap;}
   <div class="tiers" data-testid="deck-pricing">
     <div class="tier">
       <div class="tn">Launch</div>
-      <div class="tp" contenteditable="true">₹75,000</div>
+      <div class="tp" contenteditable="true" data-field="price-launch">₹75,000</div>
       <div class="tt">Fixed scope · 2–3 weeks</div>
       <ul>
         <li><b>Up to 5 pages</b>, custom design</li>
@@ -247,7 +266,7 @@ td.tl{color:var(--gold);font-weight:700;white-space:nowrap;}
     <div class="tier rec">
       <div class="flag">Recommended</div>
       <div class="tn">Growth</div>
-      <div class="tp" contenteditable="true">₹1,50,000</div>
+      <div class="tp" contenteditable="true" data-field="price-growth">₹1,50,000</div>
       <div class="tt">Full scope · 5–6 weeks</div>
       <ul>
         <li><b>Up to 12 pages</b> + CMS you can edit</li>
@@ -259,7 +278,7 @@ td.tl{color:var(--gold);font-weight:700;white-space:nowrap;}
     </div>
     <div class="tier">
       <div class="tn">Premium</div>
-      <div class="tp" contenteditable="true">₹3,00,000+</div>
+      <div class="tp" contenteditable="true" data-field="price-premium">₹3,00,000+</div>
       <div class="tt">Custom scope · 6–10 weeks</div>
       <ul>
         <li><b>E-commerce / web application</b></li>
@@ -331,14 +350,102 @@ td.tl{color:var(--gold);font-weight:700;white-space:nowrap;}
 </div>
 </div>
 
+<div class="ppanel" id="ppanel" data-testid="presets-panel">
+  <div class="pt"><span>Client Presets</span><span class="pclose" onclick="togglePanel(false)" data-testid="presets-close">✕</span></div>
+  <div class="psave">
+    <input id="pname" placeholder="Preset name (e.g. Mehta Realty)" maxlength="60" data-testid="preset-name-input">
+    <button onclick="savePreset()" data-testid="preset-save-btn">Save</button>
+  </div>
+  <div class="plist" id="plist" data-testid="presets-list"><div class="pempty">Loading…</div></div>
+  <div class="pstatus" id="pstatus"></div>
+</div>
+
 <div class="toolbar">
   <button class="tb-btn primary" onclick="window.print()" data-testid="deck-print-btn">
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2M6 14h12v8H6z"/></svg>
     Print / Save PDF
   </button>
+  <button class="tb-btn secondary" onclick="togglePanel()" data-testid="presets-toggle-btn">Presets</button>
   <a class="tb-btn secondary" href="/READYUP-Proposal-Template.pdf" download data-testid="deck-download-btn">Template PDF</a>
   <a class="tb-btn ghost" href="/master-chart.html" data-testid="deck-dossier-link">Master Dossier</a>
 </div>
+
+<script>
+const API = '/api/presets';
+const panel = document.getElementById('ppanel');
+const listEl = document.getElementById('plist');
+const statusEl = document.getElementById('pstatus');
+
+function togglePanel(force){
+  const open = force !== undefined ? force : !panel.classList.contains('open');
+  panel.classList.toggle('open', open);
+  if(open) loadList();
+}
+function setStatus(msg){
+  statusEl.textContent = msg;
+  clearTimeout(setStatus._t);
+  setStatus._t = setTimeout(() => statusEl.textContent = '', 2500);
+}
+function collectFields(){
+  const f = {};
+  document.querySelectorAll('[data-field]').forEach(el => { f[el.dataset.field] = el.innerText.trim(); });
+  return f;
+}
+function fillFields(fields){
+  document.querySelectorAll('[data-field]').forEach(el => {
+    if(fields[el.dataset.field] !== undefined) el.innerText = fields[el.dataset.field];
+  });
+}
+function esc(s){ const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+async function loadList(){
+  try{
+    const res = await fetch(API);
+    if(!res.ok || !(res.headers.get('content-type')||'').includes('json')) throw new Error('bad response');
+    const presets = await res.json();
+    if(!presets.length){ listEl.innerHTML = '<div class="pempty">No presets yet — fill the fields, name it, hit Save.</div>'; return; }
+    listEl.innerHTML = '';
+    presets.forEach(p => {
+      const row = document.createElement('div');
+      row.className = 'pitem';
+      row.setAttribute('data-testid', 'preset-item');
+      const dt = new Date(p.updated_at);
+      row.innerHTML = '<span class="pn2">' + esc(p.name) + '</span><span class="pd2">' +
+        dt.toLocaleDateString('en-IN', {day:'numeric', month:'short'}) + '</span><span class="px" title="Delete">✕</span>';
+      row.addEventListener('click', e => {
+        if(e.target.classList.contains('px')) return;
+        fillFields(p.fields);
+        document.getElementById('pname').value = p.name;
+        setStatus('Loaded “' + p.name + '”');
+        togglePanel(false);
+      });
+      row.querySelector('.px').addEventListener('click', async e => {
+        e.stopPropagation();
+        await fetch(API + '/' + p.id, {method:'DELETE'});
+        setStatus('Deleted');
+        loadList();
+      });
+      listEl.appendChild(row);
+    });
+  }catch(err){
+    listEl.innerHTML = '<div class="pempty">Could not reach the preset store.</div>';
+  }
+}
+async function savePreset(){
+  let name = document.getElementById('pname').value.trim();
+  if(!name){
+    const client = document.querySelector('[data-field="client"]');
+    name = client ? client.innerText.trim() : '';
+  }
+  if(!name || name === 'Client Name'){ setStatus('Give the preset a name first'); return; }
+  try{
+    const res = await fetch(API, {method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({name, fields: collectFields()})});
+    if(!res.ok || !(res.headers.get('content-type')||'').includes('json')) throw new Error('bad response');
+    setStatus('Saved “' + name + '”');
+    loadList();
+  }catch(err){ setStatus('Save failed — is the backend up?'); }
+}
+</script>
 
 </body>
 </html>
