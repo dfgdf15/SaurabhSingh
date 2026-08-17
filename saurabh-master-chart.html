@@ -461,6 +461,19 @@ td.effect b{color:var(--body);font-weight:600;}
 .verdicts{display:flex;gap:8px;margin-top:8px;}
 .verdict{flex:1;background:#0E1319;border:1px solid var(--border);border-radius:6px;padding:7px 10px;font-size:7px;line-height:1.5;color:var(--muted);}
 .verdict b{display:block;font-size:8px;color:var(--body);margin-bottom:2px;}
+.cfield.filled{border-style:solid;}
+.cfield .fval{font-size:9.5px;font-weight:700;color:var(--body);letter-spacing:.02em;min-height:12px;}
+.kscore{font-weight:800;color:var(--body);font-size:9.5px;}
+.kscore .kmax{color:var(--muted);font-weight:600;font-size:7.5px;}
+.kscore .knote{display:block;font-size:6.3px;color:var(--muted);font-weight:600;letter-spacing:.05em;margin-top:1px;text-transform:uppercase;}
+.kscore.full{color:var(--gold);}
+.verdict.active{border-color:var(--gold);background:rgba(245,158,11,.07);}
+.verdict.active b{color:var(--gold);}
+.costrip{display:flex;gap:6px;margin-bottom:8px;}
+.cochip{flex:1;background:var(--card);border:1px solid var(--border);border-radius:6px;padding:6px 9px;text-align:center;}
+.cochip .ck{font-size:6px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:2px;}
+.cochip .cv{font-size:8.5px;font-weight:700;color:var(--body);white-space:nowrap;}
+.cochip .cv b{color:var(--gold);}
 .ladder{display:flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:12px 16px;}
 .lstep{flex:1;}
 .lstep .lv{font-size:14px;font-weight:800;color:var(--gold);}
@@ -1004,53 +1017,61 @@ td.effect b{color:var(--body);font-weight:600;}
 
 <!-- PAGE 5 -->
 <div class="sheet page5">
-  <div class="seclabel"><span class="num">11</span><span class="txt">Compatibility · Guṇa Milan Template</span><span class="rule"></span></div>
+  <div class="seclabel"><span class="num">11</span><span class="txt">Compatibility · Guṇa Milan — Saurabh × Kalpana</span><span class="rule"></span></div>
   <div class="cfields">
-    <div class="cfield" data-testid="compat-field-name"><div class="fl">Partner Name</div><div class="fline"></div></div>
-    <div class="cfield"><div class="fl">Birth Date</div><div class="fline"></div></div>
-    <div class="cfield"><div class="fl">Birth Time</div><div class="fline"></div></div>
-    <div class="cfield"><div class="fl">Birth City</div><div class="fline"></div></div>
+    <div class="cfield filled" data-testid="compat-field-name"><div class="fl">Partner Name</div><div class="fval">Kalpana Soni</div></div>
+    <div class="cfield filled"><div class="fl">Birth Date</div><div class="fval">22 September 2003</div></div>
+    <div class="cfield filled"><div class="fl">Birth Time</div><div class="fval">06:45 AM IST</div></div>
+    <div class="cfield filled"><div class="fl">Birth City</div><div class="fval">Suratgarh, Rajasthan</div></div>
   </div>
   <div class="compat">
     <div class="dialcard" data-testid="compat-dial">
       <svg width="118" height="118" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="60" cy="60" r="50" fill="none" style="stroke:var(--border)" stroke-width="9" stroke-dasharray="3 4"/>
-        <text x="60" y="60" text-anchor="middle" font-size="20" font-weight="800" style="fill:var(--gold)">—</text>
-        <text x="60" y="77" text-anchor="middle" font-size="9" font-weight="700" style="fill:var(--muted)">/ 36</text>
+        <circle cx="60" cy="60" r="50" fill="none" style="stroke:var(--border)" stroke-width="9"/>
+        <circle cx="60" cy="60" r="50" fill="none" style="stroke:var(--gold)" stroke-width="9" stroke-linecap="round" stroke-dasharray="235.6 314.2" transform="rotate(-90 60 60)"/>
+        <text x="60" y="63" text-anchor="middle" font-size="26" font-weight="800" style="fill:var(--gold)">27</text>
+        <text x="60" y="79" text-anchor="middle" font-size="9" font-weight="700" style="fill:var(--muted)">/ 36</text>
       </svg>
-      <div class="dialcap">Total Guṇa Score<br>computed once partner details are shared</div>
+      <div class="dialcap">Total Guṇa Score · Very Good<br>Kanyā Moon × Karka Moon · Hasta × Puṣya</div>
     </div>
     <table>
       <colgroup><col style="width:20%"><col style="width:42%"><col style="width:12%"><col style="width:26%"></colgroup>
       <thead><tr><th>Koota</th><th>Governs</th><th>Max</th><th>Score</th></tr></thead>
       <tbody>
-        <tr><td class="planet">Varṇa</td><td class="effect">Work &amp; ego harmony</td><td class="house">1</td><td><div class="fline" style="width:60%"></div></td></tr>
-        <tr><td class="planet">Vaśya</td><td class="effect">Mutual influence</td><td class="house">2</td><td><div class="fline" style="width:60%"></div></td></tr>
-        <tr><td class="planet">Tārā</td><td class="effect">Destiny &amp; fortune</td><td class="house">3</td><td><div class="fline" style="width:60%"></div></td></tr>
-        <tr><td class="planet">Yoni</td><td class="effect">Intimacy &amp; instinct</td><td class="house">4</td><td><div class="fline" style="width:60%"></div></td></tr>
-        <tr><td class="planet">Graha Maitrī</td><td class="effect">Mental rapport</td><td class="house">5</td><td><div class="fline" style="width:60%"></div></td></tr>
-        <tr><td class="planet">Gaṇa</td><td class="effect">Temperament</td><td class="house">6</td><td><div class="fline" style="width:60%"></div></td></tr>
-        <tr><td class="planet">Bhakūṭa</td><td class="effect">Prosperity &amp; family</td><td class="house">7</td><td><div class="fline" style="width:60%"></div></td></tr>
-        <tr><td class="planet">Nāḍī</td><td class="effect">Health &amp; progeny</td><td class="house">8</td><td><div class="fline" style="width:60%"></div></td></tr>
+        <tr><td class="planet">Varṇa</td><td class="effect">Work &amp; ego harmony</td><td class="house">1</td><td><span class="kscore">0 <span class="kmax">/ 1</span><span class="knote">Vaiśya × Brāhmiṇ</span></span></td></tr>
+        <tr><td class="planet">Vaśya</td><td class="effect">Mutual influence</td><td class="house">2</td><td><span class="kscore">½ <span class="kmax">/ 2</span><span class="knote">Mānava × Jalachara</span></span></td></tr>
+        <tr><td class="planet">Tārā</td><td class="effect">Destiny &amp; fortune</td><td class="house">3</td><td><span class="kscore">1½ <span class="kmax">/ 3</span><span class="knote">Sādhaka one-way</span></span></td></tr>
+        <tr><td class="planet">Yoni</td><td class="effect">Intimacy &amp; instinct</td><td class="house">4</td><td><span class="kscore">3 <span class="kmax">/ 4</span><span class="knote">Mahiṣa × Meṣa</span></span></td></tr>
+        <tr><td class="planet">Graha Maitrī</td><td class="effect">Mental rapport</td><td class="house">5</td><td><span class="kscore">1 <span class="kmax">/ 5</span><span class="knote">Budha × Chandra</span></span></td></tr>
+        <tr><td class="planet">Gaṇa</td><td class="effect">Temperament</td><td class="house">6</td><td><span class="kscore full">6 <span class="kmax">/ 6</span><span class="knote">Deva × Deva</span></span></td></tr>
+        <tr><td class="planet">Bhakūṭa</td><td class="effect">Prosperity &amp; family</td><td class="house">7</td><td><span class="kscore full">7 <span class="kmax">/ 7</span><span class="knote">Benefic 3–11 axis</span></span></td></tr>
+        <tr><td class="planet">Nāḍī</td><td class="effect">Health &amp; progeny</td><td class="house">8</td><td><span class="kscore full">8 <span class="kmax">/ 8</span><span class="knote">Ādi × Madhya</span></span></td></tr>
       </tbody>
     </table>
   </div>
   <div class="verdicts">
     <div class="verdict"><b>&lt; 18 · Realign</b>Remedial matching advised before commitment.</div>
     <div class="verdict"><b>18–24 · Good</b>A workable union with conscious effort.</div>
-    <div class="verdict"><b>25–32 · Very Good</b>Natural harmony across most domains.</div>
+    <div class="verdict active" data-testid="verdict-active"><b>25–32 · Very Good</b>Natural harmony across most domains.</div>
     <div class="verdict"><b>33–36 · Exceptional</b>Rare resonance — a destined pairing.</div>
   </div>
-  <div class="remnote">Send the partner's name, birth date, exact time and city — this page updates with computed kootas, the score dial and a verdict, plus Nāḍī/Bhakūṭa dosha checks and cancellations where applicable.</div>
+  <div class="remnote"><b>Doṣa checks —</b> Nāḍī: clear (Ādi × Madhya) · Bhakūṭa: clear (benefic 3–11 axis) · Māṅgalika: absent from Lagna in both charts; a soft Moon-chart trace in the partner's chart (Mars 8th from Moon) is offset by mutual Deva gaṇa and the clear Nāḍī. <b>Synastry —</b> her Ascendant, Sun and Venus all fall in Virgo — Saurabh's 7th house of partnership — while his Moon rests exactly upon her Lagna; her Moon (Puṣya) lands amid his 5th-house Cancer stellium; and her Venus occupies Hasta, the very nakṣatra of his Moon. The bond reads destined-domestic: temperament fully aligned (Gaṇa 6/6), prosperity axis strong (Bhakūṭa 7/7), health &amp; progeny clear (Nāḍī 8/8). Conscious work belongs only to daily mental rapport (Maitrī) and mutual accommodation (Vaśya) — communication rituals, not compatibility flaws.</div>
   <div class="foot">
-    <span>Aṣṭakūṭa (36-guṇa) framework · Moon-nakṣatra based matching per classical Vedic synastry.</span>
-    <span style="white-space:nowrap">Page 5 · Compatibility Template</span>
+    <span>Aṣṭakūṭa (36-guṇa) synastry · Moon-nakṣatra matching · Swiss Ephemeris, Lahiri ayanāṁśa.</span>
+    <span style="white-space:nowrap">Page 5 · Compatibility · 27/36</span>
   </div>
 </div>
 
 <!-- PAGE 6 -->
 <div class="sheet page6">
-  <div class="seclabel"><span class="num">12</span><span class="txt">Strategic Roadmap · Daśā-Aligned</span><span class="rule"></span></div>
+  <div class="seclabel"><span class="num">12</span><span class="txt">Strategic Roadmap · ReadyUP · Daśā-Aligned</span><span class="rule"></span></div>
+  <div class="costrip" data-testid="company-strip">
+    <div class="cochip"><div class="ck">Company</div><div class="cv"><b>ReadyUP</b> · ready2up.com</div></div>
+    <div class="cochip"><div class="ck">Founded</div><div class="cv">3 Nov 2023 → <b>№ 3</b></div></div>
+    <div class="cochip"><div class="ck">Track Record</div><div class="cv">Online since <b>2017</b></div></div>
+    <div class="cochip"><div class="ck">Service Lines</div><div class="cv">Web · Apps · Games · Extensions</div></div>
+    <div class="cochip"><div class="ck">War Chest</div><div class="cv"><b>₹1–5L</b> deployable</div></div>
+  </div>
   <div class="ladder" data-testid="revenue-ladder">
     <div class="lstep"><div class="lv">₹1L / mo</div><div class="lk">Month 3 · Proof</div></div>
     <span class="larr">→</span>
@@ -1070,7 +1091,7 @@ td.effect b{color:var(--body);font-weight:600;}
 
   <div class="seclabel"><span class="num">B</span><span class="txt">Execution Phases</span><span class="rule"></span></div>
   <div class="dwins">
-    <div class="dwin"><div class="wk">Phase I · Now → Feb 2027 · Rahu–Moon</div><p><b>Stabilise &amp; be seen.</b> Productise the offers, build 3 spec redesigns of famous local brands, run 30 outbound conversations weekly. This daśā favours visibility — sell hard.</p></div>
+    <div class="dwin"><div class="wk">Phase I · Now → Feb 2027 · Rahu–Moon</div><p><b>Stabilise &amp; be seen.</b> Productise the offers, ship one sellable digital product (this dossier as a service), build 3 spec redesigns of famous brands, run 30 outbound conversations weekly. This daśā favours visibility — sell hard.</p></div>
     <div class="dwin"><div class="wk">Phase II · Feb 2027 → Mar 2028 · Rahu–Mars</div><p><b>Execution sprint.</b> 25–30 retainers live, 50% of revenue in USD, contract talent only, AI-accelerated delivery. Close aggressively before the daśā turns.</p></div>
     <div class="dwin"><div class="wk">Phase III · Mar 2028+ · Jupiter Mahādaśā</div><p><b>Structural ascent.</b> Agency brand + productised IP (templates, SaaS). Open the Dubai entity only after ₹1 Cr international profit. ₹15–20 Cr becomes the Year-4 target, funded by this base.</p></div>
   </div>
@@ -1082,10 +1103,10 @@ td.effect b{color:var(--body);font-weight:600;}
     <div class="dwin"><div class="wk">Dubai Entity — When &amp; How</div><p><b>Trigger: ₹1 Cr international profit.</b> Freezone (IFZA/Meydan) ≈ ₹1.5–3L/yr, 9% corporate tax above AED 375K, banking takes 4–8 weeks. Until then, LUT export invoicing does the job at 0% GST.</p></div>
   </div>
 
-  <div class="rules" data-testid="operating-rules"><b>Operating rules.</b> No office or salaried hires until ₹3L/mo profit holds for 3 straight months · Export invoices under LUT (0% GST) · 10% referral programme on every delivered project · Weekly pipeline metric: 30 conversations, tracked · Dubai is a tax decision, not a growth decision · Rebuild personal runway before reinvesting a rupee.</div>
+  <div class="rules" data-testid="operating-rules"><b>Operating rules.</b> Deploy the ₹1–5L war chest as income engines only — ≈₹50K positioning assets, ≈₹1L niche pages &amp; outbound, balance held until the first international close · No office or salaried hires until ₹3L/mo profit holds 3 straight months · Export invoices under LUT (0% GST) · 10% referral programme on every delivered project · Weekly pipeline metric: 30 conversations, tracked · Dubai is a tax decision, not a growth decision · Rebuild personal runway before reinvesting a rupee.</div>
 
   <div class="foot">
-    <span>Business guidance mapped to daśā phases — Rahu–Moon favours alliances &amp; visibility; Jupiter (1st &amp; 10th lord) opens the ascent from Mar 2028.</span>
+    <span>ReadyUP est. 3 Nov 2023 → founding number 3, creative expression · Rahu–Moon favours visibility; Jupiter (1st &amp; 10th lord) opens the ascent Mar 2028.</span>
     <span style="white-space:nowrap">Page 6 · Strategic Roadmap</span>
   </div>
 </div>
@@ -1098,6 +1119,7 @@ td.effect b{color:var(--body);font-weight:600;}
   <a class="tb-btn secondary" href="/SAURABH-Master-Chart-Dark-Letter.pdf" download data-testid="download-letter-btn">Letter PDF</a>
   <button class="tb-btn secondary" onclick="window.print()" data-testid="print-pdf-btn">Print</button>
   <a class="tb-btn ghost" href="/master-chart-sakura.html" data-testid="sakura-edition-link">Sakura Edition</a>
+  <a class="tb-btn ghost" href="/pitch-deck.html" data-testid="pitch-deck-link">ReadyUP Deck</a>
 </div>
 </body>
 </html>
