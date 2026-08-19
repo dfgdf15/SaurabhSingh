@@ -56,11 +56,12 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#E9ECF2;c
 .addcard{border:1px solid var(--hair);border-radius:10px;padding:13px 15px 12px;display:flex;flex-direction:column;background:#fff;}
 .addcard .arow{display:flex;align-items:baseline;justify-content:space-between;gap:12px;}
 .addcard .at{font-size:10px;font-weight:700;color:var(--ink);letter-spacing:-.005em;}
-.addcard .ap{font-size:13px;font-weight:600;color:var(--accent);font-family:'Fraunces',Georgia,serif;font-variant-numeric:tabular-nums;white-space:nowrap;}
-.addcard .ap small{font-size:6.6px;color:var(--faint);font-weight:700;font-family:'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;display:block;margin-top:-1px;}
+.addcard .ap{display:flex;flex-direction:column;align-items:flex-end;text-align:right;white-space:nowrap;}
+.addcard .ap .k{font-size:5.4px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);margin-bottom:2px;}
+.addcard .ap .num{font-size:13px;font-weight:600;color:var(--accent);font-family:'Fraunces',Georgia,serif;font-variant-numeric:tabular-nums;line-height:1;}
 .addcard .ad{font-size:7.8px;color:var(--muted);line-height:1.6;margin-top:6px;}
 .addcard.ask{background:var(--tint);border:1px dashed var(--tintline);}
-.addcard.ask .ap{font-size:8px;letter-spacing:.14em;text-transform:uppercase;font-family:'Inter',sans-serif;font-weight:700;}
+.addcard.ask .ap .ask-num{font-size:8px;letter-spacing:.14em;text-transform:uppercase;font-family:'Inter',sans-serif;font-weight:700;color:var(--accent);}
 /* note */
 .finenote{font-size:7.8px;line-height:1.7;color:var(--muted);border-left:2px solid var(--ink);padding:3px 0 3px 14px;margin-top:16px;}
 .finenote b{color:var(--ink);}
@@ -106,19 +107,17 @@ body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#E9ECF2;c
 
   <div class="slab"><span class="st">Available Add-Ons</span><span class="ss">Priced with your project</span></div>
   <div class="addgrid" data-testid="addons-grid">
-    <div class="addcard"><div class="arow"><div class="at">QR digital menu</div><div class="ap">₹3,500</div></div><div class="ad">Scan-at-table menu with printed stand artwork; updates with the website, instantly.</div></div>
-    <div class="addcard"><div class="arow"><div class="at">WhatsApp ordering</div><div class="ap">₹4,500</div></div><div class="ad">Guests browse the menu and place an order in two taps, straight to your phone.</div></div>
-    <div class="addcard"><div class="arow"><div class="at">Table reservations</div><div class="ap">₹6,500</div></div><div class="ad">Bookings taken on the website, arriving on your phone in real time.</div></div>
-    <div class="addcard"><div class="arow"><div class="at">Google Business &amp; review QR</div><div class="ap">₹2,500</div></div><div class="ad">Show up on “café near me”; turn happy tables into five-star reviews with a single scan.</div></div>
-    <div class="addcard"><div class="arow"><div class="at">Logo &amp; brand refinement</div><div class="ap">₹5,000</div></div><div class="ad">Mark, colours and type refined — consistent from cup to card to website.</div></div>
-    <div class="addcard"><div class="arow"><div class="at">Printed menu design</div><div class="ap">₹3,000</div></div><div class="ad">Press-ready menus, matched beautifully to your new website.</div></div>
-    <div class="addcard"><div class="arow"><div class="at">Instagram launch kit</div><div class="ap">₹4,000</div></div><div class="ad">Fifteen branded posts announcing the new site and your signature dishes.</div></div>
-    <div class="addcard"><div class="arow"><div class="at">Food photography direction</div><div class="ap">₹6,000</div></div><div class="ad">One guided session — shot list, styling and final edit selection.</div></div>
-    <div class="addcard"><div class="arow"><div class="at">Social media management</div><div class="ap">₹6,000<small>per month</small></div></div><div class="ad">Posting, stories and engagement, handled for you every month.</div></div>
-    <div class="addcard ask"><div class="arow"><div class="at">Something not listed?</div><div class="ap">On request</div></div><div class="ad">Tell us what you have in mind — we'll shape it and quote it, with no obligation.</div></div>
+    <div class="addcard"><div class="arow"><div class="at">QR digital menu</div><div class="ap"><span class="k">Starting at</span><span class="num">₹3,500</span></div></div><div class="ad">Scan-at-table menu with printed stand artwork; updates with the website, instantly.</div></div>
+    <div class="addcard"><div class="arow"><div class="at">WhatsApp ordering</div><div class="ap"><span class="k">Starting at</span><span class="num">₹4,500</span></div></div><div class="ad">Guests browse the menu and place an order in two taps, straight to your phone.</div></div>
+    <div class="addcard"><div class="arow"><div class="at">Table reservations</div><div class="ap"><span class="k">Starting at</span><span class="num">₹6,500</span></div></div><div class="ad">Bookings taken on the website, arriving on your phone in real time.</div></div>
+    <div class="addcard"><div class="arow"><div class="at">Google Business &amp; review QR</div><div class="ap"><span class="k">Starting at</span><span class="num">₹2,500</span></div></div><div class="ad">Show up on “café near me”; turn happy tables into five-star reviews with a single scan.</div></div>
+    <div class="addcard"><div class="arow"><div class="at">Logo &amp; brand refinement</div><div class="ap"><span class="k">Starting at</span><span class="num">₹5,000</span></div></div><div class="ad">Mark, colours and type refined — consistent from cup to card to website.</div></div>
+    <div class="addcard"><div class="arow"><div class="at">Printed menu design</div><div class="ap"><span class="k">Starting at</span><span class="num">₹3,000</span></div></div><div class="ad">Press-ready menus, matched beautifully to your new website.</div></div>
+    <div class="addcard"><div class="arow"><div class="at">Food photography direction</div><div class="ap"><span class="k">Starting at</span><span class="num">₹6,000</span></div></div><div class="ad">One guided session — shot list, styling and final edit selection.</div></div>
+    <div class="addcard ask"><div class="arow"><div class="at">Something not listed?</div><div class="ap"><span class="num ask-num">On request</span></div></div><div class="ad">Tell us what you have in mind — we'll shape it and quote it, with no obligation.</div></div>
   </div>
 
-  <div class="finenote"><b>How to add one.</b> Send a WhatsApp with the service name and we'll confirm the timeline and start date. Prices are inclusive and hold for six months from the date of your website quotation A0280. Monthly services are billed month to month and can be paused anytime.</div>
+  <div class="finenote"><b>How to add one.</b> Send a WhatsApp with the service name and we'll confirm the scope, timeline and a firm price. Figures shown are starting points, held for six months from your website quotation A0280.</div>
 
   <div class="pfoot"><span>Ready2UP · Optional Services · Companion to Quotation A0280 · The White Mug</span><span>Add-ons</span></div>
 </div>
