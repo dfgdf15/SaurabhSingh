@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReadyUP — Quotation A0281 · The White Mug</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+:root{
+  --canvas:#0B0E14; --card:#161B22; --card2:#0E1319; --border:#232A34;
+  --blue:#3B82F6; --gold:#F59E0B; --body:#E2E8F0; --muted:#8B98A9; --dim:#5B6B7E; --green:#34D399;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#05070B;color:var(--body);}
+@page{size:A4;margin:0;}
+.sheet{width:210mm;height:296mm;margin:24px auto;background:var(--canvas);position:relative;page-break-after:always;overflow:hidden;}
+.sheet:last-of-type{page-break-after:auto;}
+.sheet::before{content:'';position:absolute;inset:0;background:radial-gradient(560px 420px at -5% -5%,rgba(59,130,246,.10),transparent 60%),radial-gradient(520px 420px at 105% 105%,rgba(245,158,11,.07),transparent 60%);pointer-events:none;}
+.inner{position:relative;z-index:1;padding:13mm 13mm 11mm;height:100%;display:flex;flex-direction:column;}
+@media print{
+  body{background:var(--canvas);}
+  .sheet{margin:0 auto;box-shadow:none;}
+  .toolbar,.edithint{display:none !important;}
+  [contenteditable]{outline:none !important;border-bottom-color:transparent !important;background:transparent !important;}
+}
+[contenteditable]{border-bottom:1px dashed rgba(59,130,246,.5);background:rgba(59,130,246,.05);border-radius:2px;padding:0 3px;cursor:text;min-width:24px;display:inline-block;}
+[contenteditable]:hover{background:rgba(59,130,246,.13);}
+[contenteditable]:focus{outline:1px solid var(--blue);background:rgba(59,130,246,.09);}
+/* shared */
+.brandrow{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;}
+.logo{font-size:19px;font-weight:900;}
+.logo .r{color:var(--body);} .logo .up{color:var(--blue);} .logo .dot{color:var(--gold);}
+.site{font-size:7.5px;color:var(--dim);letter-spacing:.2em;text-transform:uppercase;margin-top:3px;}
+.qmeta{text-align:right;}
+.qmeta .qn{font-size:13px;font-weight:900;color:var(--gold);letter-spacing:.06em;}
+.qmeta .qd{font-size:8px;color:var(--muted);margin-top:3px;letter-spacing:.08em;}
+.shead{display:flex;align-items:center;gap:12px;margin:14px 0 10px;}
+.shead .nchip{width:24px;height:24px;border-radius:50%;border:1px solid var(--gold);color:var(--gold);font-size:9px;font-weight:900;display:flex;align-items:center;justify-content:center;flex:none;}
+.shead .stxt{font-size:11.5px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--body);}
+.shead .ssub{font-size:7.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-left:auto;white-space:nowrap;}
+.shead .rule{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent);}
+.pfoot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid var(--border);font-size:7px;color:var(--dim);letter-spacing:.08em;}
+.pdots{display:flex;gap:4px;}
+.pdots i{width:5px;height:5px;border-radius:50%;background:var(--border);}
+.pdots i.on{background:var(--gold);}
+/* header title */
+.qtitle{font-size:26px;font-weight:900;letter-spacing:-.01em;line-height:1.15;}
+.qtitle .hl{color:var(--gold);}
+.qsub{font-size:9.5px;color:var(--muted);margin-top:6px;line-height:1.6;max-width:150mm;}
+/* from/for */
+.parties{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+.party{background:var(--card);border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:8px;padding:11px 14px;}
+.party .pk{font-size:6.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:5px;}
+.party .pn{font-size:11.5px;font-weight:800;margin-bottom:3px;}
+.party .pa{font-size:8px;color:var(--muted);line-height:1.6;}
+/* items table */
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+th{font-size:7px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);text-align:left;padding:8px 12px;border-bottom:1px solid var(--border);background:#11151C;}
+th.r,td.r{text-align:right;}
+td{font-size:8.5px;padding:7px 12px;border-bottom:1px solid #1B212B;vertical-align:top;line-height:1.5;}
+tr:last-child td{border-bottom:none;}
+tbody tr:nth-child(even){background:#131820;}
+td.dk{font-weight:800;color:var(--body);}
+td .sub{display:block;color:var(--dim);font-size:7px;margin-top:1px;}
+td.amt{font-weight:800;color:var(--body);white-space:nowrap;}
+td .free{color:var(--green);font-weight:900;font-size:7px;letter-spacing:.12em;text-transform:uppercase;}
+td .strike{text-decoration:line-through;color:var(--dim);font-weight:600;margin-right:6px;}
+/* totals */
+.totals{display:grid;grid-template-columns:1fr 78mm;gap:10px;margin-top:10px;align-items:start;}
+.gift{background:rgba(52,211,153,.05);border:1px solid rgba(52,211,153,.4);border-radius:10px;padding:11px 14px;}
+.gift .gk{font-size:7.5px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:var(--green);margin-bottom:4px;}
+.gift p{font-size:8.5px;line-height:1.6;color:var(--muted);}
+.gift p b{color:var(--body);}
+.tbox{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.trow{display:flex;justify-content:space-between;padding:7px 14px;font-size:8.5px;color:var(--muted);border-bottom:1px solid #1B212B;}
+.trow b{color:var(--body);}
+.trow .neg{color:var(--green);font-weight:800;}
+.trow.grand{background:rgba(245,158,11,.08);border-top:1px solid var(--gold);border-bottom:none;padding:11px 14px;}
+.trow.grand .gl{font-size:8px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);align-self:center;}
+.trow.grand .gv{font-size:19px;font-weight:900;color:var(--gold);}
+.words{font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);padding:7px 14px;background:#11151C;}
+/* care plan */
+.promise{font-size:16px;font-weight:800;line-height:1.45;max-width:158mm;margin-bottom:12px;}
+.promise b{color:var(--gold);}
+.years{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:12px;}
+.year{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 10px;text-align:center;}
+.year.y1{border-color:rgba(52,211,153,.5);}
+.year .yk{font-size:7px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);}
+.year .yv{font-size:14px;font-weight:900;margin-top:6px;}
+.year.y1 .yv{color:var(--green);}
+.year .yn{font-size:6.5px;color:var(--dim);margin-top:3px;letter-spacing:.08em;text-transform:uppercase;}
+.bundle{border:1px solid var(--gold);background:rgba(245,158,11,.06);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:16px;margin-bottom:12px;}
+.bundle .bv{font-size:21px;font-weight:900;color:var(--gold);white-space:nowrap;}
+.bundle .bt{font-size:8.5px;line-height:1.6;color:var(--muted);}
+.bundle .bt b{color:var(--body);}
+.bundle .save{margin-left:auto;background:var(--gold);color:#0B0E14;font-size:7px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;border-radius:6px;padding:5px 10px;white-space:nowrap;}
+.inc{display:grid;grid-template-columns:repeat(2,1fr);gap:0 24px;}
+.inc li{list-style:none;font-size:8.5px;color:var(--muted);line-height:1.6;padding:5px 0 5px 16px;position:relative;border-bottom:1px dashed #1B212B;}
+.inc li::before{content:'\2713';position:absolute;left:0;color:var(--green);font-weight:900;}
+.inc li b{color:var(--body);}
+/* misc */
+.gcall{border:1px solid rgba(245,158,11,.55);border-radius:10px;padding:11px 15px;background:rgba(245,158,11,.05);}
+.gcall .gk{font-size:7.5px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.gcall p{font-size:8.5px;line-height:1.65;color:var(--muted);}
+.gcall p b{color:var(--body);}
+.payrow{display:flex;gap:10px;margin-top:10px;}
+.pay{flex:1;text-align:center;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:10px;}
+.pay.first{border-color:rgba(245,158,11,.55);}
+.pay .pv{font-size:15px;font-weight:900;color:var(--gold);}
+.pay .pk{font-size:6.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-top:3px;}
+.bank{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+.bcard{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:11px 14px;}
+.bcard .bk{font-size:6.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--blue);margin-bottom:6px;}
+.bcard .brow{display:flex;justify-content:space-between;font-size:8px;padding:2.5px 0;color:var(--muted);}
+.bcard .brow b{color:var(--body);font-weight:700;}
+.tlist{list-style:none;margin-top:4px;}
+.tlist li{font-size:8px;color:var(--muted);line-height:1.6;padding:4px 0 4px 15px;position:relative;border-bottom:1px dashed #1B212B;}
+.tlist li:last-child{border-bottom:none;}
+.tlist li::before{content:'\25C6';position:absolute;left:0;top:5px;font-size:5.5px;color:var(--gold);}
+.tlist li b{color:var(--body);}
+/* toolbar */
+.toolbar{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:99;background:rgba(11,14,20,.92);border:1px solid var(--border);border-radius:12px;padding:8px;backdrop-filter:blur(8px);box-shadow:0 8px 30px rgba(0,0,0,.5);}
+.tb-btn{display:inline-flex;align-items:center;gap:6px;font-family:inherit;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:9px 16px;border-radius:8px;cursor:pointer;text-decoration:none;border:1px solid transparent;}
+.tb-btn.primary{background:var(--blue);color:#fff;}
+.tb-btn.secondary{background:transparent;color:var(--body);border-color:var(--border);}
+.tb-btn.ghost{background:transparent;color:var(--gold);border-color:rgba(245,158,11,.4);}
+.edithint{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:99;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:rgba(11,14,20,.92);border:1px solid var(--border);border-radius:8px;padding:7px 14px;}
+.edithint b{color:var(--blue);}
+@media screen{.sheet{animation:rise .7s cubic-bezier(.22,1,.36,1) both;box-shadow:0 20px 60px rgba(0,0,0,.55);}@keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}}
+</style>
+</head>
+<body>
+
+<div class="edithint"><b>Click any underlined field to edit</b> · then Print → Save as PDF</div>
+
+<!-- PAGE 1 · QUOTATION -->
+<div class="sheet">
+<div class="inner">
+  <div class="brandrow">
+    <div><div class="logo"><span class="r">Ready</span><span class="up">UP</span><span class="dot">.</span></div><div class="site">ready2up.com · work@ready2up.com · +91 74474 36448</div></div>
+    <div class="qmeta"><div class="qn">QUOTATION <span contenteditable="true" data-testid="quote-number">#A0281</span></div><div class="qd"><span contenteditable="true">19 August 2026</span> · Valid 14 days</div></div>
+  </div>
+  <div class="qtitle">Café Website Design &amp; Development<br><span class="hl" contenteditable="true" data-testid="client-title">for The White Mug</span></div>
+  <div class="qsub">A complete, mobile-first café website — designed, built, launched and hosted by one senior team. Live preview link: <span contenteditable="true" data-testid="preview-link">to be shared on approval</span></div>
+  <div class="parties">
+    <div class="party"><div class="pk">Quotation From</div><div class="pn">ReadyUP · Saurabh Singh</div><div class="pa">Shop no. 6, Kalash Residency, DGP Nagar Ambad Link Rd,<br>Near Mauli Lawns, Murari Nagar, Nashik, MH — 422008</div></div>
+    <div class="party"><div class="pk">Quotation For</div><div class="pn" contenteditable="true" data-testid="client-name">The White Mug</div><div class="pa" contenteditable="true">Mahatma Nagar, Veer Sawarkar Nagar,<br>Nashik, Maharashtra — 422005</div></div>
+  </div>
+
+  <div class="shead"><span class="nchip">01</span><span class="stxt">Scope of Work · Itemised</span><span class="rule"></span><span class="ssub">Everything Included</span></div>
+  <table data-testid="quote-items">
+    <colgroup><col style="width:78%"><col style="width:22%"></colgroup>
+    <thead><tr><th>Deliverable</th><th class="r">Value</th></tr></thead>
+    <tbody>
+      <tr><td class="dk">Discovery, café positioning &amp; sitemap<span class="sub">Kickoff meeting, competitor scan, page plan &amp; content checklist signed off</span></td><td class="amt r">₹3,000</td></tr>
+      <tr><td class="dk">Custom UI design · home + all inner pages<span class="sub">Café-crafted look, mobile-first, warm brand palette — not a template</span></td><td class="amt r">₹11,000</td></tr>
+      <tr><td class="dk">Development · responsive build + easy CMS<span class="sub">Fast, secure, editable by your team without touching code</span></td><td class="amt r">₹12,500</td></tr>
+      <tr><td class="dk">Digital menu module<span class="sub">Categories, prices, veg/non-veg badges, specials section — update anytime</span></td><td class="amt r">₹4,500</td></tr>
+      <tr><td class="dk">Gallery &amp; ambience showcase<span class="sub">Interiors, dishes and moments presented like a premium café deserves</span></td><td class="amt r">₹2,500</td></tr>
+      <tr><td class="dk">Location, hours &amp; WhatsApp enquiry<span class="sub">Google Maps embed, tap-to-call, tap-to-WhatsApp — customers reach you in one tap</span></td><td class="amt r">₹2,000</td></tr>
+      <tr><td class="dk">Reviews &amp; Instagram integration<span class="sub">Google reviews highlights + live Instagram feed on the site</span></td><td class="amt r">₹2,500</td></tr>
+      <tr><td class="dk">SEO base, analytics &amp; speed optimisation<span class="sub">Meta, sitemap, Search Console, Google Analytics, Core Web Vitals tuning</span></td><td class="amt r">₹3,500</td></tr>
+      <tr><td class="dk">Launch, training &amp; 30-day support<span class="sub">Go-live, staff training call, documentation, one month of fixes on us</span></td><td class="amt r">₹3,500</td></tr>
+      <tr><td class="dk">Domain · .com · 1 year<span class="sub">Registered in your name — it is your property</span></td><td class="amt r"><span class="strike">₹1,200</span><span class="free">Free</span></td></tr>
+      <tr><td class="dk">Premium hosting + SSL · 1 year<span class="sub">Fast servers, https security, daily backups</span></td><td class="amt r"><span class="strike">₹3,500</span><span class="free">Free</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="totals">
+    <div class="gift"><div class="gk">Why the complimentary year?</div><p><b>The White Mug is our first café-category partner.</b> We don't give complimentary domain &amp; hosting — for anyone. This once, we are: your first year online is entirely on us, plus a launch discount to make this decision easy.</p></div>
+    <div class="tbox" data-testid="quote-totals">
+      <div class="trow"><span>Gross value</span><b>₹49,700</b></div>
+      <div class="trow"><span>Complimentary domain + hosting</span><span class="neg">− ₹4,700</span></div>
+      <div class="trow"><span>Café-category launch discount</span><span class="neg">− ₹12,000</span></div>
+      <div class="trow grand"><span class="gl">You Pay</span><span class="gv">₹33,000</span></div>
+      <div class="words">Thirty-Three Thousand Rupees Only · All-Inclusive</div>
+    </div>
+  </div>
+
+  <div class="pfoot"><span>ReadyUP · Quotation #A0281 · Electronically generated — no signature required</span><div class="pdots"><i class="on"></i><i></i><i></i></div><span>01 — The Quote</span></div>
+</div>
+</div>
+
+<!-- PAGE 2 · 5-YEAR CARE PLAN -->
+<div class="sheet">
+<div class="inner">
+  <div class="brandrow">
+    <div><div class="logo"><span class="r">Ready</span><span class="up">UP</span><span class="dot">.</span></div><div class="site">Quotation #A0281 · The White Mug</div></div>
+    <div class="qmeta"><div class="qn">5-YEAR CARE PLAN</div><div class="qd">Optional · Recommended</div></div>
+  </div>
+  <div class="promise">You run the café. <b>We run the website.</b> For five years you never think about hosting, renewals, updates or security — it simply works.</div>
+
+  <div class="years" data-testid="care-years">
+    <div class="year y1"><div class="yk">Year 1</div><div class="yv">Included</div><div class="yn">Covered in ₹33,000</div></div>
+    <div class="year"><div class="yk">Year 2</div><div class="yv">₹8,200</div><div class="yn">Per year</div></div>
+    <div class="year"><div class="yk">Year 3</div><div class="yv">₹8,200</div><div class="yn">Per year</div></div>
+    <div class="year"><div class="yk">Year 4</div><div class="yv">₹8,200</div><div class="yn">Per year</div></div>
+    <div class="year"><div class="yk">Year 5</div><div class="yv">₹8,200</div><div class="yn">Per year</div></div>
+  </div>
+
+  <div class="bundle" data-testid="care-bundle">
+    <div class="bv">₹24,000</div>
+    <div class="bt"><b>Prepaid bundle — all four years (Year 2 to Year 5) in one payment.</b><br>Lock today's price for half a decade; versus ₹8,200 × 4 = ₹32,800 paid yearly.</div>
+    <div class="save">Save ₹8,800</div>
+  </div>
+
+  <div class="shead"><span class="nchip">02</span><span class="stxt">What The Care Plan Covers</span><span class="rule"></span><span class="ssub">Every Year, Years 2–5</span></div>
+  <ul class="inc">
+    <li><b>Domain renewal</b> — your .com stays yours, renewed on time, every time</li>
+    <li><b>Premium hosting + SSL</b> — fast servers, https security, zero downtime worries</li>
+    <li><b>Daily backups</b> — your website can always be restored, whatever happens</li>
+    <li><b>Security patches &amp; updates</b> — software kept current and protected</li>
+    <li><b>Uptime monitoring</b> — we know before you do if anything blinks</li>
+    <li><b>Menu &amp; price updates</b> — up to 2 content changes every month, done for you</li>
+    <li><b>Seasonal banners</b> — Diwali, Christmas, New Year — your site stays fresh</li>
+    <li><b>WhatsApp support</b> — a message away, real response times</li>
+  </ul>
+
+  <div class="gcall" style="margin-top:12px"><div class="gk">The Honest Comparison</div>
+    <p>Doing this yourself: domain ₹1,200 + decent hosting ₹3,500–5,000 + a developer on call for every small change at ₹500–1,000 per edit — and it's still your headache. <b>₹8,200 a year makes it ours.</b></p>
+  </div>
+
+  <div class="pfoot"><span>Care plan invoiced annually in advance (or once, as the prepaid bundle)</span><div class="pdots"><i></i><i class="on"></i><i></i></div><span>02 — 5-Year Care Plan</span></div>
+</div>
+</div>
+
+<!-- PAGE 3 · OPTIONAL ADD-ONS + PAYMENT -->
+<div class="sheet">
+<div class="inner">
+  <div class="brandrow">
+    <div><div class="logo"><span class="r">Ready</span><span class="up">UP</span><span class="dot">.</span></div><div class="site">Quotation #A0281 · The White Mug</div></div>
+    <div class="qmeta"><div class="qn">ADD-ONS &amp; PAYMENT</div><div class="qd">Optional · Anytime</div></div>
+  </div>
+
+  <div class="shead" style="margin-top:0"><span class="nchip">03</span><span class="stxt">Optional Add-Ons</span><span class="rule"></span><span class="ssub">Café Growth Menu</span></div>
+  <table data-testid="addons-table">
+    <colgroup><col style="width:76%"><col style="width:24%"></colgroup>
+    <thead><tr><th>Service</th><th class="r">Investment</th></tr></thead>
+    <tbody>
+      <tr><td class="dk">QR digital menu<span class="sub">Scan-at-table menu with table-stand design files, updates instantly with the website</span></td><td class="amt r">₹3,500</td></tr>
+      <tr><td class="dk">WhatsApp ordering flow<span class="sub">Customers browse the menu and order on WhatsApp in two taps</span></td><td class="amt r">₹4,500</td></tr>
+      <tr><td class="dk">Table reservation module<span class="sub">Bookings from the website straight to your phone</span></td><td class="amt r">₹6,500</td></tr>
+      <tr><td class="dk">Google Business Profile setup + review QR<span class="sub">Rank on “café near me”; a QR that turns happy tables into 5-star reviews</span></td><td class="amt r">₹2,500</td></tr>
+      <tr><td class="dk">Logo &amp; brand refresh<span class="sub">Sharpened mark, colours and typography — consistent across cup, card and web</span></td><td class="amt r">₹5,000</td></tr>
+      <tr><td class="dk">Printed menu card design<span class="sub">Print-ready menu matching the website's look</span></td><td class="amt r">₹3,000</td></tr>
+      <tr><td class="dk">Instagram launch kit · 15 branded posts<span class="sub">Grid-ready designs announcing the new website and signature dishes</span></td><td class="amt r">₹4,000</td></tr>
+      <tr><td class="dk">Food photography art direction · 1 session<span class="sub">Shot list, styling guidance and edit selection for a delicious-looking site</span></td><td class="amt r">₹6,000</td></tr>
+      <tr><td class="dk">Social media management<span class="sub">Posting, stories and engagement — monthly plan</span></td><td class="amt r">from ₹6,000/mo</td></tr>
+    </tbody>
+  </table>
+
+  <div class="shead"><span class="nchip">04</span><span class="stxt">Payment Schedule</span><span class="rule"></span></div>
+  <div class="payrow" data-testid="quote-payments">
+    <div class="pay first"><div class="pv">₹16,500</div><div class="pk">50% Advance · To Commence</div></div>
+    <div class="pay"><div class="pv">₹16,500</div><div class="pk">50% · At Handover</div></div>
+  </div>
+
+  <div class="bank">
+    <div class="bcard" data-testid="bank-details">
+      <div class="bk">Bank Transfer</div>
+      <div class="brow"><span>Account Name</span><b>Saurabh Singh</b></div>
+      <div class="brow"><span>Account No.</span><b>8248287719</b></div>
+      <div class="brow"><span>IFSC</span><b>KKBK0002063</b></div>
+      <div class="brow"><span>Bank / Type</span><b>Kotak Mahindra · Savings</b></div>
+      <div class="brow"><span>UPI</span><b>7447436448@kotakbank</b></div>
+    </div>
+    <div class="bcard">
+      <div class="bk">Terms</div>
+      <ul class="tlist">
+        <li><b>Timeline:</b> 3–4 weeks from advance + content receipt.</li>
+        <li><b>Revisions:</b> three rounds included; further rounds quoted before work.</li>
+        <li><b>Content:</b> menu text, photos &amp; logo provided by The White Mug.</li>
+        <li><b>Validity:</b> this quotation holds for 14 days from its date.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="gcall" style="margin-top:10px"><div class="gk">Acceptance</div>
+    <p>Reply “Approved” on WhatsApp or email referencing quotation <b>#A0281</b> and transfer the advance — <b>your slot in our production calendar is reserved the same day.</b></p>
+  </div>
+
+  <div class="pfoot"><span>ReadyUP · Nashik · work@ready2up.com · +91 74474 36448</span><div class="pdots"><i></i><i></i><i class="on"></i></div><span>03 — Add-Ons &amp; Payment</span></div>
+</div>
+</div>
+
+<div class="toolbar">
+  <button class="tb-btn primary" onclick="window.print()" data-testid="quote-print-btn">Print / Save PDF</button>
+  <a class="tb-btn secondary" href="/READYUP-Quotation-WhiteMug.pdf" download data-testid="quote-download-btn">Download PDF</a>
+  <a class="tb-btn ghost" href="/pitch-deck.html" data-testid="quote-deck-link">Pitch Deck</a>
+</div>
+
+</body>
+</html>

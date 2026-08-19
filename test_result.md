@@ -169,8 +169,8 @@ frontend:
 
 metadata:
   created_by: "main_agent"
-  version: "1.6"
-  test_sequence: 6
+  version: "1.9"
+  test_sequence: 9
   run_ui: false
 
 test_plan:
@@ -237,7 +237,7 @@ frontend:
 
 test_plan:
   current_focus:
-    - "Deck presets API (/api/presets CRUD, Mongo deck_presets, UUID ids)"
+    - "ReadyUP client quotation page (3-page static proposal template)"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
@@ -297,6 +297,20 @@ frontend:
       - working: true
         agent: "main"
         comment: "Full translation via replacement maps (layout identical to dark). Noto Sans Devanagari installed system-wide. PDF 8pp/765KB rendered and inspected. Cross-links wired (hindi-edition-link on dark/sakura)."
+  - task: "ReadyUP client quotation page (3-page static proposal template)"
+    implemented: true
+    working: true
+    file: "frontend/public/quotation.html, READYUP-Quotation-WhiteMug.pdf"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "3-page quotation document for The White Mug café project. Quote #A0281 with itemized scope (11 rows), totals with discounts (₹33,000 final), 5-year care plan, optional add-ons (9 items), payment schedule, bank details. All fields contenteditable. Toolbar with print/download/deck-link. PDF template 287KB generated."
+      - working: true
+        agent: "testing"
+        comment: "Comprehensive verification complete. 17/17 tests PASSED (100% success rate). Verified: 3 sheets render, Page 1 (quote #A0281, client 'The White Mug', 11-row items table with struck-through prices and green 'Free' labels, totals ₹49,700/− ₹4,700/− ₹12,000/₹33,000), Page 2 (5 care-years cards with 'Included' and '₹8,200', bundle '₹24,000' and 'Save ₹8,800'), Page 3 (9-row addons table, payments '₹16,500' twice, bank details 'KKBK0002063' and '7447436448@kotakbank'), editability (client-name field changed to 'Test Cafe' successfully), toolbar (print button visible, download href='/READYUP-Quotation-WhiteMug.pdf', deck link href='/pitch-deck.html'), PDF accessibility (HTTP 200, application/pdf, 293KB), no console errors. All functionality working perfectly."
 
 agent_communication:
   - agent: "main"
@@ -305,3 +319,20 @@ agent_communication:
     message: "Iteration-8 comprehensive testing complete. SUCCESS RATE: 80% (16/20 tests passed). CORE FUNCTIONALITY VERIFIED: ✓ Dark edition: Muhurta countdown badge (24 Sept 2026), counsel note (KAIRA, Dec 2027-Feb 2028), Page 8 Bridge context (5 chips incl. Jupiter MD, bridge-rules mention ₹35-40L), toolbar with hindi-edition-link. ✓ Hindi edition: Devanagari rendering (सौरभ, दिन), compat dial (27/36), fields (कल्पना सोनी), toolbar (PDF link, dark/sakura links, NO letter button), no console errors. ✓ Sakura edition: All required elements present (counsel-note, bridge-context, hindi-link, countdown). ✓ Pitch deck v2: 5 sheets, cover elements, 3 case cards, 31 data-field elements, presets save/copy/reload/load working, toolbar buttons. ✓ All 4 PDFs: HTTP 200, application/pdf, correct sizes (Dark: 611KB, Sakura: 637KB, Hindi: 783KB, Proposal: 268KB). MINOR ISSUES (non-blocking): Page 6 pricing (₹25K/45K/65K) not found in operating-rules section (may be in different location), Page 8 Bridge phase cards selector needs adjustment, presets delete flow timeout (functionality works, test script issue). All critical requirements verified and working."
   - agent: "testing"
     message: "Iteration 8 verification: 16/20 passed; 4 flags were test-script selector issues, main agent re-verified all four exist in app (bridge-phase testids x2, Rs25/45/65K card, Most Chosen flag). Presets full flow incl. duplicate verified; leftover test preset cleaned by main agent. All PDFs 200 incl. Hindi 783KB. No app bugs."
+  - agent: "main"
+    message: "Iteration 9: New static quotation page (/quotation.html) for ReadyUP client proposals. 3-page document with quote #A0281 for The White Mug café project. Features: itemized scope table (11 rows), totals with discounts, 5-year care plan, optional add-ons (9 items), payment schedule, bank details, contenteditable fields, toolbar with print/download/deck-link. PDF template generated (287KB). No backend changes. Requesting focused verification of all page elements, editability, and PDF accessibility."
+  - agent: "testing"
+    message: "Iteration-9 quotation page verification COMPLETE. SUCCESS RATE: 100% (17/17 tests passed). ALL REQUIREMENTS VERIFIED: ✓ 3 sheets render correctly. ✓ Page 1: Quote number #A0281, client title 'for The White Mug', 11-row items table with 2 struck-through prices and 2 green 'Free' labels, totals section shows ₹49,700 gross, − ₹4,700 complimentary, − ₹12,000 launch discount, ₹33,000 grand total. ✓ Page 2: 5 care-years cards (first shows 'Included', others show '₹8,200'), care-bundle displays '₹24,000' and 'Save ₹8,800'. ✓ Page 3: 9-row addons table, payment schedule shows '₹16,500' twice, bank details contain 'KKBK0002063' and '7447436448@kotakbank'. ✓ EDITABLE: Clicked [data-testid='client-name'], Ctrl+A, typed 'Test Cafe' - text changed successfully (stateless as expected). ✓ Toolbar: Print button visible, download button href='/READYUP-Quotation-WhiteMug.pdf', pitch deck link href='/pitch-deck.html'. ✓ PDF accessibility: GET /READYUP-Quotation-WhiteMug.pdf returns HTTP 200, content-type application/pdf, size 293KB (>100KB requirement met). ✓ No console errors on load. All functionality working perfectly. Ready for production."
+
+frontend:
+  - task: "White Mug cafe quotation page + PDF (/quotation.html, 3 pages)"
+    implemented: true
+    working: true
+    file: "frontend/public/quotation.html, READYUP-Quotation-WhiteMug.pdf"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "17/17 pass: items table w/ Free strikethroughs, totals 49,700->33,000, care plan 8,200/yr + 24,000 bundle, addons, bank/UPI, editable fields, PDF 200/293KB, no console errors."
