@@ -47,6 +47,8 @@ A single, print-ready, self-contained HTML document styled as a modern-executive
 
 - **Iteration 10 (light quotation redesign)**: User disliked dark quotation; shared real logo (blue→violet gradient R, saved /frontend/public/readyup-logo.png, 644×645) + live site https://www.thewhitemug.site. Rewrote /app/readyup-quotation-whitemug.html as LIGHT theme: white paper, brand gradient #2563EB→#7C3AED (top page bar, table headers, "You Pay ₹33,000" band, nchips, wordmark UP, bundle price), green FREE/gift/Year-1 accents, logo img in all 3 headers, domain row now ".site", preview link = www.thewhitemug.site. Same markup/testids/editable fields as iteration 9 (17/17 tested). PDF regenerated FROM http://localhost:3000/quotation.html (so logo resolves; NOT file://): 3pp 774KB, logo embedded. Self-verified: logo loads, contenteditable works, toolbar visible.
 
+- **Iteration 11 (minimal-premium quotation v3)**: User disliked v2 gradients + wordmark missing full company name. Rebuilt as big-firm minimal: ink-on-white, hairline rules, Fraunces serif masthead ("Quotation") + serif totals/promise, FULL wordmark "Ready2UP" (matches original PDF logo text + domain) w/ "Web Design & Development Studio" descriptor + full contact letterhead on all 3 pages, single indigo accent #4338CA used sparingly, tabular numbers, COMPLIMENTARY small-caps green tags, right-aligned totals block w/ serif ₹33,000, numbered terms 01-04, "Page N of 3" footers. ALL copy rewritten tighter/premium. Same testids/editable fields. PDF regen from localhost URL: 3pp 219KB. Live-verified logo/edit/toolbar.
+
 ## Backlog / Next
 - P1: Swap in exact Mars & Jupiter signs/houses when provided (30-second edit in both editions' tables)
 - P2: Letter-size variant, additional theme variants

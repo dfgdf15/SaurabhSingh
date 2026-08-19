@@ -338,3 +338,5 @@ frontend:
         comment: "17/17 pass: items table w/ Free strikethroughs, totals 49,700->33,000, care plan 8,200/yr + 24,000 bundle, addons, bank/UPI, editable fields, PDF 200/293KB, no console errors."
   - agent: "main"
     message: "Iteration 10: quotation rethemed LIGHT with real ReadyUP logo + brand gradient; live site link added (thewhitemug.site); PDF regenerated from served URL (logo embeds); markup/testids unchanged from tested iteration 9; self-verified logo load + editability + toolbar."
+  - agent: "main"
+    message: "Iteration 11: quotation v3 minimal-premium (serif masthead, Ready2UP full letterhead, hairline ink-on-white, copy rewritten). Same markup contract as tested v1/v2. PDF 3pp regenerated; live-verified logo, editability, toolbar."
