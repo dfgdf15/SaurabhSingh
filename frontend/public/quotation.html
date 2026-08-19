@@ -226,6 +226,28 @@ table[data-testid="quote-items"] td.dk::before{counter-increment:li;content:coun
 .pbody .bank{margin-top:18px;}
 .plandate{font-size:8px;color:var(--muted);letter-spacing:.01em;margin-top:12px;line-height:1.7;}
 .plandate b{color:var(--ink);font-weight:700;}
+/* ============ v9 · unified Investment panel (page 1) ============ */
+.pbody-1{justify-content:flex-start;}
+.invest-wrap{margin-top:auto;padding-top:22px;}
+.invest-wrap .slab{margin-top:0;}
+.invest{display:grid;grid-template-columns:1.02fr .98fr;border:1px solid var(--tintline);border-radius:14px;overflow:hidden;}
+.invest-left{padding:20px 22px;display:flex;flex-direction:column;justify-content:center;gap:14px;}
+.invest-note{font-size:8.4px;line-height:1.7;color:var(--muted);}
+.invest-note b{color:var(--ink);}
+.perks{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.perks li{font-size:8.2px;color:var(--muted);display:flex;align-items:flex-start;gap:9px;line-height:1.5;}
+.perks li b{color:var(--ink);font-weight:700;}
+.perks .pk-tick{flex:none;width:13px;height:13px;border-radius:50%;background:rgba(14,122,85,.1);border:1px solid rgba(14,122,85,.32);position:relative;margin-top:1px;}
+.perks .pk-tick::after{content:"";position:absolute;left:4px;top:2px;width:3px;height:6px;border:solid var(--green);border-width:0 1.4px 1.4px 0;transform:rotate(45deg);}
+.invest-right{background:linear-gradient(155deg,var(--tint),rgba(67,56,202,.015));border-left:1px solid var(--tintline);padding:20px 24px;display:flex;flex-direction:column;align-items:flex-end;text-align:right;justify-content:center;}
+.invest-right .was-line{margin-bottom:5px;}
+.invest-right .was{font-family:'Fraunces',Georgia,serif;font-size:12px;color:var(--faint);text-decoration:line-through;font-weight:600;}
+.invest-right .wlab{font-size:6px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-left:5px;}
+.inv-amt{font-size:41px;font-weight:600;color:var(--accent);line-height:1;margin:2px 0 6px;}
+.inv-label{font-size:6.6px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);}
+.inv-div{width:100%;height:1px;background:var(--tintline);margin:15px 0;}
+.inv-terms{font-size:9.5px;font-weight:700;color:var(--ink);}
+.inv-terms span{display:block;font-size:6.8px;font-weight:500;color:var(--muted);letter-spacing:.02em;margin-top:3px;}
 </style>
 </head>
 <body>
@@ -258,6 +280,7 @@ table[data-testid="quote-items"] td.dk::before{counter-increment:li;content:coun
     <div class="party"><div class="pk">Prepared For</div><div class="pn" contenteditable="true" data-testid="client-name">The White Mug</div><div class="pa" contenteditable="true">Mahatma Nagar, Veer Sawarkar Nagar,<br>Nashik, Maharashtra 422005</div></div>
   </div>
 
+  <div class="pbody pbody-1">
   <div class="slab"><span class="st">What's Included</span><span class="ss">Everything in your website · one all-inclusive price</span></div>
   <div class="scopegrid" data-testid="quote-items">
     <div class="sitem"><span class="tick"></span><div class="sbody"><div class="stt">Discovery &amp; positioning</div><div class="sds">Structured kickoff — competitors, sitemap and content plan agreed before design begins</div></div></div>
@@ -273,31 +296,26 @@ table[data-testid="quote-items"] td.dk::before{counter-increment:li;content:coun
     <div class="sitem"><span class="tick"></span><div class="sbody"><div class="stt">Hosting &amp; SSL · one year <span class="chip">Complimentary</span></div><div class="sds">Managed servers, https security, daily backups</div></div></div>
   </div>
 
-  <div class="totwrap">
-    <div class="totnote"><b>One price, everything included.</b> Design, development, content management and the first year of care are covered by a single figure — no per-item billing, no surprises. Domain, hosting and SSL for the first year are on the house, marking Ready2UP's first café engagement.</div>
-    <div class="totals" data-testid="quote-totals">
-      <div class="grandonly">
-        <div class="was-line"><span class="was">₹49,700</span><span class="wlab">Standard value</span></div>
-        <div class="gl">Your Price · All-Inclusive</div>
-        <div class="gv serif">₹33,000</div>
-        <div class="gnote">Website &amp; first year · one-time</div>
+  <div class="invest-wrap">
+    <div class="slab"><span class="st">Investment</span><span class="ss">All-inclusive · payable in full on acceptance</span></div>
+    <div class="invest" data-testid="quote-totals">
+      <div class="invest-left">
+        <div class="invest-note"><b>One price, everything included.</b> Design, development, content management and a full first year of care — covered by a single figure, with nothing to itemise or chase.</div>
+        <ul class="perks">
+          <li><span class="pk-tick"></span>Domain, hosting &amp; SSL for year one — <b>complimentary</b></li>
+          <li><span class="pk-tick"></span>First month of post-launch fixes — <b>on us</b></li>
+          <li><span class="pk-tick"></span>One payment on acceptance — <b>no advance, no milestones</b></li>
+        </ul>
       </div>
-      <div class="words">Thirty-three thousand rupees only</div>
+      <div class="invest-right" data-testid="quote-payments">
+        <div class="was-line"><span class="was">₹49,700</span><span class="wlab">Standard value</span></div>
+        <div class="inv-amt serif">₹33,000</div>
+        <div class="inv-label">All-inclusive · website &amp; first year</div>
+        <div class="inv-div"></div>
+        <div class="inv-terms">Payable in full on acceptance<span>To complete &amp; hand over your website</span></div>
+      </div>
     </div>
   </div>
-
-  <div class="slab"><span class="st">Payment</span><span class="ss">Payable in full on acceptance</span></div>
-  <div class="settle" data-testid="quote-payments">
-    <div class="sled">
-      <div class="srow"><span>Year-one domain, hosting &amp; SSL</span><b class="ok">Complimentary</b></div>
-      <div class="srow"><span>First month of post-launch fixes</span><b class="ok">On us</b></div>
-      <div class="srow"><span>Settled in a single payment</span><b>On acceptance</b></div>
-    </div>
-    <div class="sdue">
-      <div class="dl">Amount Now Due</div>
-      <div class="dv serif">₹33,000</div>
-      <div class="dn">On acceptance · to complete &amp; hand over</div>
-    </div>
   </div>
 
   <div class="pfoot"><span>Ready2UP · Quotation A0280 · Electronically generated; no signature required</span><span>Page 1 of 3</span></div>
@@ -333,7 +351,7 @@ table[data-testid="quote-items"] td.dk::before{counter-increment:li;content:coun
     <div class="save">Saves ₹8,800</div>
   </div>
 
-  <div class="plandate">Care plan begins <b contenteditable="true" data-testid="plan-start">August 2027</b> — when your complimentary first year ends — and runs through <b contenteditable="true">August 2031</b>. Optional; you can begin it anytime.</div>
+  <div class="plandate">Care plan begins <b contenteditable="true" data-testid="plan-start">August 2027</b> — when your complimentary first year ends — and runs through <b contenteditable="true">August 2031</b>. It's optional, and we'll gently remind you in good time before it begins — nothing for you to track.</div>
 
   <div class="slab"><span class="st">We Handle Everything · You Handle Nothing</span><span class="ss">The plan, in plain words</span></div>
   <div class="hows">
