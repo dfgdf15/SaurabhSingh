@@ -11,7 +11,7 @@ import sys
 from typing import List, Dict, Any
 
 # Base URL from frontend/.env
-BASE_URL = "https://939472c3-f035-46f9-8e19-dd0e3aaf2039.preview.emergentagent.com/api"
+BASE_URL = "https://design-sprint-aug26.preview.emergentagent.com/api"
 FALLBACK_URL = "http://localhost:8001/api"
 
 # Track created preset IDs for cleanup
