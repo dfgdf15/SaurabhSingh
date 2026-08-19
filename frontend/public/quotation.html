@@ -157,6 +157,22 @@ table[data-testid="quote-items"] td.dk::before{counter-increment:li;content:coun
 .pfoot span:first-child{display:inline-flex;align-items:center;gap:7px;}
 .pfoot span:first-child::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;flex:none;}
 .pfoot span:last-child{font-weight:700;color:var(--muted);letter-spacing:.14em;}
+/* ============ v5 · scope-as-checklist + single price ============ */
+.scopegrid{display:grid;grid-template-columns:1fr 1fr;gap:0 36px;border-top:1px solid var(--ink);margin-top:2px;}
+.sitem{display:flex;gap:11px;padding:11px 4px 11px 0;border-bottom:1px solid var(--hair);align-items:flex-start;}
+.sitem .tick{flex:none;width:15px;height:15px;border-radius:50%;background:var(--tint);border:1px solid var(--tintline);position:relative;margin-top:1.5px;}
+.sitem .tick::after{content:"";position:absolute;left:5px;top:2.5px;width:3.5px;height:7px;border:solid var(--accent);border-width:0 1.5px 1.5px 0;transform:rotate(45deg);}
+.sitem .stt{font-size:9px;font-weight:700;color:var(--ink);letter-spacing:-.005em;}
+.sitem .sds{font-size:7.4px;color:var(--muted);line-height:1.55;margin-top:2px;}
+.sitem .chip{display:inline-block;font-size:5.6px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green);border:1px solid rgba(14,122,85,.35);border-radius:20px;padding:1.5px 6px;margin-left:6px;vertical-align:middle;line-height:1;}
+/* single-figure total card */
+.totwrap{align-items:stretch;}
+.totals{background:var(--tint);border:1px solid var(--tintline);display:flex;flex-direction:column;justify-content:center;}
+.grandonly{text-align:right;}
+.grandonly .gl{font-size:7px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--faint);}
+.grandonly .gv{display:block;font-size:37px;font-weight:600;color:var(--accent);line-height:1.02;margin:5px 0 4px;}
+.grandonly .gnote{font-size:6.6px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
+.totals .words{margin-top:8px;}
 </style>
 </head>
 <body>
@@ -189,33 +205,30 @@ table[data-testid="quote-items"] td.dk::before{counter-increment:li;content:coun
     <div class="party"><div class="pk">Prepared For</div><div class="pn" contenteditable="true" data-testid="client-name">The White Mug</div><div class="pa" contenteditable="true">Mahatma Nagar, Veer Sawarkar Nagar,<br>Nashik, Maharashtra 422005</div></div>
   </div>
 
-  <div class="slab"><span class="st">Scope of Work</span><span class="ss">Eleven deliverables · all-inclusive</span></div>
-  <table data-testid="quote-items">
-    <colgroup><col style="width:80%"><col style="width:20%"></colgroup>
-    <thead><tr><th>Deliverable</th><th class="r">Value</th></tr></thead>
-    <tbody>
-      <tr><td class="dk">Discovery &amp; positioning<span class="sub">Structured kickoff — competitors, sitemap and content plan agreed before design begins</span></td><td class="amt r">₹3,000</td></tr>
-      <tr><td class="dk">Interface design<span class="sub">A bespoke café aesthetic, composed page by page — mobile-first, never a template</span></td><td class="amt r">₹11,000</td></tr>
-      <tr><td class="dk">Development &amp; content management<span class="sub">Fast, secure build; your team edits menus and pages without touching code</span></td><td class="amt r">₹12,500</td></tr>
-      <tr><td class="dk">Digital menu<span class="sub">Categories, pricing, dietary badges and a specials board — updated in minutes</span></td><td class="amt r">₹4,500</td></tr>
-      <tr><td class="dk">Gallery &amp; ambience<span class="sub">Interiors and signature dishes, presented gallery-grade</span></td><td class="amt r">₹2,500</td></tr>
-      <tr><td class="dk">Maps, hours &amp; WhatsApp<span class="sub">One-tap directions, calls and enquiries from any phone</span></td><td class="amt r">₹2,000</td></tr>
-      <tr><td class="dk">Reviews &amp; Instagram<span class="sub">Google ratings and a live feed, woven into the site</span></td><td class="amt r">₹2,500</td></tr>
-      <tr><td class="dk">Search &amp; analytics foundation<span class="sub">SEO groundwork, Search Console, GA4 and speed tuning</span></td><td class="amt r">₹3,500</td></tr>
-      <tr><td class="dk">Launch &amp; thirty-day care<span class="sub">Go-live, staff training, documentation — the first month of fixes is on us</span></td><td class="amt r">₹3,500</td></tr>
-      <tr><td class="dk">Domain · one year<span class="sub">Registered in your name; it remains your property</span></td><td class="amt r"><span class="strike">₹1,200</span><span class="comp">Complimentary</span></td></tr>
-      <tr><td class="dk">Hosting &amp; SSL · one year<span class="sub">Managed servers, https security, daily backups</span></td><td class="amt r"><span class="strike">₹3,500</span><span class="comp">Complimentary</span></td></tr>
-    </tbody>
-  </table>
+  <div class="slab"><span class="st">Scope of Work</span><span class="ss">Eleven deliverables · one all-inclusive price</span></div>
+  <div class="scopegrid" data-testid="quote-items">
+    <div class="sitem"><span class="tick"></span><div class="sbody"><div class="stt">Discovery &amp; positioning</div><div class="sds">Structured kickoff — competitors, sitemap and content plan agreed before design begins</div></div></div>
+    <div class="sitem"><span class="tick"></span><div class="sbody"><div class="stt">Interface design</div><div class="sds">A bespoke café aesthetic, composed page by page — mobile-first, never a template</div></div></div>
+    <div class="sitem"><span class="tick"></span><div class="sbody"><div class="stt">Development &amp; content management</div><div class="sds">Fast, secure build; your team edits menus and pages without touching code</div></div></div>
+    <div class="sitem"><span class="tick"></span><div class="sbody"><div class="stt">Digital menu</div><div class="sds">Categories, pricing, dietary badges and a specials board — updated in minutes</div></div></div>
+    <div class="sitem"><span class="tick"></span><div class="sbody"><div class="stt">Gallery &amp; ambience</div><div class="sds">Interiors and signature dishes, presented gallery-grade</div></div></div>
+    <div class="sitem"><span class="tick"></span><div class="sbody"><div class="stt">Maps, hours &amp; WhatsApp</div><div class="sds">One-tap directions, calls and enquiries from any phone</div></div></div>
+    <div class="sitem"><span class="tick"></span><div class="sbody"><div class="stt">Reviews &amp; Instagram</div><div class="sds">Google ratings and a live feed, woven into the site</div></div></div>
+    <div class="sitem"><span class="tick"></span><div class="sbody"><div class="stt">Search &amp; analytics foundation</div><div class="sds">SEO groundwork, Search Console, GA4 and speed tuning</div></div></div>
+    <div class="sitem"><span class="tick"></span><div class="sbody"><div class="stt">Launch &amp; thirty-day care</div><div class="sds">Go-live, staff training, documentation — the first month of fixes is on us</div></div></div>
+    <div class="sitem"><span class="tick"></span><div class="sbody"><div class="stt">Domain · one year <span class="chip">Complimentary</span></div><div class="sds">Registered in your name; it remains your property</div></div></div>
+    <div class="sitem"><span class="tick"></span><div class="sbody"><div class="stt">Hosting &amp; SSL · one year <span class="chip">Complimentary</span></div><div class="sds">Managed servers, https security, daily backups</div></div></div>
+  </div>
 
   <div class="totwrap">
-    <div class="totnote"><b>A note on the complimentary year.</b> The White Mug is Ready2UP's first engagement in the café category. The complimentary domain, hosting and launch consideration reflect that occasion — they will not appear on future quotations.</div>
+    <div class="totnote"><b>One price, everything included.</b> Design, development, content management and the first year of care are covered by a single figure — no per-item billing, no surprises. Domain, hosting and SSL for the first year are on the house, marking Ready2UP's first café engagement.</div>
     <div class="totals" data-testid="quote-totals">
-      <div class="trow"><span>Gross value</span><b>₹49,700</b></div>
-      <div class="trow"><span>Domain &amp; hosting, first year</span><span class="neg">− ₹4,700</span></div>
-      <div class="trow"><span>Category-launch consideration</span><span class="neg">− ₹12,000</span></div>
-      <div class="trow grand"><span class="gl">Total Payable</span><span class="gv serif">₹33,000</span></div>
-      <div class="words">Thirty-three thousand rupees only · all-inclusive</div>
+      <div class="grandonly">
+        <div class="gl">Total Payable</div>
+        <div class="gv serif">₹33,000</div>
+        <div class="gnote">All-inclusive · one-time</div>
+      </div>
+      <div class="words">Thirty-three thousand rupees only</div>
     </div>
   </div>
 
