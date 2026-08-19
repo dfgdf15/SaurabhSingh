@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ready2UP — Optional Services · The White Mug</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap');
+:root{
+  --paper:#FFFFFF; --ink:#111827; --muted:#5A6474; --faint:#98A1B3; --hair:#E8EBF1; --hair2:#F1F3F8;
+  --accent:#4338CA; --accent2:#6D5AE6; --green:#0E7A55;
+  --tint:rgba(67,56,202,.055); --tintline:rgba(67,56,202,.18); --paperwarm:#FAFAFE;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#E9ECF2;color:var(--ink);font-feature-settings:'tnum' 1;}
+@page{size:A4;margin:0;}
+.sheet{width:210mm;height:296mm;margin:24px auto;background:var(--paper);position:relative;page-break-after:always;overflow:hidden;}
+.sheet:last-of-type{page-break-after:auto;}
+.sheet::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--accent) 0%,var(--accent2) 42%,#B9B2F2 70%,transparent 100%);z-index:3;}
+.inner{position:relative;padding:14mm 16mm 11mm;height:100%;display:flex;flex-direction:column;}
+@media print{
+  body{background:var(--paper);}
+  .sheet{margin:0 auto;box-shadow:none;}
+  .toolbar,.edithint{display:none !important;}
+  [contenteditable]{outline:none !important;border-bottom-color:transparent !important;background:transparent !important;}
+}
+[contenteditable]{border-bottom:1px dashed rgba(67,56,202,.35);background:rgba(67,56,202,.04);border-radius:2px;padding:0 2px;cursor:text;min-width:20px;display:inline-block;}
+[contenteditable]:hover{background:rgba(67,56,202,.08);}
+[contenteditable]:focus{outline:1px solid var(--accent);background:rgba(67,56,202,.06);}
+.serif{font-family:'Fraunces',Georgia,serif;}
+/* letterhead */
+.lhead{display:flex;align-items:center;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid var(--ink);}
+.lbrand{display:flex;align-items:center;gap:11px;}
+.lbrand img{width:34px;height:34px;object-fit:contain;}
+.wordmark{font-size:17px;font-weight:800;letter-spacing:-.01em;color:var(--ink);}
+.wordmark span{color:var(--accent);}
+.wdesc{font-size:6.8px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);opacity:.7;margin-top:3px;}
+.lcontact{text-align:right;font-size:7.2px;line-height:1.75;color:var(--muted);letter-spacing:.02em;}
+.lcontact b{color:var(--ink);font-weight:700;}
+/* doc meta */
+.docrow{display:flex;align-items:baseline;justify-content:space-between;margin:18px 0 4px;}
+.doctitle{font-size:30px;font-weight:600;letter-spacing:-.01em;}
+.docmeta{display:flex;gap:26px;text-align:right;}
+.dm .k{font-size:6.4px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);margin-bottom:4px;}
+.dm .v{font-size:9px;font-weight:700;color:var(--ink);}
+.docsub{font-size:9.5px;color:var(--muted);margin-bottom:4px;line-height:1.6;max-width:150mm;}
+.docsub b{color:var(--ink);font-weight:700;}
+/* section label */
+.slab{display:flex;align-items:baseline;justify-content:space-between;margin:16px 0 10px;}
+.slab .st{font-size:7.2px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--ink);position:relative;padding-left:15px;}
+.slab .st::before{content:"";position:absolute;left:0;top:1.5px;width:7px;height:7px;background:var(--accent);border-radius:1.5px;}
+.slab .ss{font-size:6.8px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);}
+/* add-on cards */
+.addgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px 20px;}
+.addcard{border:1px solid var(--hair);border-radius:10px;padding:13px 15px 12px;display:flex;flex-direction:column;background:#fff;}
+.addcard .arow{display:flex;align-items:baseline;justify-content:space-between;gap:12px;}
+.addcard .at{font-size:10px;font-weight:700;color:var(--ink);letter-spacing:-.005em;}
+.addcard .ap{font-size:13px;font-weight:600;color:var(--accent);font-family:'Fraunces',Georgia,serif;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.addcard .ap small{font-size:6.6px;color:var(--faint);font-weight:700;font-family:'Inter',sans-serif;letter-spacing:.1em;text-transform:uppercase;display:block;margin-top:-1px;}
+.addcard .ad{font-size:7.8px;color:var(--muted);line-height:1.6;margin-top:6px;}
+.addcard.ask{background:var(--tint);border:1px dashed var(--tintline);}
+.addcard.ask .ap{font-size:8px;letter-spacing:.14em;text-transform:uppercase;font-family:'Inter',sans-serif;font-weight:700;}
+/* note */
+.finenote{font-size:7.8px;line-height:1.7;color:var(--muted);border-left:2px solid var(--ink);padding:3px 0 3px 14px;margin-top:16px;}
+.finenote b{color:var(--ink);}
+/* footer */
+.pfoot{margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid var(--hair);font-size:6.6px;color:var(--faint);letter-spacing:.06em;}
+.pfoot span:first-child{display:inline-flex;align-items:center;gap:7px;}
+.pfoot span:first-child::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block;flex:none;}
+.pfoot span:last-child{font-weight:700;color:var(--muted);letter-spacing:.14em;}
+/* toolbar */
+.toolbar{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:99;background:rgba(255,255,255,.97);border:1px solid var(--hair);border-radius:10px;padding:7px;box-shadow:0 12px 40px rgba(17,24,39,.18);}
+.tb-btn{display:inline-flex;align-items:center;font-family:inherit;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:9px 16px;border-radius:6px;cursor:pointer;text-decoration:none;border:1px solid transparent;}
+.tb-btn.primary{background:var(--ink);color:#fff;}
+.tb-btn.secondary{background:transparent;color:var(--ink);border-color:var(--hair);}
+.tb-btn.ghost{background:transparent;color:var(--accent);border-color:rgba(67,56,202,.3);}
+.edithint{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:99;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:rgba(255,255,255,.97);border:1px solid var(--hair);border-radius:8px;padding:7px 14px;box-shadow:0 6px 20px rgba(17,24,39,.10);}
+.edithint b{color:var(--accent);}
+@media screen{.sheet{animation:rise .7s cubic-bezier(.22,1,.36,1) both;box-shadow:0 24px 70px rgba(17,24,39,.16);}@keyframes rise{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}}
+</style>
+</head>
+<body>
+
+<div class="edithint"><b>Click any underlined field to edit</b> · then Print → Save as PDF</div>
+
+<!-- OPTIONAL SERVICES · ONE PAGE -->
+<div class="sheet">
+<div class="inner">
+  <div class="lhead">
+    <div class="lbrand">
+      <img src="/readyup-logo.png" alt="Ready2UP">
+      <div><div class="wordmark">Ready<span>2UP</span></div><div class="wdesc">Web Design &amp; Development Studio</div></div>
+    </div>
+    <div class="lcontact"><b>Ready2UP · Saurabh Singh</b><br>Shop 6, Kalash Residency, DGP Nagar Ambad Link Road, Nashik 422008<br>work@ready2up.com · +91 74474 36448 · ready2up.com</div>
+  </div>
+
+  <div class="docrow">
+    <div class="doctitle serif">Optional Services</div>
+    <div class="docmeta">
+      <div class="dm"><div class="k">Reference</div><div class="v" contenteditable="true" data-testid="ref-number">A0280</div></div>
+      <div class="dm"><div class="k">Prepared For</div><div class="v" contenteditable="true" data-testid="client-name">The White Mug</div></div>
+    </div>
+  </div>
+  <div class="docsub">Handy extras that grow with your café — <b>add any, anytime.</b> Each is priced with your current project, so the rate is held whenever you're ready. Nothing here is required; your website is already complete without them.</div>
+
+  <div class="slab"><span class="st">Available Add-Ons</span><span class="ss">Priced with your project</span></div>
+  <div class="addgrid" data-testid="addons-grid">
+    <div class="addcard"><div class="arow"><div class="at">QR digital menu</div><div class="ap">₹3,500</div></div><div class="ad">Scan-at-table menu with printed stand artwork; updates with the website, instantly.</div></div>
+    <div class="addcard"><div class="arow"><div class="at">WhatsApp ordering</div><div class="ap">₹4,500</div></div><div class="ad">Guests browse the menu and place an order in two taps, straight to your phone.</div></div>
+    <div class="addcard"><div class="arow"><div class="at">Table reservations</div><div class="ap">₹6,500</div></div><div class="ad">Bookings taken on the website, arriving on your phone in real time.</div></div>
+    <div class="addcard"><div class="arow"><div class="at">Google Business &amp; review QR</div><div class="ap">₹2,500</div></div><div class="ad">Show up on “café near me”; turn happy tables into five-star reviews with a single scan.</div></div>
+    <div class="addcard"><div class="arow"><div class="at">Logo &amp; brand refinement</div><div class="ap">₹5,000</div></div><div class="ad">Mark, colours and type refined — consistent from cup to card to website.</div></div>
+    <div class="addcard"><div class="arow"><div class="at">Printed menu design</div><div class="ap">₹3,000</div></div><div class="ad">Press-ready menus, matched beautifully to your new website.</div></div>
+    <div class="addcard"><div class="arow"><div class="at">Instagram launch kit</div><div class="ap">₹4,000</div></div><div class="ad">Fifteen branded posts announcing the new site and your signature dishes.</div></div>
+    <div class="addcard"><div class="arow"><div class="at">Food photography direction</div><div class="ap">₹6,000</div></div><div class="ad">One guided session — shot list, styling and final edit selection.</div></div>
+    <div class="addcard"><div class="arow"><div class="at">Social media management</div><div class="ap">₹6,000<small>per month</small></div></div><div class="ad">Posting, stories and engagement, handled for you every month.</div></div>
+    <div class="addcard ask"><div class="arow"><div class="at">Something not listed?</div><div class="ap">On request</div></div><div class="ad">Tell us what you have in mind — we'll shape it and quote it, with no obligation.</div></div>
+  </div>
+
+  <div class="finenote"><b>How to add one.</b> Send a WhatsApp with the service name and we'll confirm the timeline and start date. Prices are inclusive and hold for six months from the date of your website quotation A0280. Monthly services are billed month to month and can be paused anytime.</div>
+
+  <div class="pfoot"><span>Ready2UP · Optional Services · Companion to Quotation A0280 · The White Mug</span><span>Add-ons</span></div>
+</div>
+</div>
+
+<div class="toolbar">
+  <button class="tb-btn primary" onclick="window.print()" data-testid="addons-print-btn">Print / Save PDF</button>
+  <a class="tb-btn secondary" href="/READYUP-Optional-Services-WhiteMug.pdf" download data-testid="addons-download-btn">Download PDF</a>
+  <a class="tb-btn ghost" href="/quotation.html" data-testid="addons-quote-link">Back to Quotation</a>
+</div>
+
+</body>
+</html>

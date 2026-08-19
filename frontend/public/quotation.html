@@ -173,6 +173,35 @@ table[data-testid="quote-items"] td.dk::before{counter-increment:li;content:coun
 .grandonly .gv{display:block;font-size:37px;font-weight:600;color:var(--accent);line-height:1.02;margin:5px 0 4px;}
 .grandonly .gnote{font-size:6.6px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
 .totals .words{margin-top:8px;}
+/* ============ v6 · 3-page: prepared-for fix, savings anchor, settlement, plain-words ============ */
+.parties [contenteditable]{display:block;}
+/* savings anchor on total */
+.grandonly .was-line{margin-bottom:6px;}
+.grandonly .was{font-family:'Fraunces',Georgia,serif;font-size:12px;color:var(--faint);text-decoration:line-through;font-weight:600;}
+.grandonly .wlab{font-size:6px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-left:5px;}
+/* payment settlement summary */
+.settle{display:grid;grid-template-columns:1.15fr .85fr;border:1px solid var(--tintline);border-radius:12px;overflow:hidden;margin-top:2px;}
+.settle .sled{padding:14px 18px;}
+.settle .srow{display:flex;justify-content:space-between;align-items:baseline;gap:14px;font-size:8.4px;color:var(--muted);padding:7px 0;border-bottom:1px solid var(--hair2);}
+.settle .srow:last-child{border-bottom:none;}
+.settle .srow b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.settle .srow b.ok{color:var(--green);}
+.settle .sdue{background:var(--tint);border-left:1px solid var(--tintline);padding:14px 18px;display:flex;flex-direction:column;justify-content:center;text-align:right;}
+.settle .sdue .dl{font-size:6.4px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);}
+.settle .sdue .dv{font-size:29px;font-weight:600;color:var(--accent);line-height:1.04;margin:5px 0 3px;}
+.settle .sdue .dn{font-size:6.4px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+/* page 3 · plain words */
+.plain-lead{font-size:21px;font-weight:500;line-height:1.32;letter-spacing:-.01em;margin:2px 0 6px;max-width:158mm;}
+.plain-lead i{font-style:italic;color:var(--accent);}
+.plain-sub{font-size:9.5px;color:var(--muted);line-height:1.6;margin-bottom:12px;max-width:150mm;}
+.plain-sub b{color:var(--ink);}
+.hows{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;}
+.how{border:1px solid var(--hair);border-radius:10px;padding:11px 14px;background:var(--paperwarm);}
+.how .ht{font-size:9.3px;font-weight:700;color:var(--ink);display:flex;align-items:center;gap:8px;}
+.how .ht .d{width:8px;height:8px;border-radius:2px;background:var(--accent);flex:none;}
+.how .hp{font-size:7.6px;color:var(--muted);line-height:1.55;margin-top:4px;}
+.plain-close{font-size:9.5px;line-height:1.6;color:var(--ink);border-left:2px solid var(--accent);padding:4px 0 4px 14px;margin:13px 0 2px;}
+.plain-close b{color:var(--accent);}
 </style>
 </head>
 <body>
@@ -205,7 +234,7 @@ table[data-testid="quote-items"] td.dk::before{counter-increment:li;content:coun
     <div class="party"><div class="pk">Prepared For</div><div class="pn" contenteditable="true" data-testid="client-name">The White Mug</div><div class="pa" contenteditable="true">Mahatma Nagar, Veer Sawarkar Nagar,<br>Nashik, Maharashtra 422005</div></div>
   </div>
 
-  <div class="slab"><span class="st">Scope of Work</span><span class="ss">Eleven deliverables · one all-inclusive price</span></div>
+  <div class="slab"><span class="st">What's Included</span><span class="ss">Everything in your website · one all-inclusive price</span></div>
   <div class="scopegrid" data-testid="quote-items">
     <div class="sitem"><span class="tick"></span><div class="sbody"><div class="stt">Discovery &amp; positioning</div><div class="sds">Structured kickoff — competitors, sitemap and content plan agreed before design begins</div></div></div>
     <div class="sitem"><span class="tick"></span><div class="sbody"><div class="stt">Interface design</div><div class="sds">A bespoke café aesthetic, composed page by page — mobile-first, never a template</div></div></div>
@@ -224,19 +253,34 @@ table[data-testid="quote-items"] td.dk::before{counter-increment:li;content:coun
     <div class="totnote"><b>One price, everything included.</b> Design, development, content management and the first year of care are covered by a single figure — no per-item billing, no surprises. Domain, hosting and SSL for the first year are on the house, marking Ready2UP's first café engagement.</div>
     <div class="totals" data-testid="quote-totals">
       <div class="grandonly">
-        <div class="gl">Total Payable</div>
+        <div class="was-line"><span class="was">₹49,700</span><span class="wlab">Standard value</span></div>
+        <div class="gl">Your Price · All-Inclusive</div>
         <div class="gv serif">₹33,000</div>
-        <div class="gnote">All-inclusive · one-time</div>
+        <div class="gnote">Website &amp; first year · one-time</div>
       </div>
       <div class="words">Thirty-three thousand rupees only</div>
     </div>
   </div>
 
-  <div class="pfoot"><span>Ready2UP · Quotation A0280 · Electronically generated; no signature required</span><span>Page 1 of 2</span></div>
+  <div class="slab"><span class="st">Payment</span><span class="ss">Balance due on handover</span></div>
+  <div class="settle" data-testid="quote-payments">
+    <div class="sled">
+      <div class="srow"><span>Total engagement · all-inclusive</span><b>₹33,000</b></div>
+      <div class="srow"><span>Advance · 50% on commencement</span><b class="ok">− ₹16,500 · Received</b></div>
+      <div class="srow"><span>Build &amp; refinements · to your feedback</span><b>In progress</b></div>
+    </div>
+    <div class="sdue">
+      <div class="dl">Balance Now Due</div>
+      <div class="dv serif">₹16,500</div>
+      <div class="dn">On handover · payable now</div>
+    </div>
+  </div>
+
+  <div class="pfoot"><span>Ready2UP · Quotation A0280 · Electronically generated; no signature required</span><span>Page 1 of 3</span></div>
 </div>
 </div>
 
-<!-- PAGE 2 · FIVE-YEAR CARE -->
+<!-- PAGE 2 · THE 4-YEAR PLAN -->
 <div class="sheet">
 <div class="inner">
   <div class="lhead">
@@ -244,14 +288,14 @@ table[data-testid="quote-items"] td.dk::before{counter-increment:li;content:coun
       <img src="/readyup-logo.png" alt="Ready2UP">
       <div><div class="wordmark">Ready<span>2UP</span></div><div class="wdesc">Web Design &amp; Development Studio</div></div>
     </div>
-    <div class="lcontact"><b>Quotation A0280 · The White Mug</b><br>Care plan · payment · terms of engagement</div>
+    <div class="lcontact"><b>Quotation A0280 · The White Mug</b><br>The care plan · five years, zero worries</div>
   </div>
 
-  <div class="promise serif">You run the café. <i>We run the website.</i><br>Five years without a thought for hosting, renewals or security.</div>
+  <div class="promise serif">You run the café. <i>We run the website.</i><br>Five years without a single thought for hosting, renewals or security.</div>
 
-  <div class="slab" style="margin-top:2px"><span class="st">Five-Year Care Plan</span><span class="ss">Optional · recommended</span></div>
+  <div class="slab" style="margin-top:2px"><span class="st">The 4-Year Plan</span><span class="ss">Years two to five · optional, strongly recommended</span></div>
   <div class="years" data-testid="care-years">
-    <div class="year y1"><div class="yk">Year One</div><div class="yv">Included</div><div class="yn">Within ₹33,000</div></div>
+    <div class="year y1"><div class="yk">Year One</div><div class="yv">Included</div><div class="yn">Within your ₹33,000</div></div>
     <div class="year"><div class="yk">Year Two</div><div class="yv">₹8,200</div><div class="yn">Per annum</div></div>
     <div class="year"><div class="yk">Year Three</div><div class="yv">₹8,200</div><div class="yn">Per annum</div></div>
     <div class="year"><div class="yk">Year Four</div><div class="yv">₹8,200</div><div class="yn">Per annum</div></div>
@@ -260,11 +304,11 @@ table[data-testid="quote-items"] td.dk::before{counter-increment:li;content:coun
 
   <div class="bundle" data-testid="care-bundle">
     <div class="bv serif">₹24,000</div>
-    <div class="bt"><b>The prepaid term — years two through five, settled once.</b> Against ₹32,800 billed annually; today's rate, held for half a decade.</div>
+    <div class="bt"><b>The 4-year plan, settled once — years two through five.</b> Against ₹32,800 billed year by year; today's rate, locked for four full years.</div>
     <div class="save">Saves ₹8,800</div>
   </div>
 
-  <div class="slab"><span class="st">What The Plan Covers</span><span class="ss">Each year, years two to five</span></div>
+  <div class="slab"><span class="st">What The Plan Covers</span><span class="ss">Every year, years two to five</span></div>
   <ul class="inc">
     <li><b>Domain renewal</b> — secured on time, in your name, every year</li>
     <li><b>Managed hosting &amp; SSL</b> — monitored servers, https, no downtime worries</li>
@@ -276,14 +320,39 @@ table[data-testid="quote-items"] td.dk::before{counter-increment:li;content:coun
     <li><b>Direct support</b> — one WhatsApp message away</li>
   </ul>
 
-  <div class="note"><b>The honest comparison.</b> Managed independently: domain ₹1,200, capable hosting ₹3,500–5,000, and a developer at ₹500–1,000 for every small change — with the responsibility still yours. ₹8,200 a year transfers it entirely to ours.</div>
+  <div class="note"><b>The honest comparison.</b> Managed on your own: domain ₹1,200, capable hosting ₹3,500–5,000, and a developer at ₹500–1,000 for every small change — with the worry still yours. ₹8,200 a year hands the whole lot to us. <b>Turn the page</b> — we've explained exactly how it works, in plain words.</div>
 
-  <div class="slab"><span class="st">Payment Schedule</span><span class="ss">Two milestones</span></div>
-  <div class="payrow" data-testid="quote-payments">
-    <div class="pay"><div class="pv serif">₹16,500</div><div class="pk">Fifty percent · on acceptance, to commence</div></div>
-    <div class="pay"><div class="pv serif">₹16,500</div><div class="pk">Fifty percent · at handover</div></div>
+  <div class="pfoot"><span>Ready2UP · The care plan is optional and can be started anytime</span><span>Page 2 of 3</span></div>
+</div>
+</div>
+
+<!-- PAGE 3 · HOW IT WORKS, IN PLAIN WORDS -->
+<div class="sheet">
+<div class="inner">
+  <div class="lhead">
+    <div class="lbrand">
+      <img src="/readyup-logo.png" alt="Ready2UP">
+      <div><div class="wordmark">Ready<span>2UP</span></div><div class="wdesc">Web Design &amp; Development Studio</div></div>
+    </div>
+    <div class="lcontact"><b>Quotation A0280 · The White Mug</b><br>How it all works · in plain words</div>
   </div>
 
+  <div class="plain-lead serif">Your website, taken care of — <i>completely.</i></div>
+  <div class="plain-sub">Think of your website like a small shop on the internet. A shop needs an address, a place to stand, a lock on the door and a little looking-after. Normally you'd chase three or four different people for all of that. <b>With us, you chase no one.</b> Here is everything we quietly handle for you:</div>
+
+  <div class="slab"><span class="st">We Handle Everything · You Handle Nothing</span><span class="ss">The care plan, simply</span></div>
+  <div class="hows">
+    <div class="how"><div class="ht"><span class="d"></span>A home on the internet</div><div class="hp"><b>Hosting.</b> Your website lives on a powerful computer that stays on day and night. We rent it, run it and keep it quick — you never touch a server.</div></div>
+    <div class="how"><div class="ht"><span class="d"></span>Your name, kept yours</div><div class="hp"><b>Domain.</b> thewhitemug.site is your address online. We renew it on time, in your name, so it can never slip away.</div></div>
+    <div class="how"><div class="ht"><span class="d"></span>A strong lock on the door</div><div class="hp"><b>Security &amp; SSL.</b> That little padlock in the browser. We keep the site safe from hackers and warnings, so guests always trust it.</div></div>
+    <div class="how"><div class="ht"><span class="d"></span>A spare copy, every day</div><div class="hp"><b>Backups.</b> Each day we quietly save a full copy. If anything ever breaks, we put it back in minutes — nothing is ever lost.</div></div>
+    <div class="how"><div class="ht"><span class="d"></span>Always watching</div><div class="hp"><b>Monitoring.</b> We get an alert the moment something looks off — usually fixed before you or a single guest notices.</div></div>
+    <div class="how"><div class="ht"><span class="d"></span>Any change, just message us</div><div class="hp"><b>Support.</b> New price, new dish, a festival banner? Send one WhatsApp. We make the change for you — no logins, no fuss.</div></div>
+  </div>
+
+  <div class="plain-close"><b>That's the whole idea.</b> You run the café; we quietly run the website. You never deal with anything technical — you simply tell us what you'd like, and consider it done.</div>
+
+  <div class="slab"><span class="st">Settle &amp; Go Live</span><span class="ss">Remittance · terms of engagement</span></div>
   <div class="bank">
     <div data-testid="bank-details">
       <div class="bk">Remittance</div>
@@ -296,15 +365,15 @@ table[data-testid="quote-items"] td.dk::before{counter-increment:li;content:coun
     <div>
       <div class="bk">Terms of Engagement</div>
       <ul class="tlist">
-        <li><span class="n">01</span><span><b>Timeline.</b> Three to four weeks from advance and receipt of content.</span></li>
-        <li><span class="n">02</span><span><b>Revisions.</b> Three rounds included; further rounds quoted before work.</span></li>
+        <li><span class="n">01</span><span><b>Handover.</b> Your website is built and in final refinement to your feedback.</span></li>
+        <li><span class="n">02</span><span><b>Changes.</b> Everyday edits are covered under the care plan; brand-new features are quoted separately.</span></li>
         <li><span class="n">03</span><span><b>Content.</b> Menu copy, photographs and logo provided by The White Mug.</span></li>
-        <li><span class="n">04</span><span><b>Acceptance.</b> Reply “Approved” citing A0280 and remit the advance — your production slot is reserved the same day.</span></li>
+        <li><span class="n">04</span><span><b>Acceptance.</b> Reply “Approved” citing A0280 and settle the balance — your site goes fully live in your name the same day.</span></li>
       </ul>
     </div>
   </div>
 
-  <div class="pfoot"><span>Ready2UP · Nashik · work@ready2up.com · +91 74474 36448</span><span>Page 2 of 2</span></div>
+  <div class="pfoot"><span>Ready2UP · Nashik · work@ready2up.com · +91 74474 36448</span><span>Page 3 of 3</span></div>
 </div>
 </div>
 
@@ -312,6 +381,7 @@ table[data-testid="quote-items"] td.dk::before{counter-increment:li;content:coun
 <div class="toolbar">
   <button class="tb-btn primary" onclick="window.print()" data-testid="quote-print-btn">Print / Save PDF</button>
   <a class="tb-btn secondary" href="/READYUP-Quotation-WhiteMug.pdf" download data-testid="quote-download-btn">Download PDF</a>
+  <a class="tb-btn ghost" href="/optional-services.html" data-testid="quote-addons-link">Optional Services</a>
   <a class="tb-btn ghost" href="/pitch-deck.html" data-testid="quote-deck-link">Pitch Deck</a>
 </div>
 
