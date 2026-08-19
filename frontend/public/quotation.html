@@ -248,6 +248,17 @@ table[data-testid="quote-items"] td.dk::before{counter-increment:li;content:coun
 .inv-div{width:100%;height:1px;background:var(--tintline);margin:15px 0;}
 .inv-terms{font-size:9.5px;font-weight:700;color:var(--ink);}
 .inv-terms span{display:block;font-size:6.8px;font-weight:500;color:var(--muted);letter-spacing:.02em;margin-top:3px;}
+/* ============ v10 · savings psychology + thank-you ============ */
+.whynote{font-size:7.4px;line-height:1.6;color:var(--muted);border-top:1px dashed var(--hair);padding-top:11px;margin-top:2px;}
+.whynote b{color:var(--green);font-weight:800;}
+.inv-save{display:inline-flex;align-items:center;gap:8px;margin-top:13px;background:rgba(14,122,85,.1);border:1px solid rgba(14,122,85,.3);border-radius:30px;padding:6px 8px 6px 14px;}
+.inv-save .lbl{font-size:6.6px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--green);}
+.inv-save .amt{font-size:13px;font-weight:800;color:var(--green);font-family:'Fraunces',Georgia,serif;font-variant-numeric:tabular-nums;}
+.inv-save .pct{font-size:6.2px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--green);border-radius:20px;padding:3px 7px;}
+.savings-line{margin-top:13px;font-size:8.4px;color:var(--muted);display:flex;align-items:center;gap:9px;flex-wrap:wrap;}
+.savings-line .chip{font-weight:800;color:var(--green);background:rgba(14,122,85,.1);border:1px solid rgba(14,122,85,.28);border-radius:20px;padding:4px 12px;font-size:8px;}
+.thanks{margin:22px auto 2px;text-align:center;font-family:'Fraunces',Georgia,serif;font-size:11.5px;font-style:italic;color:var(--ink);line-height:1.55;max-width:150mm;}
+.thanks span{display:block;font-family:'Inter',sans-serif;font-style:normal;font-size:6.6px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-top:8px;}
 </style>
 </head>
 <body>
@@ -306,11 +317,13 @@ table[data-testid="quote-items"] td.dk::before{counter-increment:li;content:coun
           <li><span class="pk-tick"></span>First month of post-launch fixes — <b>on us</b></li>
           <li><span class="pk-tick"></span>One payment on acceptance — <b>no advance, no milestones</b></li>
         </ul>
+        <div class="whynote">Your <b>₹16,700</b> saving is a one-time launch consideration — The White Mug is Ready2UP's first café partner. This rate is reserved for you and won't appear on future quotations.</div>
       </div>
       <div class="invest-right" data-testid="quote-payments">
         <div class="was-line"><span class="was">₹49,700</span><span class="wlab">Standard value</span></div>
         <div class="inv-amt serif">₹33,000</div>
         <div class="inv-label">All-inclusive · website &amp; first year</div>
+        <div class="inv-save"><span class="lbl">You save</span><span class="amt">₹16,700</span><span class="pct">34% off</span></div>
         <div class="inv-div"></div>
         <div class="inv-terms">Payable in full on acceptance<span>To complete &amp; hand over your website</span></div>
       </div>
@@ -390,6 +403,8 @@ table[data-testid="quote-items"] td.dk::before{counter-increment:li;content:coun
     <div class="row grand"><div class="sk">Everything, together</div><div class="sv">₹57,000</div></div>
   </div>
 
+  <div class="savings-line"><span class="chip">You save ₹16,700 on the build today</span><span>— and a further ₹8,800 if the four-year plan is prepaid.</span></div>
+
   <div class="note"><b>How it settles.</b> The website is settled in a single payment of ₹33,000 on acceptance, to complete and hand over. The 4-year plan is optional and begins whenever you're ready: settle it once at ₹24,000, or ₹8,200 a year.</div>
 
   <div class="slab"><span class="st">Settle &amp; Go Live</span><span class="ss">Remittance · terms of engagement</span></div>
@@ -413,6 +428,7 @@ table[data-testid="quote-items"] td.dk::before{counter-increment:li;content:coun
     </div>
   </div>
 
+  <div class="thanks">Thank you for trusting Ready2UP with The White Mug's first home online — it's been a real pleasure, and we can't wait to see it live.<span>Saurabh Singh · Ready2UP</span></div>
   </div>
   <div class="pfoot"><span>Ready2UP · Nashik · work@ready2up.com · +91 74474 36448</span><span>Page 3 of 3</span></div>
 </div>
